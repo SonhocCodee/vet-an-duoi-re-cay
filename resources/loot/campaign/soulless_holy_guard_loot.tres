@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 40
+maximum_amount = 65
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_broken_shield_fragment_1"]
+script = ExtResource("2_entry")
+item_id = &"broken_shield_fragment"
+display_name = "Broken Shield Fragment"
+drop_chance = 0.6
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_pure_root_fragment_2"]
+script = ExtResource("2_entry")
+item_id = &"pure_root_fragment"
+display_name = "Pure Root Fragment"
+drop_chance = 0.45
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_soul_shard_3"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Soul Shard"
+drop_chance = 0.2
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_blackstone_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"blackstone_armor"
+display_name = "Blackstone Armor"
+drop_chance = 0.055
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_reflective_mirror_rune_i_5"]
+script = ExtResource("2_entry")
+item_id = &"reflective_mirror_rune_i"
+display_name = "Reflective Mirror Rune I"
+drop_chance = 0.035
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_broken_shield_fragment_1"), SubResource("LootEntry_pure_root_fragment_2"), SubResource("LootEntry_soul_shard_3"), SubResource("LootEntry_blackstone_armor_4"), SubResource("LootEntry_reflective_mirror_rune_i_5")])
+

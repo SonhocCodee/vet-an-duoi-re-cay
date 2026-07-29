@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 12
+maximum_amount = 22
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_bone_feather_1"]
+script = ExtResource("2_entry")
+item_id = &"bone_feather"
+display_name = "Bone Feather"
+drop_chance = 0.65
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_rough_root_stone_2"]
+script = ExtResource("2_entry")
+item_id = &"rough_root_stone"
+display_name = "Rough Root Stone"
+drop_chance = 0.5
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_root_drill_3"]
+script = ExtResource("2_entry")
+item_id = &"root_drill"
+display_name = "Root Drill"
+drop_chance = 0.025
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_shadow_trace_rune_i_4"]
+script = ExtResource("2_entry")
+item_id = &"shadow_trace_rune_i"
+display_name = "Shadow Trace Rune I"
+drop_chance = 0.02
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_bone_feather_1"), SubResource("LootEntry_rough_root_stone_2"), SubResource("LootEntry_root_drill_3"), SubResource("LootEntry_shadow_trace_rune_i_4")])
+

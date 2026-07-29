@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_8_empty_monastery"
+chapter_number = 8
+title = "Tu Viện Rỗng"
+subtitle = "Nơi đức tin sống tiếp sau khi con người đã rời đi"
+intro_lines = Array[String](["Chuông gió ngân trong một tu viện không còn người sống, nhưng bữa tối vẫn được dọn mỗi đêm.", "Cecilia nghe những cựu tu sĩ cầu xin một phép màu mà Giáo Hội chưa từng định ban.", "Vị viện trưởng đã rút hết ký ức của môn đồ để giữ họ ngoan đạo vĩnh viễn."])
+objective = "Đi qua ba điện thờ rỗng, trả ký ức cho các tu sĩ và kết thúc nghi lễ vĩnh tín của viện trưởng."
+companion = &"cecilia"
+completion_lines = Array[String](["Những bộ áo tu sĩ xẹp xuống, còn ký ức bay ra cửa sổ như đàn bướm tro.", "Cecilia cầu nguyện không xin phép màu; cô chỉ đọc tên những người cuối cùng đã được yên nghỉ."])
+encounter_enemy_ids = Array[StringName]([&"empty_former_monk", &"white_bark_treant", &"soul_black_eagle"])
+boss_enemy_id = &"boss_empty_abbot"
+moral_choice_id = &"choice_chapter_8_monastery_faith"
+moral_option_a_text = "Trả lại toàn bộ ký ức và để các tu sĩ tự quyết định họ còn tin hay không."
+moral_option_a_flag = &"chapter_8_memories_returned"
+moral_option_b_text = "Giữ lại ký ức đau đớn nhất để họ có thể rời tu viện trong thanh thản."
+moral_option_b_flag = &"chapter_8_memories_softened"
+reward_exp = 21000
+next_map_id = &"chapter_9_false_sun_citadel"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.1, 0.1, 0.12, 1), Color(0.31, 0.3, 0.34, 1), Color(0.63, 0.59, 0.55, 1), Color(0.83, 0.79, 0.68, 1)])
+background_color = Color(0.035, 0.035, 0.045, 1)

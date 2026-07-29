@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_drowned_executioner_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_drowned_executioner"
+display_name = "Drowned Executioner"
+base_level = 10
+experience_reward = 520
+base_health = 1100.0
+base_attack = 30.0
+base_defense = 18.0
+base_resistance = 14.0
+movement_speed = 65.0
+detection_radius = 420.0
+attack_range = 68.0
+telegraph_duration = 0.9
+attack_recovery = 1
+stagger_duration = 0.25
+stagger_threshold = 42.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.207843, 0.329412, 0.364706, 1)
+accent_color = Color(0.513725, 0.768627, 0.776471, 1)
+visual_size = 42.0
+

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_3_ash_blind_road"
+chapter_id = &"chapter_3_blind_procession"
+chapter_number = 3
+category_id = &"location"
+title = "Thánh Lộ Phủ Tro"
+summary = "Con đường trắng không dẫn đến thánh địa, mà uốn vòng quanh một vực sâu được che bằng thánh ca."
+body = "Tro trên Thánh Lộ không đến từ núi lửa; đó là phần còn lại của những cột chỉ đường bị Giáo Hội đốt bỏ. Đoàn hành hương bị bịt mắt bước theo nhịp kinh đảo ngược, tin rằng đau đớn là bằng chứng họ đang đến gần ánh sáng. Mọi dấu chân đều quay lại điểm xuất phát trước khi bị kéo dần về phía vực."
+related_ids = Array[StringName]([&"chapter_3_blind_procession", &"blind_spell_soldier"])
+unlock_condition = &"chapter_3_reach_ash_blind_road"

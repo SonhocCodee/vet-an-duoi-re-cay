@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_7_resin_huntsman"
+chapter_id = &"chapter_7_black_resin_pass"
+chapter_number = 7
+category_id = &"adversary"
+title = "Thủ Lĩnh Săn Người Hắc Tín"
+summary = "Kẻ săn người dùng danh xưng Ma Vương như bản án có sẵn cho bất cứ ai cản đường Giáo Hội."
+body = "Thủ Lĩnh từng thuộc quân đoàn của Aria và học cách đánh dấu mục tiêu bằng nhựa cây chữa thương. Sau khi quân đoàn tan rã, hắn đổi lời thề bảo vệ dân thành đặc quyền quyết định ai còn được xem là dân. Hắn săn Kael không vì đã chứng kiến tội ác, mà vì câu chuyện về Ma Vương giúp mọi cuộc hành quyết trở nên dễ giải thích."
+related_ids = Array[StringName]([&"boss_betrayer_knight", &"boss_black_resin_huntsman", &"soul_black_eagle"])
+unlock_condition = &"chapter_7_defeat_boss_black_resin_huntsman"

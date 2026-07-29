@@ -4,6 +4,16 @@ const MAP_PATHS: Dictionary = {
 	GameIds.MAP_1: "res://scenes/maps/map1_awakening_forest.tscn",
 	GameIds.MAP_2: "res://scenes/maps/map2_tutorial_road.tscn",
 	GameIds.MAP_3: "res://scenes/maps/map3_ashen_town_hub.tscn",
+	GameIds.MAP_CHAPTER_2: "res://scenes/maps/campaign/chapter_2_drowned_bells.tscn",
+	GameIds.MAP_CHAPTER_3: "res://scenes/maps/campaign/chapter_3_blind_procession.tscn",
+	GameIds.MAP_CHAPTER_4: "res://scenes/maps/campaign/chapter_4_erased_archive.tscn",
+	GameIds.MAP_CHAPTER_5: "res://scenes/maps/campaign/chapter_5_quartz_wastes.tscn",
+	GameIds.MAP_CHAPTER_6: "res://scenes/maps/campaign/chapter_6_burning_root_garden.tscn",
+	GameIds.MAP_CHAPTER_7: "res://scenes/maps/campaign/chapter_7_black_resin_pass.tscn",
+	GameIds.MAP_CHAPTER_8: "res://scenes/maps/campaign/chapter_8_empty_monastery.tscn",
+	GameIds.MAP_CHAPTER_9: "res://scenes/maps/campaign/chapter_9_false_sun_citadel.tscn",
+	GameIds.MAP_CHAPTER_10: "res://scenes/maps/campaign/chapter_10_world_root.tscn",
+	GameIds.MAP_TRUE_ENDING: "res://scenes/ending/true_ending.tscn",
 }
 const FADE_DURATION: float = 0.3
 

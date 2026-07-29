@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_9_false_sun_citadel"
+chapter_number = 9
+title = "Thành Mặt Trời Giả"
+subtitle = "Ánh sáng vĩnh cửu được nuôi bằng những đời người hữu hạn"
+intro_lines = Array[String](["Trên đỉnh kinh thành, một mặt trời nhân tạo khiến đêm không thể đến.", "Cecilia nhận ra cột sáng nối thẳng với căn phòng nơi cô từng được chuẩn bị làm bình chứa.", "Giáo chủ của thành tuyên bố Kael muốn dập tắt ánh sáng, trong khi chính cỗ máy đang hút cạn cư dân."])
+objective = "Phá ba trạm truyền quang, sơ tán khu dân cư và tiến vào tháp lõi của Mặt Trời Giả."
+companion = &"cecilia"
+completion_lines = Array[String](["Đêm thật phủ xuống kinh thành lần đầu sau nhiều thế hệ.", "Trong bóng tối, người dân thắp những ngọn đèn nhỏ của riêng họ thay vì quỳ trước một mặt trời duy nhất."])
+encounter_enemy_ids = Array[StringName]([&"false_sun_knight", &"faceless_nun", &"ulcerated_light_wyrmling"])
+boss_enemy_id = &"boss_false_sun"
+moral_choice_id = &"choice_chapter_9_false_sun"
+moral_option_a_text = "Tắt Mặt Trời Giả ngay và công bố sự thật về những sinh mạng đã bị hút cạn."
+moral_option_a_flag = &"chapter_9_false_sun_exposed"
+moral_option_b_text = "Duy trì ánh sáng đến khi sơ tán xong rồi mới phá lõi, dù Giáo Hội có thời gian xóa chứng cứ."
+moral_option_b_flag = &"chapter_9_city_evacuated"
+reward_exp = 30000
+next_map_id = &"chapter_10_world_root"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.19, 0.1, 0.04, 1), Color(0.72, 0.35, 0.05, 1), Color(1, 0.72, 0.19, 1), Color(0.96, 0.9, 0.62, 1)])
+background_color = Color(0.085, 0.035, 0.012, 1)

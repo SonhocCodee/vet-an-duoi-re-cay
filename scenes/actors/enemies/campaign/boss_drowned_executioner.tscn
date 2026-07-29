@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/boss_enemy_base.gd" id="1_boss"]
+[ext_resource type="Resource" path="res://resources/enemies/campaign/boss_drowned_executioner.tres" id="2_data"]
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_visual.gd" id="3_visual"]
+
+[sub_resource type="CapsuleShape2D" id="Capsule_boss"]
+radius = 23.0
+height = 61.0
+
+[node name="BossDrownedExecutioner" type="CharacterBody2D" groups=["enemy", "boss", "campaign_boss"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_boss")
+data = ExtResource("2_data")
+combat_level = 10
+elite_roll_enabled = false
+projectile_count = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Capsule_boss")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+campaign_style = 0
+body_color = Color(0.207843, 0.329412, 0.364706, 1)
+accent_color = Color(0.513725, 0.768627, 0.776471, 1)
+size = 42.0
+

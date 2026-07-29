@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs><linearGradient id="resin" x2="0" y2="1"><stop stop-color="#07100d"/><stop offset="1" stop-color="#17251b"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#resin)"/>
+  <path d="M0 510 C210 390 430 600 620 475 C810 350 980 590 1180 450 C1360 325 1480 410 1600 350 V700 C1390 750 1200 620 990 735 C770 850 560 660 350 770 C190 850 80 800 0 820Z" fill="#3f382a"/>
+  <g fill="#030706" stroke="#245437" stroke-width="5" opacity=".9"><ellipse cx="230" cy="680" rx="145" ry="60"/><ellipse cx="610" cy="250" rx="125" ry="48"/><ellipse cx="990" cy="720" rx="155" ry="55"/><ellipse cx="1360" cy="210" rx="135" ry="50"/></g>
+  <g stroke="#111b14" stroke-width="42"><path d="M60 0 L240 310"/><path d="M1540 0 L1330 330"/><path d="M420 900 L520 690"/><path d="M1250 900 L1160 690"/></g>
+  <g fill="#6da65d" opacity=".55"><circle cx="305" cy="230" r="9"/><circle cx="760" cy="150" r="7"/><circle cx="1110" cy="310" r="8"/><circle cx="1460" cy="590" r="10"/></g>
+</svg>

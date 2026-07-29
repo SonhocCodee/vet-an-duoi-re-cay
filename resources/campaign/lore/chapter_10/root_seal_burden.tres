@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_10_root_seal_burden"
+chapter_id = &"chapter_10_world_root"
+chapter_number = 10
+category_id = &"moral_choice"
+title = "Gánh Nặng Của Những Chiếc Đinh"
+summary = "Tháo phong ấn cứu Tâm Rễ bằng sự hy sinh có chủ ý; bẻ gãy chúng đổi tốc độ lấy một vết thương mới."
+body = "Tháo từng đinh cho phép Kael nhận Hư Vô vào mình và giữ cấu trúc Tâm Rễ nguyên vẹn, dù thế giới có thể không bao giờ biết cái giá ấy. Bẻ gãy phong ấn giải phóng năng lượng ngay lập tức và từ chối thêm một nghi thức hy sinh, nhưng làm tổn thương nơi mọi sự sống nối vào nhau. Ba người đồng hành không chọn thay Kael; họ chỉ bảo đảm anh không bước đến quyết định cuối trong cô độc."
+related_ids = Array[StringName]([&"choice_chapter_10_world_root", &"chapter_10_root_seals_released", &"chapter_10_root_seals_shattered"])
+unlock_condition = &"chapter_10_resolve_choice_chapter_10_world_root"

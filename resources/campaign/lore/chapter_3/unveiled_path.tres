@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_3_unveiled_path"
+chapter_id = &"chapter_3_blind_procession"
+chapter_number = 3
+category_id = &"moral_choice"
+title = "Sự Thật Sau Tấm Khăn"
+summary = "Trao sự thật ngay lập tức có thể giải phóng một đám đông, cũng có thể đẩy họ vào hoảng loạn."
+body = "Tháo khăn và chỉ ra vực sâu trả quyền lựa chọn cho đoàn người, nhưng nhiều người đã sống quá lâu trong nhịp lệnh để tự bước đi. Dẫn họ tới nơi an toàn trước là một hành động che chở, đồng thời kéo dài lời nói dối thêm một quãng đường. Cecilia phải cân nhắc liệu lòng thương có quyền trì hoãn sự thật hay không."
+related_ids = Array[StringName]([&"choice_chapter_3_procession_truth", &"chapter_3_procession_awakened", &"chapter_3_procession_sheltered"])
+unlock_condition = &"chapter_3_resolve_choice_chapter_3_procession_truth"

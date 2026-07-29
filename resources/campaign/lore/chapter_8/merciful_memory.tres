@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_8_merciful_memory"
+chapter_id = &"chapter_8_empty_monastery"
+chapter_number = 8
+category_id = &"moral_choice"
+title = "Lòng Thương Có Được Sửa Ký Ức?"
+summary = "Trả lại toàn bộ ký ức khôi phục quyền tự quyết; làm dịu phần đau nhất có thể cho người sống một lối ra."
+body = "Trao lại mọi ký ức buộc các tu sĩ đối diện cả sự lừa dối lẫn những mất mát từng khiến họ cầu xin được quên. Giữ lại phần đau nhất giúp họ rời tu viện trong thanh thản, nhưng tiếp tục một phiên bản nhẹ hơn của quyền lực Viện Trưởng. Cecilia phải tự hỏi một phép lành còn là phép lành hay không khi người nhận không được chọn giá của nó."
+related_ids = Array[StringName]([&"choice_chapter_8_monastery_faith", &"chapter_8_memories_returned", &"chapter_8_memories_softened"])
+unlock_condition = &"chapter_8_resolve_choice_chapter_8_monastery_faith"

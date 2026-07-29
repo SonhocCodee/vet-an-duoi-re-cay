@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_10_world_root"
+chapter_id = &"chapter_10_world_root"
+chapter_number = 10
+category_id = &"location"
+title = "Tâm Rễ Asterion"
+summary = "Nơi mọi rễ cây hội tụ, ký ức của thế giới chảy như mạch máu quanh những chiếc đinh Ánh Sáng."
+body = "Tâm Rễ không phải ngai vàng mà là cơ quan sống ghi nhớ mọi khu rừng, dòng sông và người từng nương nhờ Cây Thế Giới. Các Mảnh Vỡ Ánh Sáng đã bị biến thành đinh phong ấn, ép ký ức tự tấn công bất cứ ai đến gần. Khi Kael bước xuống, nơi này nhận ra Kẻ Giữ Rễ ngay cả khi thế giới phía trên chỉ nhớ danh Ma Vương."
+related_ids = Array[StringName]([&"chapter_10_world_root", &"corrupted_asterion_echo"])
+unlock_condition = &"chapter_10_enter_world_root"

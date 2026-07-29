@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EndingDialogueDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/ending_dialogue_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+ending_id = &"true_ending_silent_rootkeeper"
+title = "Kẻ Giữ Rễ Không Được Gọi Tên"
+subtitle = "True Ending"
+speaker_name = "Cây Thế Giới"
+lines = Array[String](["Ta nhớ tên ngươi, Kael Asterion.", "Những thành phố phía trên sẽ chữa lành chậm hơn những câu chuyện dối trá của họ.", "Có người sẽ gọi ngươi là cứu tinh. Nhiều người vẫn gọi ngươi là Ma Vương.", "Aria mang sự thật đến những người chịu lắng nghe. Elysia chép lại những cái tên từng bị xóa. Cecilia dạy họ cầu nguyện mà không quỳ trước quyền lực.", "Còn ngươi bước đi trong im lặng, nơi những mầm cây mới nghiêng về phía dấu chân của Kẻ Giữ Rễ."])
+required_choice_flags = Array[StringName]([&"chapter_2_spirits_released", &"chapter_3_procession_awakened", &"chapter_4_names_restored", &"chapter_5_well_shared", &"chapter_6_pure_flame_preserved", &"chapter_7_resin_prisoners_freed", &"chapter_8_memories_returned", &"chapter_9_false_sun_exposed", &"chapter_10_root_seals_released"])
+completion_flag = &"true_ending_completed"
+next_map_id = &"map_epilogue_recovering_world"
+spawn_id = &"epilogue_start"
+background_color = Color(0.015, 0.045, 0.025, 1)

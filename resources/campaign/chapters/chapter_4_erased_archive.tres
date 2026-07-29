@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_4_erased_archive"
+chapter_number = 4
+title = "Thư Viện Tên Bị Xóa"
+subtitle = "Lịch sử cháy sạch trước khi mực kịp khô"
+intro_lines = Array[String](["Elysia dẫn Kael đến kho lưu trữ nơi gia tộc cô từng phục vụ Giáo Hội.", "Mỗi cuốn sách bị mở đều quên tên tác giả, còn người đọc dần quên chính mình.", "Một quản thủ không mặt đang xóa dấu vết về Kẻ Giữ Rễ khỏi lịch sử."])
+objective = "Khôi phục ba mục lục ký ức, bảo vệ các bản ghi còn lại và đánh bại quản thủ đã xóa tên Kael."
+companion = &"elysia"
+completion_lines = Array[String](["Tên Kael trở lại trên một trang giấy, cạnh hàng nghìn cái tên chưa ai nhớ tới.", "Elysia giữ bản sao lời thú tội của gia tộc mình thay vì giấu nó thêm một lần nữa."])
+encounter_enemy_ids = Array[StringName]([&"blind_battlemage", &"night_mist_owl", &"soulless_holy_guard"])
+boss_enemy_id = &"boss_blind_archivist"
+moral_choice_id = &"choice_chapter_4_archive_names"
+moral_option_a_text = "Khôi phục toàn bộ tên đã bị xóa, kể cả tên của những kẻ từng phạm tội."
+moral_option_a_flag = &"chapter_4_names_restored"
+moral_option_b_text = "Niêm phong các bản ghi nguy hiểm nhưng trao sự thật về Kael cho dân chúng."
+moral_option_b_flag = &"chapter_4_archive_sealed"
+reward_exp = 4200
+unlock_class_id = &"spellblade"
+next_map_id = &"chapter_5_quartz_wastes"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.11, 0.08, 0.16, 1), Color(0.29, 0.2, 0.38, 1), Color(0.58, 0.48, 0.68, 1), Color(0.79, 0.72, 0.61, 1)])
+background_color = Color(0.035, 0.025, 0.055, 1)

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_burning_root_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_burning_root"
+display_name = "Burning Root"
+base_level = 23
+experience_reward = 1650
+base_health = 2900.0
+base_attack = 64.0
+base_defense = 34.0
+base_resistance = 42.0
+movement_speed = 46.0
+detection_radius = 465.0
+attack_range = 155.0
+telegraph_duration = 1
+attack_recovery = 1.05
+stagger_duration = 0.25
+stagger_threshold = 62.0
+loot_table = ExtResource("2_loot")
+visual_style = 4
+body_color = Color(0.435294, 0.184314, 0.145098, 1)
+accent_color = Color(1, 0.541176, 0.239216, 1)
+visual_size = 52.0
+

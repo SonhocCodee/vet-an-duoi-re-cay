@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_5_last_well_covenant"
+chapter_id = &"chapter_5_quartz_wastes"
+chapter_number = 5
+category_id = &"moral_choice"
+title = "Giao Ước Bên Giếng Cuối"
+summary = "Nước là quyền sống chung, nhưng một nguồn nước không được bảo vệ có thể chết trước những người cần nó."
+body = "Mở giếng cho mọi đoàn người phủ nhận quyền sở hữu mà Giáo Hội từng áp đặt, song dòng nước hữu hạn có thể nhanh chóng bị rút cạn. Giao quyền quản lý cho cộng đồng lưu vong giúp nguồn nước tồn tại lâu hơn, nhưng buộc họ quyết định ai được uống. Lựa chọn của Kael biến một chiến thắng thành trách nhiệm kéo dài qua nhiều thế hệ."
+related_ids = Array[StringName]([&"choice_chapter_5_last_well", &"chapter_5_well_shared", &"chapter_5_well_guarded"])
+unlock_condition = &"chapter_5_resolve_choice_chapter_5_last_well"

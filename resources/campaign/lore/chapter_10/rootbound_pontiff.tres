@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_10_rootbound_pontiff"
+chapter_id = &"chapter_10_world_root"
+chapter_number = 10
+category_id = &"adversary"
+title = "Giáo Hoàng Rễ Trói"
+summary = "Tác giả của huyền thoại Ma Vương khoác lịch sử giả thành áo giáp và dùng Cây Thế Giới làm con tin."
+body = "Giáo Hoàng không chỉ che giấu sự thật về Kael; ông sắp xếp từng thảm họa để mọi con đường cứu thế đều trông giống một cuộc xâm lăng. Rễ trói quanh thân ông được nuôi bằng đức tin, sợ hãi và các bản ghi đã bị sửa. Khi lớp hóa thân vỡ ra, tiếng nói bên trong vẫn khẳng định thế giới cần một Ma Vương hơn là cần biết ai đã cứu nó."
+related_ids = Array[StringName]([&"boss_papal_root_avatar", &"boss_rootbound_pontiff", &"faceless_nun"])
+unlock_condition = &"chapter_10_defeat_boss_rootbound_pontiff"

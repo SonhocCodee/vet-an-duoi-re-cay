@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_2_bell_warden"
+chapter_id = &"chapter_2_drowned_bells"
+chapter_number = 2
+category_id = &"adversary"
+title = "Kẻ Canh Chuông Chìm"
+summary = "Người giữ chuông cuối cùng đã buộc linh hồn mình vào nhiệm vụ mà cấp trên bỏ quên."
+body = "Kẻ Canh Chuông không bảo vệ kho báu, mà bảo vệ lời khai của những người đã chết trong giáo đường. Nước đã lấy đi gương mặt và giọng nói của hắn, chỉ để lại đôi tay kéo dây chuông theo một mệnh lệnh không còn người ban. Đánh bại hắn là chấm dứt phiên gác, không phải phủ nhận tội ác mà hắn cố giữ lại."
+related_ids = Array[StringName]([&"boss_drowned_executioner", &"boss_drowned_bell_warden", &"bone_crow"])
+unlock_condition = &"chapter_2_defeat_boss_drowned_bell_warden"

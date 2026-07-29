@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_quartz_matriarch_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_quartz_matriarch"
+display_name = "Quartz Matriarch"
+base_level = 20
+experience_reward = 1350
+base_health = 2400.0
+base_attack = 56.0
+base_defense = 40.0
+base_resistance = 30.0
+movement_speed = 58.0
+detection_radius = 420.0
+attack_range = 92.0
+telegraph_duration = 0.9
+attack_recovery = 1
+stagger_duration = 0.25
+stagger_threshold = 58.0
+loot_table = ExtResource("2_loot")
+visual_style = 4
+body_color = Color(0.784314, 0.737255, 0.815686, 1)
+accent_color = Color(0.529412, 0.85098, 0.909804, 1)
+visual_size = 48.0
+

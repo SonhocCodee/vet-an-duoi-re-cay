@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_5_quartz_wastes"
+chapter_number = 5
+title = "Hoang Mạc Thạch Anh"
+subtitle = "Mỗi ảo ảnh đều phản chiếu một lời thú tội"
+intro_lines = Array[String](["Cát trắng cắt vào giáp như mảnh kính, phản chiếu vô số phiên bản của Kael.", "Elysia tìm thấy dấu vết đoàn pháp sư đã khai thác rễ hóa thạch cho Giáo Hội.", "Giữa tâm bão, một khổng tượng thạch anh bảo vệ giếng nước cuối cùng của dân lưu vong."])
+objective = "Băng qua ba vành đai ảo ảnh, mở giếng thạch anh và phá lõi điều khiển khổng tượng."
+companion = &"elysia"
+completion_lines = Array[String](["Nước trồi lên giữa cát, đục nhưng không còn mang vị kim loại của phong ấn.", "Elysia thú nhận gia tộc cô đã vẽ bản đồ khai thác đầu tiên và trao nó cho những người sống sót."])
+encounter_enemy_ids = Array[StringName]([&"white_sand_scorpion", &"quartz_mummy", &"betrayer_masked_knight"])
+boss_enemy_id = &"boss_quartz_matriarch"
+moral_choice_id = &"choice_chapter_5_last_well"
+moral_option_a_text = "Mở giếng cho mọi đoàn người đi qua, chấp nhận nguy cơ nguồn nước sớm cạn."
+moral_option_a_flag = &"chapter_5_well_shared"
+moral_option_b_text = "Giao giếng cho cộng đồng lưu vong quản lý và giới hạn người ngoài."
+moral_option_b_flag = &"chapter_5_well_guarded"
+reward_exp = 7000
+next_map_id = &"chapter_6_burning_root_garden"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.28, 0.2, 0.16, 1), Color(0.61, 0.43, 0.29, 1), Color(0.87, 0.72, 0.48, 1), Color(0.76, 0.85, 0.86, 1)])
+background_color = Color(0.1, 0.065, 0.045, 1)

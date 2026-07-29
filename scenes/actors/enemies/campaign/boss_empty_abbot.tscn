@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/boss_enemy_base.gd" id="1_boss"]
+[ext_resource type="Resource" path="res://resources/enemies/campaign/boss_empty_abbot.tres" id="2_data"]
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_visual.gd" id="3_visual"]
+
+[sub_resource type="CapsuleShape2D" id="Capsule_boss"]
+radius = 28.0
+height = 73.0
+
+[node name="BossEmptyAbbot" type="CharacterBody2D" groups=["enemy", "boss", "campaign_boss"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_boss")
+data = ExtResource("2_data")
+combat_level = 28
+elite_roll_enabled = false
+projectile_count = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Capsule_boss")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+campaign_style = 2
+body_color = Color(0.290196, 0.27451, 0.321569, 1)
+accent_color = Color(0.921569, 0.878431, 0.741176, 1)
+size = 50.0
+

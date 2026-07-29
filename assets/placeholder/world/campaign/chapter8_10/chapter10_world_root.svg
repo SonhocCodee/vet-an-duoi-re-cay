@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><radialGradient id="core"><stop offset="0" stop-color="#d8f4cc"/><stop offset="0.28" stop-color="#7fc48a"/><stop offset="1" stop-color="#341d49" stop-opacity="0"/></radialGradient></defs>
+<rect width="1280" height="720" fill="#100c18"/><circle cx="640" cy="360" r="260" fill="url(#core)"/>
+<g fill="none" stroke-linecap="round"><path d="M20 680Q260 480 430 420T640 60" stroke="#4f382c" stroke-width="94"/><path d="M1260 680Q1020 480 850 420T640 60" stroke="#4f382c" stroke-width="94"/><path d="M90 110Q360 250 470 400T620 700" stroke="#392a48" stroke-width="62"/><path d="M1190 110Q920 250 810 400T660 700" stroke="#392a48" stroke-width="62"/></g>
+<circle cx="640" cy="360" r="96" fill="#d5e8c7" stroke="#6d3b78" stroke-width="22"/><path d="M640 250L682 336L775 350L707 418L724 512L640 468L556 512L573 418L505 350L598 336Z" fill="#2b173e"/>
+<text x="640" y="62" fill="#dcefd5" text-anchor="middle" font-family="sans-serif" font-size="30">CHƯƠNG 10 — CĂN RỄ THẾ GIỚI</text>
+<text x="640" y="705" fill="#b59cc9" text-anchor="middle" font-family="sans-serif" font-size="18">Ký ức cuối cùng đang chờ Kẻ Giữ Rễ gọi đúng tên mình</text></svg>

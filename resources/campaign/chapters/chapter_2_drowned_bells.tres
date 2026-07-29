@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_2_drowned_bells"
+chapter_number = 2
+title = "Chuông Chìm Dưới Nước"
+subtitle = "Những lời cầu nguyện không bao giờ nổi lên"
+intro_lines = Array[String](["Dưới lòng hồ cạn, tiếng chuông vẫn vọng từ một giáo đường đã chìm.", "Aria nhận ra phù hiệu của đoàn hiệp sĩ từng hộ tống những người hành hương đến đây.", "Mảnh Vỡ Ánh Sáng đầu tiên nằm sau cánh cửa chỉ mở khi tiếng chuông cuối cùng im lặng."])
+objective = "Hạ ba đợt sinh vật quanh lòng hồ, mở đường xuống giáo đường chìm và đối mặt kẻ canh chuông."
+companion = &"aria"
+completion_lines = Array[String](["Tiếng chuông tắt, nhưng tên những người chết hiện lên trên mặt nước.", "Kael mang mảnh vỡ đi; Aria ở lại đọc từng cái tên trước khi rời hồ."])
+encounter_enemy_ids = Array[StringName]([&"bone_crow", &"drowned_axeman", &"soulless_holy_guard"])
+boss_enemy_id = &"boss_drowned_executioner"
+moral_choice_id = &"choice_chapter_2_pilgrim_bells"
+moral_option_a_text = "Kéo chuông lên bờ để gia đình các nạn nhân có nơi tưởng niệm."
+moral_option_a_flag = &"chapter_2_bells_recovered"
+moral_option_b_text = "Để chuông dưới hồ và giải thoát những linh hồn còn bị buộc vào nó."
+moral_option_b_flag = &"chapter_2_spirits_released"
+reward_exp = 1200
+unlock_class_id = &"guardian"
+next_map_id = &"chapter_3_blind_procession"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.08, 0.19, 0.24, 1), Color(0.15, 0.36, 0.42, 1), Color(0.42, 0.67, 0.68, 1), Color(0.71, 0.77, 0.65, 1)])
+background_color = Color(0.025, 0.07, 0.09, 1)

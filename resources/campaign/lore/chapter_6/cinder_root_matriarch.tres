@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_6_cinder_root_matriarch"
+chapter_id = &"chapter_6_burning_root_garden"
+chapter_number = 6
+category_id = &"adversary"
+title = "Mẫu Thể Rễ Tàn"
+summary = "Trái tim của khu vườn đã học cách dùng lời thề hiệp sĩ như mạch nhựa và áo giáp."
+body = "Mẫu Thể không sinh ra để chiến đấu; nó từng điều phối sức nóng chữa lành cho cả khu vườn. Hàng nghìn lời thề cưỡng ép khiến nó hiểu mọi sinh vật tiến đến đều là mối đe dọa với nhiệm vụ bảo vệ rễ. Khi bị thương, nó gọi lại giọng nói của các hiệp sĩ đã chết, trong đó có những người từng theo lệnh Aria."
+related_ids = Array[StringName]([&"boss_burning_root", &"boss_cinder_root_matriarch", &"traitor_mask_knight"])
+unlock_condition = &"chapter_6_defeat_boss_cinder_root_matriarch"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_hollow_paladin_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_hollow_paladin"
+display_name = "Hollow Paladin"
+base_level = 13
+experience_reward = 760
+base_health = 1500.0
+base_attack = 38.0
+base_defense = 28.0
+base_resistance = 22.0
+movement_speed = 62.0
+detection_radius = 420.0
+attack_range = 72.0
+telegraph_duration = 0.95
+attack_recovery = 1.05
+stagger_duration = 0.25
+stagger_threshold = 48.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.254902, 0.27451, 0.313725, 1)
+accent_color = Color(0.87451, 0.796078, 0.513725, 1)
+visual_size = 44.0
+

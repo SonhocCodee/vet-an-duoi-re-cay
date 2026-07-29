@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/burning_root_flower_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"burning_root_flower"
+display_name = "Burning Root Flower"
+base_level = 25
+experience_reward = 300
+base_health = 440.0
+base_attack = 49.0
+base_defense = 18.0
+base_resistance = 30.0
+movement_speed = 42.0
+detection_radius = 375.0
+attack_range = 150.0
+telegraph_duration = 0.9
+attack_recovery = 1.05
+stagger_duration = 0.35
+stagger_threshold = 25.0
+loot_table = ExtResource("2_loot")
+visual_style = 4
+body_color = Color(0.454902, 0.207843, 0.172549, 1)
+accent_color = Color(1, 0.619608, 0.290196, 1)
+visual_size = 31.0
+

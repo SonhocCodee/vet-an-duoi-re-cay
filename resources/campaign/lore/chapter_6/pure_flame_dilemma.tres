@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_6_pure_flame_dilemma"
+chapter_id = &"chapter_6_burning_root_garden"
+chapter_number = 6
+category_id = &"moral_choice"
+title = "Ngọn Lửa Có Được Quyền Sống?"
+summary = "Dập sạch khu vườn chấm dứt hiểm họa; giữ một lõi lửa bảo tồn phương thuốc cùng nguy cơ tái phát."
+body = "Dập toàn bộ lửa giải phóng lời thề và ngăn sức nóng lan xuống Tâm Rễ, nhưng xóa luôn tri thức chữa lành nguyên thủy. Giữ một lõi đã thanh tẩy có thể giúp phá phong ấn về sau, đồng thời đặt gánh nặng canh giữ lên người sống. Aria phải phân biệt giữa trách nhiệm bảo tồn và thói quen biến hy sinh thành công cụ."
+related_ids = Array[StringName]([&"choice_chapter_6_cinder_garden", &"chapter_6_garden_extinguished", &"chapter_6_pure_flame_preserved"])
+unlock_condition = &"chapter_6_resolve_choice_chapter_6_cinder_garden"

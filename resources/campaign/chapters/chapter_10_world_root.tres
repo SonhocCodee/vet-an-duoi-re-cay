@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_10_world_root"
+chapter_number = 10
+title = "Tâm Rễ Asterion"
+subtitle = "Nơi thế giới nhớ lại tên Kẻ Giữ Rễ"
+intro_lines = Array[String](["Kael, Aria, Elysia và Cecilia đi xuống nơi mọi rễ cây hội tụ như những mạch máu khổng lồ.", "Các Mảnh Vỡ Ánh Sáng hóa thành những chiếc đinh cắm sâu hơn mỗi khi Kael đến gần.", "Giáo Hoàng chờ tại Tâm Rễ, khoác lên mình câu chuyện về Ma Vương mà chính ông đã viết."])
+objective = "Vượt qua ba lớp ký ức phòng vệ, đánh bại Giáo Hoàng Rễ Trói và tháo các đinh phong ấn khỏi Cây Thế Giới."
+companion = &"all_companions"
+completion_lines = Array[String](["Cây Thế Giới thở lại bằng một cơn gió đi qua mọi khu rừng trên lục địa.", "Không có khải hoàn ca cho Kael; phía trên, nhiều người vẫn gọi anh là Ma Vương.", "Ba người đồng hành biết sự thật, và từng mầm cây mới mọc lên cũng biết tên Kẻ Giữ Rễ."])
+encounter_enemy_ids = Array[StringName]([&"false_sun_knight", &"faceless_nun", &"ulcerated_light_wyrmling"])
+boss_enemy_id = &"boss_papal_root_avatar"
+moral_choice_id = &"choice_chapter_10_world_root"
+moral_option_a_text = "Tháo từng đinh phong ấn và nhận toàn bộ Hư Vô vào mình để Cây Thế Giới sống sót."
+moral_option_a_flag = &"chapter_10_root_seals_released"
+moral_option_b_text = "Bẻ gãy phong ấn bằng bạo lực, giải phóng năng lượng ngay cả khi Tâm Rễ bị tổn thương."
+moral_option_b_flag = &"chapter_10_root_seals_shattered"
+reward_exp = 50000
+next_map_id = &"true_ending"
+spawn_id = &"epilogue_start"
+palette_colors = Array[Color]([Color(0.035, 0.08, 0.055, 1), Color(0.13, 0.32, 0.2, 1), Color(0.41, 0.67, 0.36, 1), Color(0.76, 0.84, 0.61, 1)])
+background_color = Color(0.01, 0.035, 0.02, 1)

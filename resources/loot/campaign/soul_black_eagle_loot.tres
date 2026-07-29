@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 200
+maximum_amount = 290
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_void_feather_1"]
+script = ExtResource("2_entry")
+item_id = &"void_feather"
+display_name = "Void Feather"
+drop_chance = 0.65
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_refined_void_dust_2"]
+script = ExtResource("2_entry")
+item_id = &"refined_void_dust"
+display_name = "Refined Void Dust"
+drop_chance = 0.45
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_protection_talisman_3"]
+script = ExtResource("2_entry")
+item_id = &"protection_talisman"
+display_name = "Protection Talisman"
+drop_chance = 0.03
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_reflective_void_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"reflective_void_armor"
+display_name = "Reflective Void Armor"
+drop_chance = 0.035
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_soul_drainer_rune_iii_5"]
+script = ExtResource("2_entry")
+item_id = &"soul_drainer_rune_iii"
+display_name = "Soul Drainer Rune III"
+drop_chance = 0.02
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_void_feather_1"), SubResource("LootEntry_refined_void_dust_2"), SubResource("LootEntry_protection_talisman_3"), SubResource("LootEntry_reflective_void_armor_4"), SubResource("LootEntry_soul_drainer_rune_iii_5")])
+

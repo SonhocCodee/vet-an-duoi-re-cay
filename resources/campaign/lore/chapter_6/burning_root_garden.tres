@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_6_burning_root_garden"
+chapter_id = &"chapter_6_burning_root_garden"
+chapter_number = 6
+category_id = &"location"
+title = "Vườn Rễ Thiêu"
+summary = "Một khu vườn cháy mãi nhờ lời thề của người chết, vừa chống phong ấn vừa thiêu mọi sự sống đến gần."
+body = "Ngọn lửa trong vườn từng được tạo ra để thanh tẩy bệnh trên rễ Cây Thế Giới. Khi quân đoàn của Aria ngã xuống, Giáo Hội buộc lời thề của họ vào các luống cây và biến phương thuốc thành nhiên liệu. Khu vườn vì thế vừa là tuyến phòng vệ cuối của rễ sâu, vừa là vết thương không thể tự khép."
+related_ids = Array[StringName]([&"chapter_6_burning_root_garden", &"burning_root_bloom"])
+unlock_condition = &"chapter_6_enter_burning_root_garden"

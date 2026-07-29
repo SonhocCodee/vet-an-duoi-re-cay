@@ -11,3 +11,8 @@ signal toast_requested(message: String)
 signal interaction_prompt_changed(message: String, visible: bool)
 signal player_registered(player: Node)
 signal player_died
+
+signal moral_choice_requested(choice_id: StringName, options: Array[Dictionary])
+signal moral_choice_resolved(choice_id: StringName, selected_option: StringName)
+signal chapter_completed(chapter_number: int, map_id: StringName)
+signal campaign_completed

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_7_prisoners_and_judges"
+chapter_id = &"chapter_7_black_resin_pass"
+chapter_number = 7
+category_id = &"moral_choice"
+title = "Tù Nhân Và Người Phán Xét"
+summary = "Cứu tất cả từ nhựa đen giữ lòng thương trọn vẹn, nhưng cũng giải thoát những kẻ từng dựng nhà tù."
+body = "Phá mọi cột nhựa thừa nhận rằng không ai nên bị giam sống vĩnh viễn, kể cả thợ săn từng gây tội. Chỉ cứu nạn nhân và giữ thủ lĩnh lại để xét xử bảo vệ nhu cầu công lý, nhưng dễ lặp lại quyền định đoạt số phận mà đội săn từng chiếm giữ. Việc Aria ghi tên mình vào danh sách trách nhiệm khiến phán quyết không còn đứng ngoài cô."
+related_ids = Array[StringName]([&"choice_chapter_7_resin_prisoners", &"chapter_7_resin_prisoners_freed", &"chapter_7_hunters_judged"])
+unlock_condition = &"chapter_7_resolve_choice_chapter_7_resin_prisoners"

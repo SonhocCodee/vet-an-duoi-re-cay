@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/chapters8_10/chapter_8_empty_monastery.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/campaign/chapter8_10/chapter8_empty_monastery.svg" id="2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1280, 28)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(28, 720)
+
+[node name="Chapter8EmptyMonastery" type="Node2D"]
+script = ExtResource("1")
+metadata/chapter_contract = "CampaignChapterMap/ChapterDefinition"
+
+[node name="WorldVisual" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+position = Vector2(640, 360)
+
+[node name="GenericMapSocket" type="Node2D" parent="."]
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="North" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(640, 14)
+shape = SubResource("1")
+
+[node name="South" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(640, 706)
+shape = SubResource("1")
+
+[node name="West" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(14, 360)
+shape = SubResource("2")
+
+[node name="East" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(1266, 360)
+shape = SubResource("2")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(640, 640)
+
+[node name="from_previous" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(100, 610)
+
+[node name="boss_checkpoint" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(640, 285)
+
+[node name="EncounterAnchors" type="Node2D" parent="."]
+
+[node name="PrimaryBossSpawn" type="Marker2D" parent="EncounterAnchors"]
+position = Vector2(640, 190)

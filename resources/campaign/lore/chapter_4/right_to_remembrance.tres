@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_4_right_to_remembrance"
+chapter_id = &"chapter_4_erased_archive"
+chapter_number = 4
+category_id = &"moral_choice"
+title = "Quyền Được Nhớ, Quyền Được Che Giấu"
+summary = "Khôi phục mọi cái tên trả lại lịch sử, nhưng cũng trả lại quyền lực cho những bí mật nguy hiểm."
+body = "Mở toàn bộ kho tên sẽ gọi cả nạn nhân lẫn tội đồ trở về ký ức chung, để hậu thế tự phán xét bằng hồ sơ đầy đủ. Niêm phong phần nguy hiểm bảo vệ người sống khỏi những nghi thức và danh sách có thể bị lạm dụng, nhưng lại giao quyền chọn sự thật cho một nhóm nhỏ. Elysia phải quyết định cách chuộc lỗi cho gia tộc từng vẽ nên hệ thống xóa tên."
+related_ids = Array[StringName]([&"choice_chapter_4_archive_names", &"chapter_4_names_restored", &"chapter_4_archive_sealed"])
+unlock_condition = &"chapter_4_resolve_choice_chapter_4_archive_names"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_3_procession_marshal"
+chapter_id = &"chapter_3_blind_procession"
+chapter_number = 3
+category_id = &"adversary"
+title = "Thống Lĩnh Thánh Lộ Mù"
+summary = "Một viên chỉ huy vô hồn tiếp tục bảo vệ đội hình sau khi đích đến đã bị xóa khỏi bản đồ."
+body = "Thống Lĩnh từng được giao nhiệm vụ đưa dân chạy nạn đến nơi trú ẩn, nhưng mệnh lệnh đã bị sửa thành một cuộc hiến tế tập thể. Hắn không còn mắt để thấy vực sâu và không còn linh hồn để nghi ngờ lời kinh. Mỗi đội hình hắn dựng lên biến người hành hương thành lá chắn cho chính kẻ áp giải họ."
+related_ids = Array[StringName]([&"boss_hollow_paladin", &"boss_blind_procession_marshal", &"soulless_holy_guard"])
+unlock_condition = &"chapter_3_defeat_boss_blind_procession_marshal"

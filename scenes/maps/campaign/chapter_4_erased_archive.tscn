@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/map/campaign_chapter_map.gd" id="1_map"]
+
+[node name="chapter_4_erased_archive" type="Node2D"]
+script = ExtResource("1_map")
+chapter_resource_path = "res://resources/campaign/chapters/chapter_4_erased_archive.tres"
+chapter_id = &"chapter_4_erased_archive"

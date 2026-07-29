@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_8_hollow_abbot"
+chapter_id = &"chapter_8_empty_monastery"
+chapter_number = 8
+category_id = &"adversary"
+title = "Viện Trưởng Rỗng"
+summary = "Người muốn bảo vệ đức tin khỏi đau khổ cuối cùng đã loại bỏ chính những con người có thể tin."
+body = "Viện Trưởng từng chứng kiến nhiều môn đồ tuyệt vọng khi lời cầu nguyện không được đáp lại. Ông bắt đầu lấy đi một ký ức đau, rồi thêm một ký ức nghi ngờ, cho đến khi sự ngoan đạo chỉ còn là phản xạ của thân xác rỗng. Ông xem Cecilia như bằng chứng rằng phép màu tồn tại, dù cuộc đời cô cho thấy cái giá của niềm tin bị cưỡng ép."
+related_ids = Array[StringName]([&"boss_empty_abbot", &"boss_hollow_abbot", &"white_bark_treant"])
+unlock_condition = &"chapter_8_defeat_boss_hollow_abbot"

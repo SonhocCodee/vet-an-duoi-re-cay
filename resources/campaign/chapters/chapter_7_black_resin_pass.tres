@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_7_black_resin_pass"
+chapter_number = 7
+title = "Đèo Hắc Tín"
+subtitle = "Con đường giữ lại dấu chân của mọi kẻ phản bội"
+intro_lines = Array[String](["Nhựa đen phủ kín sườn đèo, đông cứng người và thú thành những cột mốc sống.", "Các thợ săn Hắc Tín gọi Kael là Ma Vương trước cả khi nhìn thấy mặt anh.", "Aria biết đội săn này được lập từ chính quân đoàn từng phục vụ cô."])
+objective = "Vượt ba tuyến phục kích, giải phóng đường tiếp tế và đánh bại thủ lĩnh săn người tại đỉnh đèo."
+companion = &"aria"
+completion_lines = Array[String](["Mưa đầu mùa cuốn nhựa đen khỏi những phiến đá, nhưng không xóa được các vết khắc tên.", "Aria tự ghi tên mình vào danh sách những người phải chịu trách nhiệm."])
+encounter_enemy_ids = Array[StringName]([&"black_faith_hunter", &"white_bark_treant", &"soul_black_eagle"])
+boss_enemy_id = &"boss_betrayer_knight"
+moral_choice_id = &"choice_chapter_7_resin_prisoners"
+moral_option_a_text = "Phá toàn bộ cột nhựa và cứu cả những thợ săn từng truy sát dân thường."
+moral_option_a_flag = &"chapter_7_resin_prisoners_freed"
+moral_option_b_text = "Chỉ cứu nạn nhân vô tội, để các thủ lĩnh săn người bị xét xử tại đèo."
+moral_option_b_flag = &"chapter_7_hunters_judged"
+reward_exp = 15000
+next_map_id = &"chapter_8_empty_monastery"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.035, 0.04, 0.035, 1), Color(0.11, 0.13, 0.1, 1), Color(0.24, 0.29, 0.2, 1), Color(0.46, 0.54, 0.4, 1)])
+background_color = Color(0.012, 0.014, 0.012, 1)

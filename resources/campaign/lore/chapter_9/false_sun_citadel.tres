@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_9_false_sun_citadel"
+chapter_id = &"chapter_9_false_sun_citadel"
+chapter_number = 9
+category_id = &"location"
+title = "Thành Mặt Trời Giả"
+summary = "Kinh thành không có đêm vì ánh sáng trên tháp được nuôi bằng tuổi thọ của những người sống bên dưới."
+body = "Mặt Trời Giả từng được quảng bá là phép màu bảo vệ mùa màng và xua quái vật khỏi kinh thành. Các trạm truyền quang âm thầm rút sinh lực qua tường nhà, khiến cư dân coi sự kiệt sức của mình là cái giá tự nhiên của văn minh. Không ai còn nhớ màu của bầu trời đêm, nên bóng tối bị Giáo Hội dùng như một tên gọi khác cho Kael."
+related_ids = Array[StringName]([&"chapter_9_false_sun_citadel", &"lightblight_wyrmling"])
+unlock_condition = &"chapter_9_see_false_sun_core"

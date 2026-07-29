@@ -12,6 +12,7 @@ var player: PlayerController
 var interaction_bridge: InteractionBridge
 var ui_event_bridge: UIEventBridge
 var ui_suite: HubUI
+var campaign_gate_injector: CampaignGateInjector
 
 func _enter_tree() -> void:
 	_ensure_input_actions()
@@ -31,6 +32,8 @@ func _ready() -> void:
 		ui_event_bridge = UIEventBridge.new()
 		add_child(ui_event_bridge)
 		ui_event_bridge.configure(ui_suite, player)
+	campaign_gate_injector = CampaignGateInjector.new()
+	add_child(campaign_gate_injector)
 	SceneRouter.configure(map_container, player, fade_rect)
 	GameEvents.player_registered.emit(player)
 	player.died.connect(_on_player_died)

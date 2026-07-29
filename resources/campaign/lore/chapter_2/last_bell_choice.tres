@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_2_last_bell_choice"
+chapter_id = &"chapter_2_drowned_bells"
+chapter_number = 2
+category_id = &"moral_choice"
+title = "Hồi Chuông Cuối Thuộc Về Ai?"
+summary = "Một nơi tưởng niệm cho người sống có thể trở thành xiềng xích cuối cùng của người chết."
+body = "Kéo chuông lên bờ sẽ trả lại bằng chứng và một nơi để tang cho các gia đình, nhưng những linh hồn bị buộc vào tiếng đồng có thể tiếp tục mắc kẹt. Để chuông nằm lại sẽ giải thoát họ, đổi lại lịch sử dễ bị chôn vùi lần nữa. Aria hiểu rằng lòng thành kính và sự giải thoát không phải lúc nào cũng cùng một con đường."
+related_ids = Array[StringName]([&"choice_chapter_2_pilgrim_bells", &"chapter_2_bells_recovered", &"chapter_2_spirits_released"])
+unlock_condition = &"chapter_2_resolve_choice_chapter_2_pilgrim_bells"

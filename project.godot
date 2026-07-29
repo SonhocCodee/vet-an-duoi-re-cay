@@ -12,6 +12,7 @@ GameEvents="*res://autoload/game_events.gd"
 GameState="*res://autoload/game_state.gd"
 SaveService="*res://autoload/save_service.gd"
 SceneRouter="*res://autoload/scene_router.gd"
+CampaignDirector="*res://autoload/campaign_director.gd"
 
 [display]
 window/size/viewport_width=1280

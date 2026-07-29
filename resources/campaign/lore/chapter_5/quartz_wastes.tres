@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_5_quartz_wastes"
+chapter_id = &"chapter_5_quartz_wastes"
+chapter_number = 5
+category_id = &"location"
+title = "Hoang Mạc Thạch Anh"
+summary = "Sa mạc kính trắng phản chiếu không phải khuôn mặt, mà là lời thú tội người lữ hành cố giấu."
+body = "Những mạch rễ hóa thạch bị khai thác đã biến đất thành vô số lưỡi gương sắc. Bão cát tạo ra các phiên bản của người đi đường, mỗi bóng ảnh lặp lại một lựa chọn họ ước chưa từng làm. Ở trung tâm hoang mạc, giếng nước cuối cùng bị khóa trong lõi thạch anh do chính bản đồ của gia tộc Elysia dẫn đường khai thác."
+related_ids = Array[StringName]([&"chapter_5_quartz_wastes", &"quartz_mummy"])
+unlock_condition = &"chapter_5_cross_first_mirage_ring"

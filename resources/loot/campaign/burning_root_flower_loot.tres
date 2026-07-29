@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 110
+maximum_amount = 160
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_fire_blossom_stamen_1"]
+script = ExtResource("2_entry")
+item_id = &"fire_blossom_stamen"
+display_name = "Fire Blossom Stamen"
+drop_chance = 0.7
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_ancient_root_core_2"]
+script = ExtResource("2_entry")
+item_id = &"ancient_root_core"
+display_name = "Ancient Root Core"
+drop_chance = 0.4
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_stat_reset_flask_3"]
+script = ExtResource("2_entry")
+item_id = &"stat_reset_flask"
+display_name = "Stat Reset Flask"
+drop_chance = 0.015
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_deep_night_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"deep_night_armor"
+display_name = "Deep Night Armor"
+drop_chance = 0.04
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_burning_rune_ii_5"]
+script = ExtResource("2_entry")
+item_id = &"burning_rune_ii"
+display_name = "Burning Rune II"
+drop_chance = 0.035
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_fire_blossom_stamen_1"), SubResource("LootEntry_ancient_root_core_2"), SubResource("LootEntry_stat_reset_flask_3"), SubResource("LootEntry_deep_night_armor_4"), SubResource("LootEntry_burning_rune_ii_5")])
+

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_false_sun_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_false_sun"
+display_name = "False Sun"
+base_level = 31
+experience_reward = 3100
+base_health = 5200.0
+base_attack = 92.0
+base_defense = 62.0
+base_resistance = 55.0
+movement_speed = 76.0
+detection_radius = 420.0
+attack_range = 105.0
+telegraph_duration = 0.85
+attack_recovery = 0.9
+stagger_duration = 0.25
+stagger_threshold = 82.0
+loot_table = ExtResource("2_loot")
+visual_style = 4
+body_color = Color(0.541176, 0.403922, 0.156863, 1)
+accent_color = Color(1, 0.886275, 0.462745, 1)
+visual_size = 56.0
+

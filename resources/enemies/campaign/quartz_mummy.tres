@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/quartz_mummy_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"quartz_mummy"
+display_name = "Quartz Mummy"
+base_level = 23
+experience_reward = 290
+base_health = 410.0
+base_attack = 46.0
+base_defense = 22.0
+base_resistance = 26.0
+movement_speed = 54.0
+detection_radius = 280.0
+attack_range = 54.0
+telegraph_duration = 0.8
+attack_recovery = 0.9
+stagger_duration = 0.35
+stagger_threshold = 27.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.85098, 0.815686, 0.772549, 1)
+accent_color = Color(0.619608, 0.843137, 0.886275, 1)
+visual_size = 30.0
+

@@ -8,8 +8,10 @@ signal currency_changed(currency_id: StringName, amount: int)
 signal flag_changed(flag_id: StringName, value: bool)
 signal quest_changed(quest_id: StringName, state: StringName)
 signal stats_changed(stats: Dictionary)
+signal moral_choice_changed(choice_id: StringName, selected_option: StringName)
+signal chapter_progress_changed(current_chapter: int, completed_chapters: Dictionary)
 
-const SAVE_VERSION: int = 1
+const SAVE_VERSION: int = 2
 const MAX_LEVEL: int = 35
 
 var current_map: StringName = GameIds.MAP_1
@@ -26,6 +28,9 @@ var currencies: Dictionary = {}
 var flags: Dictionary = {}
 var quests: Dictionary = {}
 var equipment: Dictionary = {}
+var current_chapter: int = 1
+var moral_choices: Dictionary = {}
+var completed_chapters: Dictionary = {}
 
 func _ready() -> void:
 	reset_new_game()
@@ -55,6 +60,9 @@ func reset_new_game() -> void:
 	flags = {}
 	quests = {}
 	equipment = {&"weapon_level": 0, &"armor_level": 0, &"sockets": []}
+	current_chapter = 1
+	moral_choices = {}
+	completed_chapters = {}
 	_emit_all_changed()
 
 func experience_required(target_level: int = level) -> int:
@@ -142,6 +150,31 @@ func set_checkpoint(map_id: StringName, spawn_id: StringName) -> void:
 	checkpoint_map = map_id
 	checkpoint_spawn = spawn_id
 
+func record_choice(choice_id: StringName, selected_option: StringName) -> bool:
+	if choice_id.is_empty() or selected_option.is_empty():
+		return false
+	moral_choices[choice_id] = selected_option
+	moral_choice_changed.emit(choice_id, selected_option)
+	return true
+
+func get_choice(choice_id: StringName) -> StringName:
+	return StringName(moral_choices.get(choice_id, &""))
+
+func complete_chapter(chapter_number: int, map_id: StringName) -> bool:
+	if chapter_number < 1:
+		return false
+	var chapter_key := StringName("chapter_%d" % chapter_number)
+	if bool(completed_chapters.get(chapter_key, false)):
+		return false
+	completed_chapters[chapter_key] = true
+	current_chapter = maxi(current_chapter, mini(chapter_number + 1, 10))
+	set_flag(StringName("%s_complete" % String(map_id)), true)
+	chapter_progress_changed.emit(current_chapter, completed_chapters.duplicate())
+	return true
+
+func is_chapter_complete(chapter_number: int) -> bool:
+	return bool(completed_chapters.get(StringName("chapter_%d" % chapter_number), false))
+
 func get_calculated_stats() -> Dictionary:
 	var strength: int = int(attributes.get(GameIds.STAT_STR, 0))
 	var intellect: int = int(attributes.get(GameIds.STAT_INT, 0))
@@ -178,6 +211,9 @@ func to_save_data() -> Dictionary:
 		"flags": flags,
 		"quests": quests,
 		"equipment": equipment,
+		"current_chapter": current_chapter,
+		"moral_choices": moral_choices,
+		"completed_chapters": completed_chapters,
 	}
 
 func load_save_data(data: Dictionary) -> bool:
@@ -197,6 +233,9 @@ func load_save_data(data: Dictionary) -> bool:
 	flags = _normalize_dictionary(data.get("flags", {}))
 	quests = _normalize_dictionary(data.get("quests", {}))
 	equipment = _normalize_dictionary(data.get("equipment", {}))
+	current_chapter = clampi(int(data.get("current_chapter", 1)), 1, 10)
+	moral_choices = _normalize_dictionary(data.get("moral_choices", {}))
+	completed_chapters = _normalize_dictionary(data.get("completed_chapters", {}))
 	_emit_all_changed()
 	return true
 
@@ -213,5 +252,6 @@ func _emit_all_changed() -> void:
 	potential_points_changed.emit(potential_points)
 	class_changed.emit(current_class)
 	stats_changed.emit(get_calculated_stats())
+	chapter_progress_changed.emit(current_chapter, completed_chapters.duplicate())
 	for currency_id: Variant in currencies:
 		currency_changed.emit(StringName(currency_id), int(currencies[currency_id]))

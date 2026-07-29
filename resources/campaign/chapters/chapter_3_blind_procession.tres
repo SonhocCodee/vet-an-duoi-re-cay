@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_3_blind_procession"
+chapter_number = 3
+title = "Thánh Lộ Mù"
+subtitle = "Đoàn người bước theo ánh sáng không còn tồn tại"
+intro_lines = Array[String](["Một đoàn hành hương bị bịt mắt đi mãi trên con đường phủ tro trắng.", "Cecilia nghe thấy lời kinh đã bị đảo ngược trong từng bước chân.", "Ở cuối thánh lộ, một vị thống lĩnh vô hồn vẫn ra lệnh cho đoàn người tiến về vực sâu."])
+objective = "Phá ba vòng hộ tống của đoàn hành hương, tìm nguồn thánh ca cưỡng ép và chặn cuộc hành quân."
+companion = &"cecilia"
+completion_lines = Array[String](["Những dải vải che mắt rơi xuống như tuyết xám.", "Cecilia không nhìn thấy bình minh, nhưng lần đầu tiên cô nghe đoàn người tự chọn hướng đi."])
+encounter_enemy_ids = Array[StringName]([&"drowned_axeman", &"soulless_holy_guard", &"blind_battlemage"])
+boss_enemy_id = &"boss_hollow_paladin"
+moral_choice_id = &"choice_chapter_3_procession_truth"
+moral_option_a_text = "Tháo khăn bịt mắt và công bố con đường thật, dù đám đông có thể hoảng loạn."
+moral_option_a_flag = &"chapter_3_procession_awakened"
+moral_option_b_text = "Dẫn đoàn người đến nơi an toàn trước rồi mới tiết lộ họ đã bị lừa."
+moral_option_b_flag = &"chapter_3_procession_sheltered"
+reward_exp = 2400
+next_map_id = &"chapter_4_erased_archive"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.17, 0.16, 0.2, 1), Color(0.42, 0.39, 0.43, 1), Color(0.75, 0.7, 0.62, 1), Color(0.89, 0.84, 0.67, 1)])
+background_color = Color(0.055, 0.05, 0.065, 1)

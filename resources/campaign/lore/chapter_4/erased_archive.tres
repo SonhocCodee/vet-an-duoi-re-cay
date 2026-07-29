@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_4_erased_archive"
+chapter_id = &"chapter_4_erased_archive"
+chapter_number = 4
+category_id = &"location"
+title = "Thư Viện Tên Bị Xóa"
+summary = "Kho lưu trữ nơi mỗi trang giấy còn nguyên sự kiện nhưng quên mất người đã sống, chết và chịu trách nhiệm."
+body = "Thư viện được xây để bảo toàn ký ức của vương quốc, rồi bị biến thành cỗ máy tẩy tên có hệ thống. Người đọc càng tìm lâu càng quên chữ ký của mình, trong khi tội lỗi vẫn tồn tại như những câu vô chủ. Dưới các mục lục cháy dở là bằng chứng rằng Kẻ Giữ Rễ từng cứu thế giới trước khi bị viết thành Ma Vương."
+related_ids = Array[StringName]([&"chapter_4_erased_archive", &"choice_chapter_4_archive_names"])
+unlock_condition = &"chapter_4_restore_first_memory_index"

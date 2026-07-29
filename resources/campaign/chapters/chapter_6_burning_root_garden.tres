@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ChapterDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/chapter_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"chapter_6_burning_root_garden"
+chapter_number = 6
+title = "Vườn Rễ Thiêu"
+subtitle = "Ngọn lửa chữa lành cũng biết cách ăn thịt ký ức"
+intro_lines = Array[String](["Một khu vườn khổng lồ cháy suốt nhiều năm mà không hóa thành tro.", "Aria nhận ra lửa được nuôi bằng lời thề của những hiệp sĩ đã chết.", "Mẫu rễ trung tâm vừa chống phong ấn vừa thiêu sống mọi sinh vật đến gần."])
+objective = "Dập ba ổ hoa rễ thiêu, giải phóng lời thề mắc kẹt và chặn mẫu thể đang lan lửa xuống Tâm Rễ."
+companion = &"aria"
+completion_lines = Array[String](["Lửa rút vào lòng đất, để lại những mầm cây đỏ như than hồng.", "Aria đặt thanh kiếm xuống giữa vườn và thừa nhận lời thề không thể thay thế trách nhiệm."])
+encounter_enemy_ids = Array[StringName]([&"burning_root_flower", &"betrayer_masked_knight", &"quartz_mummy"])
+boss_enemy_id = &"boss_burning_root"
+moral_choice_id = &"choice_chapter_6_cinder_garden"
+moral_option_a_text = "Dập toàn bộ khu vườn để ngăn lửa lan xuống rễ sâu."
+moral_option_a_flag = &"chapter_6_garden_extinguished"
+moral_option_b_text = "Giữ lại một lõi lửa đã thanh tẩy để phá phong ấn ở các chương sau."
+moral_option_b_flag = &"chapter_6_pure_flame_preserved"
+reward_exp = 10500
+unlock_class_id = &"priest"
+next_map_id = &"chapter_7_black_resin_pass"
+spawn_id = &"chapter_start"
+palette_colors = Array[Color]([Color(0.18, 0.08, 0.04, 1), Color(0.52, 0.13, 0.06, 1), Color(0.91, 0.37, 0.08, 1), Color(0.39, 0.55, 0.28, 1)])
+background_color = Color(0.075, 0.025, 0.015, 1)

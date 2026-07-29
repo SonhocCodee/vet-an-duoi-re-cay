@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_7_black_resin_pass"
+chapter_id = &"chapter_7_black_resin_pass"
+chapter_number = 7
+category_id = &"location"
+title = "Đèo Hắc Tín"
+summary = "Con đèo phủ nhựa đen giữ người sống trong tư thế cuối cùng và lưu dấu mọi kẻ từng bị gọi là phản bội."
+body = "Nhựa Hắc Tín ban đầu dùng để bịt vết thương cho các rễ núi, trước khi thợ săn biến nó thành nhà tù. Những cột mốc sống dọc đường gồm dân thường, thú kéo và cả binh lính từ chối thi hành lệnh thanh trừng. Mưa có thể rửa mặt đá, nhưng tên bị khắc lên nhựa chỉ mất đi khi tù nhân được giải thoát."
+related_ids = Array[StringName]([&"chapter_7_black_resin_pass", &"black_resin_hunter"])
+unlock_condition = &"chapter_7_reach_black_resin_pass"

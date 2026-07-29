@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_8_empty_monastery"
+chapter_id = &"chapter_8_empty_monastery"
+chapter_number = 8
+category_id = &"location"
+title = "Tu Viện Rỗng"
+summary = "Một tu viện vẫn dọn cơm, tụng kinh và rung chuông sau khi con người bên trong chỉ còn là thói quen."
+body = "Mỗi căn phòng giữ một nghi thức hoàn hảo nhưng không còn ai nhớ vì sao mình thực hiện nó. Vị viện trưởng rút ký ức đau đớn khỏi môn đồ để ngăn họ rời bỏ đức tin, rồi tiếp tục lấy cả niềm vui, tên tuổi và ý chí. Chuông gió ngoài hiên là vật duy nhất phát ra âm thanh không theo thời khóa biểu."
+related_ids = Array[StringName]([&"chapter_8_empty_monastery", &"hollow_ex_monk"])
+unlock_condition = &"chapter_8_enter_empty_monastery"

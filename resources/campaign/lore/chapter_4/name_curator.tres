@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_4_name_curator"
+chapter_id = &"chapter_4_erased_archive"
+chapter_number = 4
+category_id = &"adversary"
+title = "Quản Thủ Tên Bị Xóa"
+summary = "Kẻ gìn giữ lịch sử bằng cách cắt mọi con người ra khỏi lịch sử ấy."
+body = "Quản Thủ không mặt từng là học giả tin rằng tên tuổi chỉ làm sự thật thiên lệch. Giáo Hội biến niềm tin đó thành nghi thức, buộc hắn xóa nạn nhân, thủ phạm và nhân chứng với cùng một lưỡi dao mực. Hắn đặc biệt săn tên Kael vì chỉ một cái tên được khôi phục cũng đủ làm toàn bộ biên niên sử chính thống rạn vỡ."
+related_ids = Array[StringName]([&"boss_blind_archivist", &"boss_erased_name_curator", &"night_hunting_mist_owl"])
+unlock_condition = &"chapter_4_defeat_boss_erased_name_curator"

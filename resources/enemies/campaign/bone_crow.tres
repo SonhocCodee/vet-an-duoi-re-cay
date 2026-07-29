@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/bone_crow_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"bone_crow"
+display_name = "Bone Crow"
+base_level = 7
+experience_reward = 50
+base_health = 105.0
+base_attack = 15.0
+base_defense = 5.0
+base_resistance = 8.0
+movement_speed = 98.0
+detection_radius = 280.0
+attack_range = 46.0
+telegraph_duration = 0.5
+attack_recovery = 0.6
+stagger_duration = 0.35
+stagger_threshold = 10.0
+loot_table = ExtResource("2_loot")
+visual_style = 3
+body_color = Color(0.188235, 0.164706, 0.239216, 1)
+accent_color = Color(0.662745, 0.686275, 0.741176, 1)
+visual_size = 23.0
+

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_5_quartz_colossus"
+chapter_id = &"chapter_5_quartz_wastes"
+chapter_number = 5
+category_id = &"adversary"
+title = "Khổng Tượng Ảo Ảnh Thạch Anh"
+summary = "Cỗ máy hộ vệ giếng nước được ghép từ rễ hóa thạch và ký ức của những thợ mỏ đã chết khát."
+body = "Khổng Tượng được dựng để đuổi dân lưu vong khỏi nguồn nước mà họ từng đào nên. Lõi của nó bẻ ánh sáng thành những chiến binh giả, khiến kẻ tấn công phải chiến đấu với hình ảnh tội lỗi của chính mình. Trong mỗi vết nứt là một giọng nói xin nước, nhưng mệnh lệnh bảo vệ tài sản vẫn lấn át tất cả."
+related_ids = Array[StringName]([&"boss_quartz_matriarch", &"boss_quartz_mirage_colossus", &"white_sand_scorpion"])
+unlock_condition = &"chapter_5_defeat_boss_quartz_mirage_colossus"

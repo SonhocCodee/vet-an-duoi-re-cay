@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/map/campaign_chapter_map.gd" id="1_map"]
+
+[node name="chapter_3_blind_procession" type="Node2D"]
+script = ExtResource("1_map")
+chapter_resource_path = "res://resources/campaign/chapters/chapter_3_blind_procession.tres"
+chapter_id = &"chapter_3_blind_procession"

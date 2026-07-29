@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 380
+maximum_amount = 550
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_rotten_dragon_bone_1"]
+script = ExtResource("2_entry")
+item_id = &"rotten_dragon_bone"
+display_name = "Rotten Dragon Bone"
+drop_chance = 0.75
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_world_tree_fragment_2"]
+script = ExtResource("2_entry")
+item_id = &"world_tree_fragment"
+display_name = "World Tree Fragment"
+drop_chance = 0.1
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_protection_talisman_3"]
+script = ExtResource("2_entry")
+item_id = &"protection_talisman"
+display_name = "Protection Talisman"
+drop_chance = 0.06
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_world_root_scale_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"world_root_scale_armor"
+display_name = "World Root Scale Armor"
+drop_chance = 0.025
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_burning_rune_iii_5"]
+script = ExtResource("2_entry")
+item_id = &"burning_rune_iii"
+display_name = "Burning Rune III"
+drop_chance = 0.03
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_rotten_dragon_bone_1"), SubResource("LootEntry_world_tree_fragment_2"), SubResource("LootEntry_protection_talisman_3"), SubResource("LootEntry_world_root_scale_armor_4"), SubResource("LootEntry_burning_rune_iii_5")])
+

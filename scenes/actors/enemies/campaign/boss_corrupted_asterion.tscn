@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/boss_enemy_base.gd" id="1_boss"]
+[ext_resource type="Resource" path="res://resources/enemies/campaign/boss_corrupted_asterion.tres" id="2_data"]
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_visual.gd" id="3_visual"]
+
+[sub_resource type="CapsuleShape2D" id="Capsule_boss"]
+radius = 32.0
+height = 84.0
+
+[node name="BossCorruptedAsterion" type="CharacterBody2D" groups=["enemy", "boss", "campaign_boss"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_boss")
+data = ExtResource("2_data")
+combat_level = 35
+elite_roll_enabled = false
+projectile_count = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Capsule_boss")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+campaign_style = 0
+body_color = Color(0.12549, 0.12549, 0.2, 1)
+accent_color = Color(0.690196, 0.360784, 1, 1)
+size = 58.0
+

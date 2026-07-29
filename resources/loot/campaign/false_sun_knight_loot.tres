@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 280
+maximum_amount = 400
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_aurora_gold_scale_1"]
+script = ExtResource("2_entry")
+item_id = &"aurora_gold_scale"
+display_name = "Aurora Gold Scale"
+drop_chance = 0.6
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_world_tree_fragment_2"]
+script = ExtResource("2_entry")
+item_id = &"world_tree_fragment"
+display_name = "World Tree Fragment"
+drop_chance = 0.06
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_soul_shard_3"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Soul Shard"
+drop_chance = 0.65
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_fading_radiance_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"fading_radiance_armor"
+display_name = "Fading Radiance Armor"
+drop_chance = 0.03
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_holy_radiance_rune_iii_5"]
+script = ExtResource("2_entry")
+item_id = &"holy_radiance_rune_iii"
+display_name = "Holy Radiance Rune III"
+drop_chance = 0.025
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_aurora_gold_scale_1"), SubResource("LootEntry_world_tree_fragment_2"), SubResource("LootEntry_soul_shard_3"), SubResource("LootEntry_fading_radiance_armor_4"), SubResource("LootEntry_holy_radiance_rune_iii_5")])
+

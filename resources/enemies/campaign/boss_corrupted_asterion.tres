@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/boss_corrupted_asterion_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"boss_corrupted_asterion"
+display_name = "Corrupted Asterion"
+base_level = 35
+experience_reward = 5000
+base_health = 8200.0
+base_attack = 120.0
+base_defense = 88.0
+base_resistance = 84.0
+movement_speed = 96.0
+detection_radius = 420.0
+attack_range = 115.0
+telegraph_duration = 0.65
+attack_recovery = 0.72
+stagger_duration = 0.25
+stagger_threshold = 110.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.12549, 0.12549, 0.2, 1)
+accent_color = Color(0.690196, 0.360784, 1, 1)
+visual_size = 58.0
+

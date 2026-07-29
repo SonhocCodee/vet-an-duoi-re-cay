@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_9_false_sun_pontiff"
+chapter_id = &"chapter_9_false_sun_citadel"
+chapter_number = 9
+category_id = &"adversary"
+title = "Giáo Chủ Mặt Trời Giả"
+summary = "Người cai quản thành biến sự phụ thuộc vào ánh sáng thành bằng chứng cho quyền lực thiêng liêng của mình."
+body = "Giáo Chủ biết cỗ máy đang hút cạn cư dân, nhưng tin rằng một thành phố sống trong lời dối trá vẫn tốt hơn một thành phố phải tự tìm đường trong đêm. Áo giáp của ông tích trữ ánh sáng lấy từ các trạm dân cư và phóng trả nó như phán quyết. Ông gọi Kael là kẻ dập mặt trời để không ai hỏi ai đã đặt con người vào trong lò đốt."
+related_ids = Array[StringName]([&"boss_false_sun", &"boss_false_sun_pontiff", &"false_sun_knight"])
+unlock_condition = &"chapter_9_defeat_boss_false_sun_pontiff"

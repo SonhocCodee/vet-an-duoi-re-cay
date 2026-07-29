@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 140
+maximum_amount = 200
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_black_faith_resin_1"]
+script = ExtResource("2_entry")
+item_id = &"black_faith_resin"
+display_name = "Black Faith Resin"
+drop_chance = 0.65
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_ancient_root_core_2"]
+script = ExtResource("2_entry")
+item_id = &"ancient_root_core"
+display_name = "Ancient Root Core"
+drop_chance = 0.45
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_soul_shard_3"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Soul Shard"
+drop_chance = 0.4
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_black_root_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"black_root_armor"
+display_name = "Black Root Armor"
+drop_chance = 0.04
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_vengeance_rune_ii_5"]
+script = ExtResource("2_entry")
+item_id = &"vengeance_rune_ii"
+display_name = "Vengeance Rune II"
+drop_chance = 0.03
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_black_faith_resin_1"), SubResource("LootEntry_ancient_root_core_2"), SubResource("LootEntry_soul_shard_3"), SubResource("LootEntry_black_root_armor_4"), SubResource("LootEntry_vengeance_rune_ii_5")])
+

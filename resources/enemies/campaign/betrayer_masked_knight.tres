@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/betrayer_masked_knight_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"betrayer_masked_knight"
+display_name = "Betrayer Masked Knight"
+base_level = 21
+experience_reward = 270
+base_health = 360.0
+base_attack = 43.0
+base_defense = 28.0
+base_resistance = 18.0
+movement_speed = 72.0
+detection_radius = 280.0
+attack_range = 56.0
+telegraph_duration = 0.7
+attack_recovery = 0.78
+stagger_duration = 0.35
+stagger_threshold = 28.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.294118, 0.231373, 0.231373, 1)
+accent_color = Color(0.776471, 0.415686, 0.384314, 1)
+visual_size = 30.0
+

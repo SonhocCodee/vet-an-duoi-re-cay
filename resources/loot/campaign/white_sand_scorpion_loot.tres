@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 70
+maximum_amount = 110
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_quartz_sand_shell_1"]
+script = ExtResource("2_entry")
+item_id = &"quartz_sand_shell"
+display_name = "Quartz Sand Shell"
+drop_chance = 0.6
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_ancient_root_core_2"]
+script = ExtResource("2_entry")
+item_id = &"ancient_root_core"
+display_name = "Ancient Root Core"
+drop_chance = 0.3
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_poison_stinger_3"]
+script = ExtResource("2_entry")
+item_id = &"poison_stinger"
+display_name = "Poison Stinger"
+drop_chance = 0.4
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_thorn_carapace_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"thorn_carapace_armor"
+display_name = "Thorn Carapace Armor"
+drop_chance = 0.05
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_frost_rune_ii_5"]
+script = ExtResource("2_entry")
+item_id = &"frost_rune_ii"
+display_name = "Frost Rune II"
+drop_chance = 0.03
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_quartz_sand_shell_1"), SubResource("LootEntry_ancient_root_core_2"), SubResource("LootEntry_poison_stinger_3"), SubResource("LootEntry_thorn_carapace_armor_4"), SubResource("LootEntry_frost_rune_ii_5")])
+

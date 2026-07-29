@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_9_truth_before_refuge"
+chapter_id = &"chapter_9_false_sun_citadel"
+chapter_number = 9
+category_id = &"moral_choice"
+title = "Sự Thật Trước Hay Nơi Trú Trước?"
+summary = "Tắt cỗ máy ngay cứu những sinh mạng đang bị hút; trì hoãn giúp sơ tán nhưng cho thủ phạm thời gian xóa dấu."
+body = "Công bố sự thật và tắt Mặt Trời Giả lập tức chấm dứt hiến tế, đồng thời đẩy một thành phố chưa từng biết đêm vào hỗn loạn. Giữ ánh sáng đến khi sơ tán xong giảm thương vong trực tiếp, nhưng để Giáo Hội thu dọn chứng cứ và dựng câu chuyện mới. Cecilia hiểu rõ sự an toàn được mua bằng im lặng có thể trở thành chiếc lồng tiếp theo."
+related_ids = Array[StringName]([&"choice_chapter_9_false_sun", &"chapter_9_false_sun_exposed", &"chapter_9_city_evacuated"])
+unlock_condition = &"chapter_9_resolve_choice_chapter_9_false_sun"

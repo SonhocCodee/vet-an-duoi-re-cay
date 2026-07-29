@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CampaignEnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/campaign/campaign_enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/campaign/soulless_holy_guard_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"soulless_holy_guard"
+display_name = "Soulless Holy Guard"
+base_level = 13
+experience_reward = 140
+base_health = 230.0
+base_attack = 28.0
+base_defense = 18.0
+base_resistance = 12.0
+movement_speed = 58.0
+detection_radius = 280.0
+attack_range = 50.0
+telegraph_duration = 0.8
+attack_recovery = 0.9
+stagger_duration = 0.35
+stagger_threshold = 22.0
+loot_table = ExtResource("2_loot")
+visual_style = 0
+body_color = Color(0.266667, 0.282353, 0.329412, 1)
+accent_color = Color(0.823529, 0.780392, 0.560784, 1)
+visual_size = 28.0
+

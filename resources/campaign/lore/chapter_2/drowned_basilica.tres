@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CampaignLoreEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/campaign/data/campaign_lore_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = &"lore_chapter_2_drowned_basilica"
+chapter_id = &"chapter_2_drowned_bells"
+chapter_number = 2
+category_id = &"location"
+title = "Giáo Đường Chuông Chìm"
+summary = "Một thánh đường nằm dưới lòng hồ cạn, nơi lời cầu nguyện bị giữ lại trong đồng đen và nước tù."
+body = "Giáo đường từng là trạm nghỉ cuối của đoàn hành hương trước khi họ vượt biên giới phía bắc. Khi Giáo Hội ra lệnh nhấn chìm nơi này để xóa dấu vết một cuộc thanh trừng, tiếng chuông vẫn tiếp tục ngân dưới nước. Mỗi hồi chuông gọi một cái tên lên mặt hồ, nhưng không ai trên bờ còn dám đọc chúng."
+related_ids = Array[StringName]([&"chapter_2_drowned_bells", &"choice_chapter_2_pilgrim_bells"])
+unlock_condition = &"chapter_2_enter_drowned_basilica"

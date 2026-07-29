@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 160
+maximum_amount = 230
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_empty_scripture_1"]
+script = ExtResource("2_entry")
+item_id = &"empty_scripture"
+display_name = "Empty Scripture"
+drop_chance = 0.6
+minimum_amount = 1
+maximum_amount = 1
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_light_crystal_2"]
+script = ExtResource("2_entry")
+item_id = &"light_crystal"
+display_name = "Light Crystal"
+drop_chance = 0.4
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_soul_shard_3"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Soul Shard"
+drop_chance = 0.45
+minimum_amount = 1
+maximum_amount = 1
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_prayer_tear_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"prayer_tear_armor"
+display_name = "Prayer Tear Armor"
+drop_chance = 0.04
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_purification_rune_ii_5"]
+script = ExtResource("2_entry")
+item_id = &"purification_rune_ii"
+display_name = "Purification Rune II"
+drop_chance = 0.035
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_empty_scripture_1"), SubResource("LootEntry_light_crystal_2"), SubResource("LootEntry_soul_shard_3"), SubResource("LootEntry_prayer_tear_armor_4"), SubResource("LootEntry_purification_rune_ii_5")])
+

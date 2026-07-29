@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold_0"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1
+minimum_amount = 500
+maximum_amount = 800
+rarity = 0
+
+[sub_resource type="Resource" id="LootEntry_asterion_soul_remnant_1"]
+script = ExtResource("2_entry")
+item_id = &"asterion_soul_remnant"
+display_name = "Asterion Soul Remnant"
+drop_chance = 1
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_soul_shard_2"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Soul Shard"
+drop_chance = 1
+minimum_amount = 5
+maximum_amount = 10
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_world_tree_fragment_3"]
+script = ExtResource("2_entry")
+item_id = &"world_tree_fragment"
+display_name = "World Tree Fragment"
+drop_chance = 0.2
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_asterion_armor_4"]
+script = ExtResource("2_entry")
+item_id = &"asterion_armor"
+display_name = "Asterion Armor"
+drop_chance = 0.05
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_memory_speaker_armor_5"]
+script = ExtResource("2_entry")
+item_id = &"memory_speaker_armor"
+display_name = "Memory Speaker Armor"
+drop_chance = 0.05
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_blood_moon_rune_iii_6"]
+script = ExtResource("2_entry")
+item_id = &"blood_moon_rune_iii"
+display_name = "Blood Moon Rune III"
+drop_chance = 0.05
+minimum_amount = 1
+maximum_amount = 1
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_asterion_soul_remnant_1"), SubResource("LootEntry_soul_shard_2"), SubResource("LootEntry_world_tree_fragment_3"), SubResource("LootEntry_asterion_armor_4"), SubResource("LootEntry_memory_speaker_armor_5"), SubResource("LootEntry_blood_moon_rune_iii_6")])
+
