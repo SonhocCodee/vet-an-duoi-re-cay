@@ -46,5 +46,3 @@ func _ready() -> void:
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
 		_failures.append(message)
-
-

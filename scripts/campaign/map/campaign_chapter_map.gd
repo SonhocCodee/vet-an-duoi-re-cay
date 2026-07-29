@@ -708,10 +708,3 @@ func _fallback_profile(requested_chapter_id: StringName) -> Dictionary:
 				"boss": {"enemy_id": &"campaign_drowned_bell_keeper", "count": 1, "level": 10},
 				"ground_color": Color("14252a"), "path_color": Color("30474a"), "accent_color": Color("5fc7c4"),
 			}
-
-
-
-
-
-
-

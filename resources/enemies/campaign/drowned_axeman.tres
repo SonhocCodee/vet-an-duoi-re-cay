@@ -25,4 +25,3 @@ visual_style = 0
 body_color = Color(0.247059, 0.360784, 0.388235, 1)
 accent_color = Color(0.560784, 0.72549, 0.721569, 1)
 visual_size = 27.0
-

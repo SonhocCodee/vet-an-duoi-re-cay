@@ -26,4 +26,3 @@ campaign_style = 0
 body_color = Color(0.219608, 0.172549, 0.203922, 1)
 accent_color = Color(0.835294, 0.341176, 0.341176, 1)
 size = 48.0
-

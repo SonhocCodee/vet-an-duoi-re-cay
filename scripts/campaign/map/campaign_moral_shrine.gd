@@ -105,4 +105,3 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _is_player(body: Node) -> bool:
 	return body is PlayerController or body.is_in_group(&"player") or body.name == &"Player"
-

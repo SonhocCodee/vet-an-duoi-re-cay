@@ -60,4 +60,3 @@ rarity = 2
 [resource]
 script = ExtResource("1_table")
 loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold_0"), SubResource("LootEntry_aurora_gold_scale_1"), SubResource("LootEntry_world_tree_fragment_2"), SubResource("LootEntry_soul_shard_3"), SubResource("LootEntry_fading_radiance_armor_4"), SubResource("LootEntry_holy_radiance_rune_iii_5")])
-
