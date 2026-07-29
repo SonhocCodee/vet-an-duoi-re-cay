@@ -1,0 +1,5 @@
+{
+  "map1_awakening_forest": "res://scenes/maps/map1_awakening_forest.tscn",
+  "map2_tutorial_road": "res://scenes/maps/map2_tutorial_road.tscn",
+  "map3_ashen_town_hub": "res://scenes/maps/map3_ashen_town_hub.tscn"
+}

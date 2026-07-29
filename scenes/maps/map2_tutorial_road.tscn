@@ -1,0 +1,269 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/maps/map2/map2_tutorial_road.gd" id="1_map"]
+[ext_resource type="Script" path="res://scripts/maps/map2/map2_encounter_zone.gd" id="2_zone"]
+[ext_resource type="Script" path="res://scripts/maps/map2/map2_exit_gate.gd" id="3_exit"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map2/forest_road.svg" id="4_background"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map2/gate_runes.svg" id="5_gate"]
+
+[sub_resource type="RectangleShape2D" id="WorldHorizontal"]
+size = Vector2(2200, 40)
+
+[sub_resource type="RectangleShape2D" id="WorldVertical"]
+size = Vector2(40, 900)
+
+[sub_resource type="RectangleShape2D" id="ZoneWide"]
+size = Vector2(340, 600)
+
+[sub_resource type="RectangleShape2D" id="ZoneMedium"]
+size = Vector2(280, 600)
+
+[sub_resource type="RectangleShape2D" id="BossZone"]
+size = Vector2(430, 650)
+
+[sub_resource type="RectangleShape2D" id="EncounterBarrier"]
+size = Vector2(28, 650)
+
+[sub_resource type="RectangleShape2D" id="ExitTrigger"]
+size = Vector2(90, 620)
+
+[sub_resource type="StyleBoxFlat" id="TitlePanel"]
+bg_color = Color(0.035, 0.06, 0.065, 0.76)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Map2TutorialRoad" type="Node2D"]
+script = ExtResource("1_map")
+metadata/map_size = Vector2(2200, 900)
+metadata/map_id = &"map2_tutorial_road"
+
+[node name="ForestRoadBackground" type="Sprite2D" parent="."]
+texture = ExtResource("4_background")
+position = Vector2(1100, 450)
+
+[node name="MapTitle" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 340.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.78, 0.87, 0.82, 1)
+theme_override_font_sizes/font_size = 20
+text = "CON ĐƯỜNG RỪNG · MAP 2"
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(1100, 20)
+shape = SubResource("WorldHorizontal")
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(1100, 880)
+shape = SubResource("WorldHorizontal")
+
+[node name="Left" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(20, 450)
+shape = SubResource("WorldVertical")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(2180, 450)
+shape = SubResource("WorldVertical")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="FromMap1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(110, 450)
+
+[node name="Encounter1Checkpoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(250, 450)
+
+[node name="Encounter2Checkpoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(720, 450)
+
+[node name="Encounter3Checkpoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1160, 450)
+
+[node name="BossCheckpoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1540, 450)
+
+[node name="Map3Exit" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2070, 450)
+
+[node name="EncounterZones" type="Node2D" parent="."]
+
+[node name="EncounterZone1" type="Area2D" parent="EncounterZones"]
+unique_name_in_owner = true
+position = Vector2(410, 450)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_zone")
+encounter_index = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterZones/EncounterZone1"]
+shape = SubResource("ZoneWide")
+
+[node name="EncounterZone2" type="Area2D" parent="EncounterZones"]
+unique_name_in_owner = true
+position = Vector2(850, 450)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_zone")
+encounter_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterZones/EncounterZone2"]
+shape = SubResource("ZoneMedium")
+
+[node name="EncounterZone3" type="Area2D" parent="EncounterZones"]
+unique_name_in_owner = true
+position = Vector2(1270, 450)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_zone")
+encounter_index = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterZones/EncounterZone3"]
+shape = SubResource("ZoneMedium")
+
+[node name="BossEncounterZone" type="Area2D" parent="EncounterZones"]
+unique_name_in_owner = true
+position = Vector2(1750, 450)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_zone")
+encounter_index = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterZones/BossEncounterZone"]
+shape = SubResource("BossZone")
+
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="Encounter1Spawns" type="Node2D" parent="EnemySpawns"]
+unique_name_in_owner = true
+
+[node name="MistShadeLeft" type="Marker2D" parent="EnemySpawns/Encounter1Spawns"]
+position = Vector2(440, 365)
+
+[node name="MistShadeRight" type="Marker2D" parent="EnemySpawns/Encounter1Spawns"]
+position = Vector2(535, 535)
+
+[node name="Encounter2Spawns" type="Node2D" parent="EnemySpawns"]
+unique_name_in_owner = true
+
+[node name="RootWolfUpper" type="Marker2D" parent="EnemySpawns/Encounter2Spawns"]
+position = Vector2(875, 350)
+
+[node name="RootWolfLower" type="Marker2D" parent="EnemySpawns/Encounter2Spawns"]
+position = Vector2(965, 540)
+
+[node name="Encounter3Spawns" type="Node2D" parent="EnemySpawns"]
+unique_name_in_owner = true
+
+[node name="MushroomSpawn" type="Marker2D" parent="EnemySpawns/Encounter3Spawns"]
+position = Vector2(1325, 450)
+
+[node name="BossSpawns" type="Node2D" parent="EnemySpawns"]
+unique_name_in_owner = true
+
+[node name="BossSpawn" type="Marker2D" parent="EnemySpawns/BossSpawns"]
+unique_name_in_owner = true
+position = Vector2(1840, 450)
+
+[node name="AriaSpawn" type="Marker2D" parent="EnemySpawns/BossSpawns"]
+unique_name_in_owner = true
+position = Vector2(1650, 450)
+
+[node name="EncounterGates" type="Node2D" parent="."]
+
+[node name="EncounterGate1" type="Node2D" parent="EncounterGates"]
+unique_name_in_owner = true
+position = Vector2(650, 450)
+
+[node name="Visual" type="Sprite2D" parent="EncounterGates/EncounterGate1"]
+texture = ExtResource("5_gate")
+scale = Vector2(1, 3.45)
+modulate = Color(0.75, 1, 0.9, 0.82)
+
+[node name="Barrier" type="StaticBody2D" parent="EncounterGates/EncounterGate1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterGates/EncounterGate1/Barrier"]
+shape = SubResource("EncounterBarrier")
+
+[node name="EncounterGate2" type="Node2D" parent="EncounterGates"]
+unique_name_in_owner = true
+position = Vector2(1100, 450)
+
+[node name="Visual" type="Sprite2D" parent="EncounterGates/EncounterGate2"]
+texture = ExtResource("5_gate")
+scale = Vector2(1, 3.45)
+modulate = Color(0.75, 1, 0.9, 0.82)
+
+[node name="Barrier" type="StaticBody2D" parent="EncounterGates/EncounterGate2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterGates/EncounterGate2/Barrier"]
+shape = SubResource("EncounterBarrier")
+
+[node name="EncounterGate3" type="Node2D" parent="EncounterGates"]
+unique_name_in_owner = true
+position = Vector2(1470, 450)
+
+[node name="Visual" type="Sprite2D" parent="EncounterGates/EncounterGate3"]
+texture = ExtResource("5_gate")
+scale = Vector2(1, 3.45)
+modulate = Color(0.75, 1, 0.9, 0.82)
+
+[node name="Barrier" type="StaticBody2D" parent="EncounterGates/EncounterGate3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EncounterGates/EncounterGate3/Barrier"]
+shape = SubResource("EncounterBarrier")
+
+[node name="Map3ExitGate" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2115, 450)
+script = ExtResource("3_exit")
+
+[node name="BarrierVisual" type="Sprite2D" parent="Map3ExitGate"]
+unique_name_in_owner = true
+texture = ExtResource("5_gate")
+scale = Vector2(1, 3.45)
+modulate = Color(1, 0.78, 0.48, 0.9)
+
+[node name="BarrierBody" type="StaticBody2D" parent="Map3ExitGate"]
+
+[node name="BarrierCollision" type="CollisionShape2D" parent="Map3ExitGate/BarrierBody"]
+unique_name_in_owner = true
+shape = SubResource("EncounterBarrier")
+
+[node name="ExitArea" type="Area2D" parent="Map3ExitGate"]
+unique_name_in_owner = true
+position = Vector2(35, 0)
+collision_layer = 0
+collision_mask = 1
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map3ExitGate/ExitArea"]
+shape = SubResource("ExitTrigger")
+
+[node name="RoadSigns" type="Node2D" parent="."]
+
+[node name="ComboSign" type="Label" parent="RoadSigns"]
+position = Vector2(285, 690)
+text = "I · COMBO"
+modulate = Color(0.7, 0.82, 0.76, 0.7)
+
+[node name="DodgeSign" type="Label" parent="RoadSigns"]
+position = Vector2(770, 690)
+text = "II · NÉ"
+modulate = Color(0.7, 0.82, 0.76, 0.7)
+
+[node name="SkillSign" type="Label" parent="RoadSigns"]
+position = Vector2(1200, 690)
+text = "III · KỸ NĂNG"
+modulate = Color(0.7, 0.82, 0.76, 0.7)
+
+[node name="BossSign" type="Label" parent="RoadSigns"]
+position = Vector2(1660, 725)
+text = "ĐẤU TRƯỜNG HƯƠU SỪNG RỄ"
+modulate = Color(0.9, 0.65, 0.48, 0.8)

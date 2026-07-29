@@ -1,0 +1,11 @@
+﻿[gd_resource type="Resource" script_class="Map1StoryResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_story_resource.gd" id="1_story"]
+
+[resource]
+script = ExtResource("1_story")
+opening_lines = PackedStringArray("...Lạnh quá...", "Mình là ai? Vì sao bàn tay này lại phát sáng?", "Thanh kiếm đã gãy. Nhưng khu rừng này... dường như đang gọi tên mình.")
+movement_prompt = "Dùng WASD hoặc D-Pad để di chuyển và tìm nguồn sáng trong rừng."
+pillar_prompt = "Bàn Thạch Rêu Cổ đang cộng hưởng. Nhấn E hoặc nút Tương tác."
+weapon_lines = PackedStringArray("Những mảnh thép đang tự nối lại...", "Thanh kiếm này biết mình. Còn mình thì không nhớ nổi tên nó.", "Lối ra đã mở. Phía bên kia khu rừng có thể có câu trả lời.")
+exit_prompt = "Đi qua cổng phía đông để tiếp tục đến Con Đường Rừng."

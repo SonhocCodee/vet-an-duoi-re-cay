@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HubQuestData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/hub/quest_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"rescue_missing_villagers"
+title = "Những Người Không Trở Về"
+description = "Tìm ba dân làng mất tích gần bìa Rừng Sương Mù."
+reward_gold = 180
+main_quest = false

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HubRuneData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/hub/rune_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"vengeance"
+display_name = "Ấn Báo Thù"
+description = "Tích lực rồi phát nổ sóng xung kích phản công."
+alignment = 3

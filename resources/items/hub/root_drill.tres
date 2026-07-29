@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HubShopItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/items/hub/shop_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"root_drill"
+display_name = "Mũi Khoan Rễ"
+description = "Mở thêm ô khảm cho trang bị phù hợp."
+price = 350

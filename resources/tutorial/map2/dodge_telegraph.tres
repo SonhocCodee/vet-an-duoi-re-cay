@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Map2TutorialStep" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/maps/map2/map2_tutorial_step.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+tutorial_id = &"map2_dodge_telegraph"
+title = "Né trong khoảnh khắc báo hiệu"
+instruction = "Chờ vòng cảnh báo của Sói Rễ xuất hiện rồi né xuyên qua đòn đánh."
+required_action = &"dodge"
+encounter_index = 1
+enemy_count = 2

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AriaDialogueData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/npcs/aria/aria_dialogue_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+dialogue_id = &"map2_aria_after_root_antler_stag"
+speaker_name = "Aria"
+lines = Array[String](["Khoan... đường kiếm đó. Ta đã thấy nó trong đêm khu rừng cháy.", "Tên ta là Aria. Ta nợ ngươi một lời giải thích, nhưng nơi này không an toàn.", "Cổng thị trấn ở phía đông. Đi cùng ta — nếu ngươi vẫn còn muốn biết mình là ai."])
+completion_flag = &"map2_aria_dialogue_complete"
+next_scene = "res://scenes/maps/map3_ashen_town_hub.tscn"
+next_spawn_id = &"FromMap2"

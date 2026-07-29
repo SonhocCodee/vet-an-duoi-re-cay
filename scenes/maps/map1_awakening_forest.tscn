@@ -1,0 +1,85 @@
+﻿[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_awakening_forest.gd" id="1_map"]
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_world.gd" id="2_world"]
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_rune_pillar.gd" id="3_pillar"]
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_exit_gate.gd" id="4_gate"]
+[ext_resource type="Script" path="res://scripts/maps/map1/map1_story_director.gd" id="5_story_director"]
+[ext_resource type="Resource" path="res://resources/story/map1/map1_story_vi.tres" id="6_story"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/rune_pillar_inactive.svg" id="7_pillar_texture"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/forest_gate_closed.svg" id="8_gate_texture"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/broken_sword.svg" id="9_sword_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pillar"]
+radius = 72.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate_trigger"]
+size = Vector2(110, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate_blocker"]
+size = Vector2(42, 180)
+
+[node name="Map1AwakeningForest" type="Node2D"]
+script = ExtResource("1_map")
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_world")
+
+[node name="BrokenSword" type="Sprite2D" parent="World"]
+position = Vector2(300, 694)
+texture = ExtResource("9_sword_texture")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(255, 682)
+metadata/spawn_id = "default"
+
+[node name="from_map2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1360, 560)
+metadata/spawn_id = "from_map2"
+
+[node name="Gameplay" type="Node2D" parent="."]
+
+[node name="RunePillar" type="Area2D" parent="Gameplay"]
+position = Vector2(825, 374)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_pillar")
+story = ExtResource("6_story")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gameplay/RunePillar"]
+position = Vector2(0, -35)
+texture = ExtResource("7_pillar_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/RunePillar"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_pillar")
+
+[node name="ExitGate" type="Area2D" parent="Gameplay"]
+position = Vector2(1490, 520)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("4_gate")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gameplay/ExitGate"]
+position = Vector2(0, -48)
+texture = ExtResource("8_gate_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/ExitGate"]
+position = Vector2(16, -10)
+shape = SubResource("RectangleShape2D_gate_trigger")
+
+[node name="Blocker" type="StaticBody2D" parent="Gameplay/ExitGate"]
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/ExitGate/Blocker"]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_gate_blocker")
+
+[node name="StoryDirector" type="Node" parent="."]
+script = ExtResource("5_story_director")
+story = ExtResource("6_story")
+
+

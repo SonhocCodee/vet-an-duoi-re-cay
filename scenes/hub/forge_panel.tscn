@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/forge_panel.gd" id="1"]
+
+[node name="ForgePanel" type="PanelContainer"]
+visible = false
+offset_left = 300.0
+offset_top = 100.0
+offset_right = 980.0
+offset_bottom = 620.0
+script = ExtResource("1")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+text = "LÒ RÈN RỄ CÂY"
+horizontal_alignment = 1
+
+[node name="Item" type="Label" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Trang bị: equipped_weapon"
+
+[node name="Level" type="Label" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cường hóa: +0 / +10"
+
+[node name="Enhance" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cường hóa cấp kế tiếp"
+
+[node name="RuneTitle" type="Label" parent="Content"]
+layout_mode = 2
+text = "Chọn một trong 10 Cổ Ấn"
+
+[node name="RuneOptions" type="OptionButton" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Socket1" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ô 1: Trống"
+
+[node name="Socket2" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ô 2: Trống"
+
+[node name="Socket3" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ô 3: Trống"
+
+[node name="Status" type="Label" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Chọn thao tác rèn."
+autowrap_mode = 2
+
+[node name="Close" type="Button" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Đóng"
