@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 6
+target_id = &"midwife_house"
+activity = "Nghỉ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 6
+end_hour = 12
+target_id = &"residential_east"
+activity = "Thăm các gia đình"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 14
+target_id = &"herb_market"
+activity = "Mua dược liệu"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 18
+target_id = &"residential_east"
+activity = "Chăm sản phụ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 18
+end_hour = 24
+target_id = &"midwife_house"
+activity = "Pha thuốc"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"rosalind_midwife"
+display_name = "Rosalind"
+profession = "Bà đỡ"
+district_id = &"residential_east"
+dialogue_id = &"dialogue_rosalind_midwife"
+side_quest_id = &"silent_child"
+portrait_path = "res://assets/art/npcs/set_e/rosalind_midwife/rosalind_midwife_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/rosalind_midwife"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

@@ -30,7 +30,7 @@ func _ready() -> void:
 func _run() -> void:
 	_connect_campaign_signals()
 	_cleanup_test_save()
-	_test_save_version_two_round_trip()
+	_test_save_version_three_round_trip()
 	_test_future_save_version_is_rejected()
 	_test_campaign_director_progression()
 	await _test_true_ending_scene_route()
@@ -44,7 +44,7 @@ func _connect_campaign_signals() -> void:
 	GameEvents.campaign_completed.connect(_on_campaign_completed)
 
 
-func _test_save_version_two_round_trip() -> void:
+func _test_save_version_three_round_trip() -> void:
 	GameState.reset_new_game()
 	var expected_choices: Dictionary = _record_all_moral_choices()
 	_complete_all_chapters_in_game_state()
@@ -52,39 +52,39 @@ func _test_save_version_two_round_trip() -> void:
 	GameState.current_spawn = GameIds.SPAWN_DEFAULT
 
 	var save_data: Dictionary = GameState.to_save_data()
-	_expect(int(save_data.get("version", 0)) == 2, "GameState serializes save version 2")
-	_expect(save_data.has("current_chapter"), "version 2 save contains current_chapter")
-	_expect(save_data.has("moral_choices"), "version 2 save contains moral_choices")
-	_expect(save_data.has("completed_chapters"), "version 2 save contains completed_chapters")
-	_expect((save_data.get("moral_choices", {}) as Dictionary).size() == 9, "version 2 save contains nine moral choices")
-	_expect((save_data.get("completed_chapters", {}) as Dictionary).size() == 9, "version 2 save contains Chapter 2 through Chapter 10")
+	_expect(int(save_data.get("version", 0)) == 3, "GameState serializes save version 3")
+	_expect(save_data.has("current_chapter"), "version 3 save contains current_chapter")
+	_expect(save_data.has("moral_choices"), "version 3 save contains moral_choices")
+	_expect(save_data.has("completed_chapters"), "version 3 save contains completed_chapters")
+	_expect((save_data.get("moral_choices", {}) as Dictionary).size() == 9, "version 3 save contains nine moral choices")
+	_expect((save_data.get("completed_chapters", {}) as Dictionary).size() == 9, "version 3 save contains Chapter 2 through Chapter 10")
 
 	var save_error: Error = SaveService.save_game(TEST_SAVE_SLOT)
-	_expect(save_error == OK, "SaveService writes the version 2 campaign save")
+	_expect(save_error == OK, "SaveService writes the version 3 campaign save")
 	var persisted_data: Dictionary = _read_test_save()
-	_expect(int(persisted_data.get("version", 0)) == 2, "persisted JSON uses save version 2")
+	_expect(int(persisted_data.get("version", 0)) == 3, "persisted JSON uses save version 3")
 
 	GameState.reset_new_game()
 	_expect(GameState.moral_choices.is_empty(), "reset clears moral choices before load")
 	_expect(GameState.completed_chapters.is_empty(), "reset clears chapter completion before load")
 	var load_error: Error = SaveService.load_game(TEST_SAVE_SLOT)
-	_expect(load_error == OK, "SaveService loads the version 2 campaign save")
-	_expect(GameState.current_chapter == 10, "version 2 load restores current_chapter 10")
-	_expect(GameState.current_map == GameIds.MAP_CHAPTER_10, "version 2 load restores current map")
-	_expect(GameState.moral_choices.size() == 9, "version 2 load restores nine moral choices")
-	_expect(GameState.completed_chapters.size() == 9, "version 2 load restores nine completed chapters")
+	_expect(load_error == OK, "SaveService loads the version 3 campaign save")
+	_expect(GameState.current_chapter == 10, "version 3 load restores current_chapter 10")
+	_expect(GameState.current_map == GameIds.MAP_CHAPTER_10, "version 3 load restores current map")
+	_expect(GameState.moral_choices.size() == 9, "version 3 load restores nine moral choices")
+	_expect(GameState.completed_chapters.size() == 9, "version 3 load restores nine completed chapters")
 	for choice_id: Variant in expected_choices:
-		_expect(GameState.get_choice(StringName(choice_id)) == StringName(expected_choices[choice_id]), "version 2 load restores moral choice %s" % String(choice_id))
+		_expect(GameState.get_choice(StringName(choice_id)) == StringName(expected_choices[choice_id]), "version 3 load restores moral choice %s" % String(choice_id))
 	for chapter_number: int in range(2, 11):
-		_expect(GameState.is_chapter_complete(chapter_number), "version 2 load restores Chapter %d completion" % chapter_number)
+		_expect(GameState.is_chapter_complete(chapter_number), "version 3 load restores Chapter %d completion" % chapter_number)
 
 
 func _test_future_save_version_is_rejected() -> void:
 	var before: Dictionary = GameState.to_save_data()
 	var future_data: Dictionary = before.duplicate(true)
-	future_data["version"] = 3
+	future_data["version"] = 4
 	future_data["current_chapter"] = 1
-	_expect(not GameState.load_save_data(future_data), "GameState rejects save versions newer than 2")
+	_expect(not GameState.load_save_data(future_data), "GameState rejects save versions newer than 3")
 	_expect(GameState.current_chapter == int(before["current_chapter"]), "rejected future save does not mutate progression")
 
 

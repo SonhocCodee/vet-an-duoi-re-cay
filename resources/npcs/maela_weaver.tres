@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 8
+target_id = &"artisan_house"
+activity = "Nghỉ tại nhà"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 8
+end_hour = 18
+target_id = &"weaver_workshop"
+activity = "Dệt vải"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 18
+end_hour = 20
+target_id = &"market_square"
+activity = "Mua thuốc nhuộm"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 20
+end_hour = 24
+target_id = &"artisan_house"
+activity = "Khâu vá"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"maela_weaver"
+display_name = "Maela"
+profession = "Thợ dệt"
+district_id = &"artisan_row"
+dialogue_id = &"dialogue_maela_weaver"
+side_quest_id = &"memory_cloth"
+portrait_path = "res://assets/art/npcs/set_e/maela_weaver/maela_weaver_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/maela_weaver"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

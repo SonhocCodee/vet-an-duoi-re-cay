@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter_7_black_resin_pass.gd" id="1_wrapper"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/campaign/chapter5_7/black_resin_backdrop.svg" id="2_backdrop"]
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter7_black_resin_decorator.gd" id="3_decorator"]
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter57_hazard_area.gd" id="4_hazard"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_b/campaign_backdrop_visual.gd" id="5_art"]
 
 [sub_resource type="RectangleShape2D" id="WorldHorizontal"]
 size = Vector2(2200, 28)
@@ -30,6 +31,11 @@ texture = ExtResource("2_backdrop")
 position = Vector2(1100, 450)
 scale = Vector2(1.375, 1)
 modulate = Color(1, 1, 1, 0.14)
+script = ExtResource("5_art")
+art_paths = PackedStringArray("res://assets/art/campaign/chapter7_10/chapter_7_black_resin_pass.svg", "res://assets/art/campaign/chapter7_10/chapter_7_black_resin_pass.png", "res://assets/art/campaign/chapter7_10/chapter_7_black_resin_pass.webp")
+art_directory = "res://assets/art/campaign/chapter7_10"
+name_tokens = PackedStringArray("chapter_7", "black_resin")
+fitted_size = Vector2(2200, 900)
 
 [node name="BlackResinDecorator" type="Node2D" parent="Environment"]
 script = ExtResource("3_decorator")

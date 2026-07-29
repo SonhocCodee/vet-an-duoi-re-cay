@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 9
+target_id = &"orphan_alley"
+activity = "Ngủ trong hẻm"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 9
+end_hour = 14
+target_id = &"market_square"
+activity = "Chạy việc ở chợ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 19
+target_id = &"sewer_alley"
+activity = "Tìm búp bê"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 19
+end_hour = 24
+target_id = &"orphan_alley"
+activity = "Nghỉ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"ivy_orphan"
+display_name = "Ivy"
+profession = "Trẻ mồ côi"
+district_id = &"market_square"
+dialogue_id = &"dialogue_ivy_orphan"
+side_quest_id = &"doll_under_drain"
+portrait_path = "res://assets/art/npcs/set_e/ivy_orphan/ivy_orphan_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/ivy_orphan"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

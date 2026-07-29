@@ -16,3 +16,11 @@ signal moral_choice_requested(choice_id: StringName, options: Array[Dictionary])
 signal moral_choice_resolved(choice_id: StringName, selected_option: StringName)
 signal chapter_completed(chapter_number: int, map_id: StringName)
 signal campaign_completed
+
+signal hud_refresh_requested(snapshot: Dictionary)
+signal inventory_toggled(visible: bool)
+signal quest_journal_toggled(visible: bool)
+signal map_toggled(visible: bool)
+signal npc_dialogue_requested(npc_id: StringName, dialogue_id: StringName, quest_id: StringName)
+signal loot_picked_up(item_id: StringName, quantity: int)
+signal quest_journal_updated(quest_id: StringName, state: Dictionary)

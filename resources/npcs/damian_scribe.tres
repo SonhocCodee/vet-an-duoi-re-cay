@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 8
+target_id = &"scribe_house"
+activity = "Nghỉ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 8
+end_hour = 12
+target_id = &"council_hall"
+activity = "Ghi biên bản"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 13
+target_id = &"market_square"
+activity = "Dùng bữa"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 13
+end_hour = 18
+target_id = &"council_archive"
+activity = "Sao lục sắc lệnh"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 18
+end_hour = 24
+target_id = &"scribe_house"
+activity = "Nghỉ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"damian_scribe"
+display_name = "Damian"
+profession = "Thư lại"
+district_id = &"council_hall"
+dialogue_id = &"dialogue_damian_scribe"
+side_quest_id = &"false_decree"
+portrait_path = "res://assets/art/npcs/set_f/damian_scribe/damian_scribe_portrait.svg"
+animation_root = "res://assets/art/npcs/set_f/damian_scribe"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

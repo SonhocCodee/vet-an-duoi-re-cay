@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 7
+target_id = &"gravedigger_hut"
+activity = "Nghỉ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 7
+end_hour = 12
+target_id = &"cemetery"
+activity = "Đào huyệt"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 14
+target_id = &"old_chapel"
+activity = "Dùng bữa"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 19
+target_id = &"cemetery"
+activity = "Chăm mộ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 19
+end_hour = 24
+target_id = &"gravedigger_hut"
+activity = "Mài dụng cụ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"silas_gravedigger"
+display_name = "Silas"
+profession = "Người đào huyệt"
+district_id = &"cemetery"
+dialogue_id = &"dialogue_silas_gravedigger"
+side_quest_id = &"empty_thirteenth_grave"
+portrait_path = "res://assets/art/npcs/set_f/silas_gravedigger/silas_gravedigger_portrait.svg"
+animation_root = "res://assets/art/npcs/set_f/silas_gravedigger"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

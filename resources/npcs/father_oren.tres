@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 5
+target_id = &"old_chapel"
+activity = "Cầu nguyện"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 5
+end_hour = 12
+target_id = &"chapel_nave"
+activity = "Làm lễ đường"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 16
+target_id = &"old_chapel"
+activity = "Chép kinh"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 16
+end_hour = 20
+target_id = &"cemetery"
+activity = "Ban phước nghĩa trang"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 20
+end_hour = 24
+target_id = &"old_chapel"
+activity = "Canh đèn lễ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"father_oren"
+display_name = "Cha Oren"
+profession = "Linh mục"
+district_id = &"old_chapel"
+dialogue_id = &"dialogue_father_oren"
+side_quest_id = &"unrung_bell"
+portrait_path = "res://assets/art/npcs/set_d/father_oren/father_oren_portrait.svg"
+animation_root = "res://assets/art/npcs/set_d/father_oren"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

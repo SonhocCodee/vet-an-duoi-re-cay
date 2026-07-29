@@ -15,6 +15,20 @@ const MAP_PATHS: Dictionary = {
 	GameIds.MAP_CHAPTER_10: "res://scenes/maps/campaign/chapter_10_world_root.tscn",
 	GameIds.MAP_TRUE_ENDING: "res://scenes/ending/true_ending.tscn",
 }
+const MAP_SIZES: Dictionary = {
+	GameIds.MAP_1: Vector2(2200.0, 900.0),
+	GameIds.MAP_2: Vector2(2200.0, 900.0),
+	GameIds.MAP_3: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_2: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_3: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_4: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_5: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_6: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_7: Vector2(2200.0, 900.0),
+	GameIds.MAP_CHAPTER_8: Vector2(1280.0, 720.0),
+	GameIds.MAP_CHAPTER_9: Vector2(1280.0, 720.0),
+	GameIds.MAP_CHAPTER_10: Vector2(1280.0, 720.0),
+}
 const FADE_DURATION: float = 0.3
 
 var _map_container: Node
@@ -55,6 +69,7 @@ func _perform_change_map(map_id: StringName, spawn_id: StringName) -> void:
 	_map_container.add_child(_active_map)
 	await get_tree().process_frame
 	_place_player(spawn_id)
+	_configure_player_camera(map_id)
 	GameState.current_map = map_id
 	GameState.current_spawn = spawn_id
 	GameEvents.map_changed.emit(map_id, spawn_id)
@@ -85,6 +100,19 @@ func _place_player(spawn_id: StringName) -> void:
 		if marker == null:
 			marker = spawn_points.get_node_or_null(NodePath(String(GameIds.SPAWN_DEFAULT))) as Marker2D
 	_player.global_position = marker.global_position if marker != null else Vector2.ZERO
+
+func _configure_player_camera(map_id: StringName) -> void:
+	var camera := _player.get_node_or_null("Camera2D") as Camera2D
+	if camera == null:
+		return
+	var map_size: Vector2 = MAP_SIZES.get(map_id, Vector2(2200.0, 900.0))
+	camera.limit_left = 0
+	camera.limit_top = 0
+	camera.limit_right = roundi(map_size.x)
+	camera.limit_bottom = roundi(map_size.y)
+	camera.limit_smoothed = true
+	camera.reset_smoothing()
+
 
 func _set_player_control(enabled: bool) -> void:
 	if _player.has_method("set_control_enabled"):

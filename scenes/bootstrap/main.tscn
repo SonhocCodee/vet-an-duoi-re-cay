@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/integration/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/gameplay/gameplay_suite.tscn" id="2_second_wave_ui"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -20,6 +21,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="SecondWaveGameplaySuite" parent="Interface/HudSocket" instance=ExtResource("2_second_wave_ui")]
+layout_mode = 1
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]
 layer = 100

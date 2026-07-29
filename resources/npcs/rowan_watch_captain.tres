@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 6
+target_id = &"captain_quarters"
+activity = "Nghỉ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 6
+end_hour = 10
+target_id = &"watch_barracks"
+activity = "Điểm quân"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 10
+end_hour = 14
+target_id = &"city_patrol"
+activity = "Tuần tra thành phố"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 20
+target_id = &"watch_barracks"
+activity = "Điều tra nội bộ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 20
+end_hour = 24
+target_id = &"captain_quarters"
+activity = "Nghỉ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"rowan_watch_captain"
+display_name = "Rowan"
+profession = "Đội trưởng canh gác"
+district_id = &"watch_barracks"
+dialogue_id = &"dialogue_rowan_watch_captain"
+side_quest_id = &"watch_traitor"
+portrait_path = "res://assets/art/npcs/set_f/rowan_watch_captain/rowan_watch_captain_portrait.svg"
+animation_root = "res://assets/art/npcs/set_f/rowan_watch_captain"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

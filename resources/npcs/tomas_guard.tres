@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 6
+target_id = &"watch_barracks"
+activity = "Nghỉ tại doanh trại"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 6
+end_hour = 14
+target_id = &"west_gate"
+activity = "Canh cổng"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 18
+target_id = &"west_wall_patrol"
+activity = "Tuần tra tường thành"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 18
+end_hour = 24
+target_id = &"watch_barracks"
+activity = "Báo cáo ca trực"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"tomas_guard"
+display_name = "Tomas"
+profession = "Lính gác"
+district_id = &"west_gate"
+dialogue_id = &"dialogue_tomas_guard"
+side_quest_id = &"tracks_beyond_wall"
+portrait_path = "res://assets/art/npcs/set_d/tomas_guard/tomas_guard_portrait.svg"
+animation_root = "res://assets/art/npcs/set_d/tomas_guard"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

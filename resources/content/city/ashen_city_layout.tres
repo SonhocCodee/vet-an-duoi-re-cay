@@ -1,0 +1,556 @@
+[gd_resource type="Resource" script_class="CityLayoutDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/visuals/second_wave/city_layout_definition.gd" id="1_layout"]
+
+[resource]
+script = ExtResource("1_layout")
+bounds = Rect2(0, 0, 2200, 900)
+background_path = "res://assets/art/city/backgrounds/ashen_city_full.svg"
+buildings = Array[Dictionary]([{
+"id": &"blacksmith",
+"asset": "res://assets/art/city/buildings/blacksmith.svg",
+"position": Vector2(240, 160),
+"size": Vector2(250, 150),
+"collision_size": Vector2(180, 63),
+"collision_offset": Vector2(0, 33)
+},
+{
+"id": &"apothecary",
+"asset": "res://assets/art/city/buildings/apothecary.svg",
+"position": Vector2(520, 145),
+"size": Vector2(230, 140),
+"collision_size": Vector2(166, 59),
+"collision_offset": Vector2(0, 31)
+},
+{
+"id": &"bakery",
+"asset": "res://assets/art/city/buildings/bakery.svg",
+"position": Vector2(810, 145),
+"size": Vector2(230, 140),
+"collision_size": Vector2(166, 59),
+"collision_offset": Vector2(0, 31)
+},
+{
+"id": &"inn",
+"asset": "res://assets/art/city/buildings/inn.svg",
+"position": Vector2(1110, 145),
+"size": Vector2(270, 155),
+"collision_size": Vector2(194, 65),
+"collision_offset": Vector2(0, 34)
+},
+{
+"id": &"chapel",
+"asset": "res://assets/art/city/buildings/chapel.svg",
+"position": Vector2(1470, 150),
+"size": Vector2(260, 165),
+"collision_size": Vector2(187, 69),
+"collision_offset": Vector2(0, 36)
+},
+{
+"id": &"archive",
+"asset": "res://assets/art/city/buildings/archive.svg",
+"position": Vector2(1830, 150),
+"size": Vector2(260, 160),
+"collision_size": Vector2(187, 67),
+"collision_offset": Vector2(0, 35)
+},
+{
+"id": &"council_hall",
+"asset": "res://assets/art/city/buildings/council_hall.svg",
+"position": Vector2(1990, 405),
+"size": Vector2(280, 180),
+"collision_size": Vector2(202, 76),
+"collision_offset": Vector2(0, 40)
+},
+{
+"id": &"barracks",
+"asset": "res://assets/art/city/buildings/barracks.svg",
+"position": Vector2(1840, 735),
+"size": Vector2(260, 150),
+"collision_size": Vector2(187, 63),
+"collision_offset": Vector2(0, 33)
+},
+{
+"id": &"stable",
+"asset": "res://assets/art/city/buildings/stable.svg",
+"position": Vector2(1510, 750),
+"size": Vector2(270, 145),
+"collision_size": Vector2(194, 61),
+"collision_offset": Vector2(0, 32)
+},
+{
+"id": &"mason_yard",
+"asset": "res://assets/art/city/buildings/mason_yard.svg",
+"position": Vector2(1190, 755),
+"size": Vector2(250, 135),
+"collision_size": Vector2(180, 57),
+"collision_offset": Vector2(0, 30)
+},
+{
+"id": &"jeweler",
+"asset": "res://assets/art/city/buildings/jeweler.svg",
+"position": Vector2(885, 755),
+"size": Vector2(230, 140),
+"collision_size": Vector2(166, 59),
+"collision_offset": Vector2(0, 31)
+},
+{
+"id": &"house_1",
+"asset": "res://assets/art/city/buildings/house_1.svg",
+"position": Vector2(610, 755),
+"size": Vector2(215, 135),
+"collision_size": Vector2(155, 57),
+"collision_offset": Vector2(0, 30)
+},
+{
+"id": &"house_2",
+"asset": "res://assets/art/city/buildings/house_2.svg",
+"position": Vector2(350, 755),
+"size": Vector2(215, 135),
+"collision_size": Vector2(155, 57),
+"collision_offset": Vector2(0, 30)
+},
+{
+"id": &"house_3",
+"asset": "res://assets/art/city/buildings/house_3.svg",
+"position": Vector2(175, 545),
+"size": Vector2(210, 135),
+"collision_size": Vector2(151, 57),
+"collision_offset": Vector2(0, 30)
+},
+{
+"id": &"house_4",
+"asset": "res://assets/art/city/buildings/house_4.svg",
+"position": Vector2(175, 350),
+"size": Vector2(210, 135),
+"collision_size": Vector2(151, 57),
+"collision_offset": Vector2(0, 30)
+},
+{
+"id": &"gate",
+"asset": "res://assets/art/city/buildings/gate.svg",
+"position": Vector2(1100, 40),
+"size": Vector2(250, 100),
+"collision_size": Vector2(180, 42),
+"collision_offset": Vector2(0, 22)
+},
+{
+"id": &"wall",
+"asset": "res://assets/art/city/buildings/wall.svg",
+"position": Vector2(550, 35),
+"size": Vector2(760, 70),
+"collision_size": Vector2(547, 29),
+"collision_offset": Vector2(0, 15)
+},
+{
+"id": &"tower",
+"asset": "res://assets/art/city/buildings/tower.svg",
+"position": Vector2(60, 80),
+"size": Vector2(135, 150),
+"collision_size": Vector2(97, 63),
+"collision_offset": Vector2(0, 33)
+},
+{
+"id": &"bridge",
+"asset": "res://assets/art/city/buildings/bridge.svg",
+"position": Vector2(1100, 860),
+"size": Vector2(320, 90),
+"collision_size": Vector2(230, 38),
+"collision_offset": Vector2(0, 20)
+},
+{
+"id": &"dock",
+"asset": "res://assets/art/city/buildings/dock.svg",
+"position": Vector2(2040, 610),
+"size": Vector2(260, 135),
+"collision_size": Vector2(187, 57),
+"collision_offset": Vector2(0, 30)
+}])
+props = Array[Dictionary]([{
+"id": &"cart_430",
+"asset": "res://assets/art/city/props/cart.svg",
+"position": Vector2(430, 395),
+"size": Vector2(70, 70)
+},
+{
+"id": &"barrel_500",
+"asset": "res://assets/art/city/props/barrel.svg",
+"position": Vector2(500, 420),
+"size": Vector2(70, 70)
+},
+{
+"id": &"crate_565",
+"asset": "res://assets/art/city/props/crate.svg",
+"position": Vector2(565, 420),
+"size": Vector2(70, 70)
+},
+{
+"id": &"well_820",
+"asset": "res://assets/art/city/props/well.svg",
+"position": Vector2(820, 430),
+"size": Vector2(70, 70)
+},
+{
+"id": &"lamp_980",
+"asset": "res://assets/art/city/props/lamp.svg",
+"position": Vector2(980, 360),
+"size": Vector2(70, 70)
+},
+{
+"id": &"sign_660",
+"asset": "res://assets/art/city/props/sign.svg",
+"position": Vector2(660, 350),
+"size": Vector2(70, 70)
+},
+{
+"id": &"stall_750",
+"asset": "res://assets/art/city/props/stall.svg",
+"position": Vector2(750, 330),
+"size": Vector2(70, 70)
+},
+{
+"id": &"bench_1030",
+"asset": "res://assets/art/city/props/bench.svg",
+"position": Vector2(1030, 500),
+"size": Vector2(70, 70)
+},
+{
+"id": &"fountain_1100",
+"asset": "res://assets/art/city/props/fountain.svg",
+"position": Vector2(1100, 430),
+"size": Vector2(70, 70)
+},
+{
+"id": &"tree_dead_1320",
+"asset": "res://assets/art/city/props/tree_dead.svg",
+"position": Vector2(1320, 400),
+"size": Vector2(70, 70)
+},
+{
+"id": &"hay_1480",
+"asset": "res://assets/art/city/props/hay.svg",
+"position": Vector2(1480, 560),
+"size": Vector2(70, 70)
+},
+{
+"id": &"forge_320",
+"asset": "res://assets/art/city/props/forge.svg",
+"position": Vector2(320, 280),
+"size": Vector2(70, 70)
+},
+{
+"id": &"anvil_390",
+"asset": "res://assets/art/city/props/anvil.svg",
+"position": Vector2(390, 295),
+"size": Vector2(70, 70)
+},
+{
+"id": &"grave_1550",
+"asset": "res://assets/art/city/props/grave.svg",
+"position": Vector2(1550, 330),
+"size": Vector2(70, 70)
+},
+{
+"id": &"statue_1240",
+"asset": "res://assets/art/city/props/statue.svg",
+"position": Vector2(1240, 280),
+"size": Vector2(70, 70)
+},
+{
+"id": &"boat_2000",
+"asset": "res://assets/art/city/props/boat.svg",
+"position": Vector2(2000, 700),
+"size": Vector2(70, 70)
+},
+{
+"id": &"laundry_620",
+"asset": "res://assets/art/city/props/laundry.svg",
+"position": Vector2(620, 620),
+"size": Vector2(70, 70)
+},
+{
+"id": &"notice_board_900",
+"asset": "res://assets/art/city/props/notice_board.svg",
+"position": Vector2(900, 575),
+"size": Vector2(70, 70)
+},
+{
+"id": &"sewer_grate_1160",
+"asset": "res://assets/art/city/props/sewer_grate.svg",
+"position": Vector2(1160, 600),
+"size": Vector2(70, 70)
+},
+{
+"id": &"lamp_1760",
+"asset": "res://assets/art/city/props/lamp.svg",
+"position": Vector2(1760, 480),
+"size": Vector2(70, 70)
+}])
+npc_spawns = Array[Dictionary]([{
+"id": &"alden_blacksmith",
+"position": Vector2(330, 330)
+},
+{
+"id": &"mira_apothecary",
+"position": Vector2(540, 310)
+},
+{
+"id": &"father_oren",
+"position": Vector2(1500, 290)
+},
+{
+"id": &"lysa_baker",
+"position": Vector2(760, 310)
+},
+{
+"id": &"tomas_guard",
+"position": Vector2(1050, 100)
+},
+{
+"id": &"neris_cartographer",
+"position": Vector2(1800, 300)
+},
+{
+"id": &"gareth_stablemaster",
+"position": Vector2(1500, 620)
+},
+{
+"id": &"maela_weaver",
+"position": Vector2(650, 650)
+},
+{
+"id": &"borin_mason",
+"position": Vector2(1200, 650)
+},
+{
+"id": &"ivy_orphan",
+"position": Vector2(880, 470)
+},
+{
+"id": &"cedric_archivist",
+"position": Vector2(1780, 360)
+},
+{
+"id": &"helena_innkeeper",
+"position": Vector2(1080, 280)
+},
+{
+"id": &"oswin_fisher",
+"position": Vector2(1960, 650)
+},
+{
+"id": &"rosalind_midwife",
+"position": Vector2(430, 620)
+},
+{
+"id": &"silas_gravedigger",
+"position": Vector2(1580, 360)
+},
+{
+"id": &"yvette_jeweler",
+"position": Vector2(900, 650)
+},
+{
+"id": &"damian_scribe",
+"position": Vector2(1970, 400)
+},
+{
+"id": &"freya_hunter",
+"position": Vector2(1250, 160)
+},
+{
+"id": &"rowan_watch_captain",
+"position": Vector2(1780, 620)
+},
+{
+"id": &"elric_beggar_prophet",
+"position": Vector2(1120, 500)
+}])
+navigation_targets = Array[Dictionary]([{
+"id": &"archive_lane",
+"position": Vector2(1760, 310)
+},
+{
+"id": &"archive_quarters",
+"position": Vector2(1820, 250)
+},
+{
+"id": &"artisan_house",
+"position": Vector2(620, 620)
+},
+{
+"id": &"bakery",
+"position": Vector2(810, 285)
+},
+{
+"id": &"blacksmith_forge",
+"position": Vector2(335, 300)
+},
+{
+"id": &"captain_quarters",
+"position": Vector2(1760, 650)
+},
+{
+"id": &"cemetery",
+"position": Vector2(1540, 330)
+},
+{
+"id": &"chapel_nave",
+"position": Vector2(1470, 280)
+},
+{
+"id": &"city_archive",
+"position": Vector2(1800, 335)
+},
+{
+"id": &"city_patrol",
+"position": Vector2(1100, 420)
+},
+{
+"id": &"council_archive",
+"position": Vector2(1900, 360)
+},
+{
+"id": &"council_hall",
+"position": Vector2(1900, 430)
+},
+{
+"id": &"dock_hut",
+"position": Vector2(1940, 610)
+},
+{
+"id": &"forge_quarter",
+"position": Vector2(400, 345)
+},
+{
+"id": &"fountain_square",
+"position": Vector2(1100, 430)
+},
+{
+"id": &"gravedigger_hut",
+"position": Vector2(1620, 380)
+},
+{
+"id": &"herb_garden",
+"position": Vector2(560, 390)
+},
+{
+"id": &"herb_market",
+"position": Vector2(610, 345)
+},
+{
+"id": &"hunter_camp",
+"position": Vector2(1320, 170)
+},
+{
+"id": &"inn_room",
+"position": Vector2(1110, 280)
+},
+{
+"id": &"jeweler_shop",
+"position": Vector2(900, 650)
+},
+{
+"id": &"lantern_alley",
+"position": Vector2(1420, 500)
+},
+{
+"id": &"market_square",
+"position": Vector2(820, 430)
+},
+{
+"id": &"market_well",
+"position": Vector2(835, 470)
+},
+{
+"id": &"mason_house",
+"position": Vector2(1240, 620)
+},
+{
+"id": &"mason_yard",
+"position": Vector2(1190, 650)
+},
+{
+"id": &"midwife_house",
+"position": Vector2(470, 610)
+},
+{
+"id": &"noble_house",
+"position": Vector2(960, 610)
+},
+{
+"id": &"north_forest",
+"position": Vector2(1360, 90)
+},
+{
+"id": &"north_gate",
+"position": Vector2(1100, 90)
+},
+{
+"id": &"old_chapel",
+"position": Vector2(1470, 310)
+},
+{
+"id": &"old_chapel_steps",
+"position": Vector2(1410, 340)
+},
+{
+"id": &"orphan_alley",
+"position": Vector2(720, 500)
+},
+{
+"id": &"residential_east",
+"position": Vector2(520, 600)
+},
+{
+"id": &"river_docks",
+"position": Vector2(1970, 650)
+},
+{
+"id": &"root_inn",
+"position": Vector2(1090, 320)
+},
+{
+"id": &"ruined_wall",
+"position": Vector2(170, 470)
+},
+{
+"id": &"scribe_house",
+"position": Vector2(1860, 470)
+},
+{
+"id": &"sewer_alley",
+"position": Vector2(1160, 590)
+},
+{
+"id": &"south_gate_road",
+"position": Vector2(1100, 800)
+},
+{
+"id": &"south_stables",
+"position": Vector2(1500, 620)
+},
+{
+"id": &"stable_house",
+"position": Vector2(1540, 570)
+},
+{
+"id": &"watch_barracks",
+"position": Vector2(1770, 610)
+},
+{
+"id": &"watch_tower",
+"position": Vector2(2050, 190)
+},
+{
+"id": &"weaver_workshop",
+"position": Vector2(650, 650)
+},
+{
+"id": &"west_gate",
+"position": Vector2(90, 450)
+},
+{
+"id": &"west_wall_patrol",
+"position": Vector2(170, 390)
+}])

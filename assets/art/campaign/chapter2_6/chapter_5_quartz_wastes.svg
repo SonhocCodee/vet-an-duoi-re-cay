@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="900" viewBox="0 0 2200 900">
+  <defs>
+    <linearGradient id="sky5" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#090b1f"/><stop offset=".52" stop-color="#382b52"/><stop offset="1" stop-color="#8a5d66"/></linearGradient>
+    <linearGradient id="sand5" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8e6870"/><stop offset="1" stop-color="#211a2c"/></linearGradient>
+    <linearGradient id="quartz5" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d5ed"/><stop offset=".36" stop-color="#9d84d5"/><stop offset=".7" stop-color="#5d4b9e"/><stop offset="1" stop-color="#241f55"/></linearGradient>
+    <radialGradient id="sun5"><stop stop-color="#ffe8c5" stop-opacity=".75"/><stop offset=".22" stop-color="#dc96aa" stop-opacity=".32"/><stop offset="1" stop-color="#8f5e8c" stop-opacity="0"/></radialGradient>
+    <filter id="glow5"><feGaussianBlur stdDeviation="12"/></filter><filter id="dust5"><feGaussianBlur stdDeviation="24"/></filter>
+    <pattern id="sandgrain5" width="140" height="60" patternUnits="userSpaceOnUse"><path d="M5 39q35-18 70 0t65 0" fill="none" stroke="#e0b1a8" stroke-opacity=".1" stroke-width="4"/></pattern>
+  </defs>
+  <g id="far-layer">
+    <rect width="2200" height="900" fill="url(#sky5)"/>
+    <circle cx="1690" cy="210" r="250" fill="url(#sun5)"/><circle cx="1690" cy="210" r="83" fill="#e6c6c6" opacity=".48"/>
+    <path d="M0 442Q210 309 430 414Q665 245 910 420Q1130 278 1360 410Q1580 255 1790 416Q1990 310 2200 385V580H0Z" fill="#211a31"/>
+    <path d="M0 494Q280 390 565 474Q820 360 1110 486Q1380 365 1660 480Q1940 380 2200 456V610H0Z" fill="#46364e" opacity=".88"/>
+    <g fill="url(#quartz5)" stroke="#cab4db" stroke-opacity=".45" stroke-width="7">
+      <path d="M198 472l74-302 82 238-37 94Z"/><path d="M352 470l55-196 72 176-31 57Z"/><path d="M1845 472l78-326 88 265-39 97Z"/><path d="M1728 480l50-194 68 163-31 61Z"/>
+      <path d="M650 465l43-151 56 128-25 48Z"/><path d="M1440 466l45-166 61 145-28 51Z"/>
+    </g>
+    <g stroke="#f3d4ef" stroke-width="7" opacity=".5"><path d="M272 170l12 238M1923 146l16 266M693 314l9 129M1485 300l12 145"/></g>
+  </g>
+  <g id="mid-layer">
+    <path d="M0 520Q240 435 500 536Q750 440 1010 535Q1280 430 1540 526Q1840 430 2200 515V900H0Z" fill="url(#sand5)"/>
+    <path d="M0 540Q280 465 560 550Q840 470 1120 555Q1430 452 1740 548Q1970 474 2200 530V900H0Z" fill="url(#sandgrain5)"/>
+    <g fill="#cda1ae" opacity=".35" filter="url(#dust5)"><path d="M-100 530Q320 440 700 550T1420 525T2300 530V618H-100Z"/><path d="M-80 720Q340 625 730 725T1500 710T2280 700V790H-80Z"/></g>
+    <g fill="url(#quartz5)" stroke="#d6bedf" stroke-width="7">
+      <path d="M410 700l88-277 72 216-34 91Z"/><path d="M510 710l59-180 61 155-27 52Z"/><path d="M1730 700l-88-277-72 216 34 91Z"/><path d="M1630 710l-59-180-61 155 27 52Z"/>
+    </g>
+    <g fill="#1a1727" stroke="#665276" stroke-width="8"><path d="M45 715l160-136 121 42 114 94Z"/><path d="M2155 715l-160-136-121 42-114 94Z"/></g>
+    <g fill="none" stroke="#b594b4" stroke-width="6" opacity=".6"><path d="M102 674l105-54 103 48M2098 674l-105-54-103 48"/></g>
+  </g>
+  <g id="play-layer">
+    <path d="M690 900Q760 705 905 572Q1100 492 1295 572Q1440 705 1510 900Z" fill="#31283b" stroke="#b18491" stroke-width="13"/>
+    <path d="M748 900Q820 724 938 612Q1100 550 1262 612Q1380 724 1452 900Z" fill="#493849"/>
+    <g stroke="#826171" stroke-width="7" fill="none" opacity=".65"><path d="M795 812q305-84 610 0M842 716q258-70 516 0M902 630q198-48 396 0"/></g>
+    <g fill="url(#quartz5)" stroke="#ead4ea" stroke-width="8">
+      <path d="M565 900l56-276 63 137-21 139Z"/><path d="M650 900l34-171 46 101-14 70Z"/>
+      <path d="M1635 900l-56-276-63 137 21 139Z"/><path d="M1550 900l-34-171-46 101 14 70Z"/>
+    </g>
+    <g fill="#efe1f1" opacity=".42" filter="url(#glow5)"><path d="M620 651l28 113-44 6Z"/><path d="M1580 651l-28 113 44 6Z"/></g>
+    <path d="M0 900V760q180-115 355-22q140-100 300 34l28 128Z" fill="#12111e"/><path d="M2200 900V760q-180-115-355-22q-140-100-300 34l-28 128Z" fill="#12111e"/>
+    <g stroke="#675270" stroke-width="8" fill="none"><path d="M54 820q142-75 286-18t278 20M2146 820q-142-75-286-18t-278 20"/></g>
+    <g fill="#d8b1c0" opacity=".55"><path d="M180 748l13-46 15 47-15 22ZM365 805l10-36 13 37-12 18ZM1998 748l13-46 15 47-15 22ZM1812 805l10-36 13 37-12 18Z"/></g>
+  </g>
+</svg>

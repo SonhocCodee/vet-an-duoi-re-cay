@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs><linearGradient id="bossBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d2b31"/><stop offset="0.5" stop-color="#20171b"/><stop offset="1" stop-color="#070608"/></linearGradient></defs>
+  <g stroke="#765766" stroke-width="3" stroke-linejoin="round"><path d="M35 44L17 19l24 10L49 8l15 17L79 8l8 21 24-10-18 26c3 7 2 15-2 22-6 10-15 15-27 15S43 77 37 67c-4-7-5-15-2-23Z" fill="url(#bossBody)"/><path d="M33 72c13 11 49 11 62 0l18 20-12 14-11-10 7 30H31l7-30-11 10-12-14Z" fill="url(#bossBody)"/><path d="M35 82L12 111M93 82l23 29M47 119l-10 8M81 119l10 8" fill="none" stroke-linecap="round"/></g>
+  <path d="M46 52l11 4-11 4M82 52l-11 4 11 4" fill="none" stroke="#d09a73" stroke-width="4" stroke-linecap="round"/><path d="M49 70q15 8 30 0" fill="none" stroke="#765766" stroke-width="3"/><path d="M64 26V12M41 33L30 17M87 33l11-16" fill="none" stroke="#a87755" stroke-width="3" stroke-linecap="round"/>
+</svg>

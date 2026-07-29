@@ -2,25 +2,87 @@ class_name CampaignEnemyVisual
 extends EnemyVisual
 
 const ROOT_DIRECTIONS: Array[Vector2] = [Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
+const ART_DIRECTORY: String = "res://assets/art/enemies"
 
 @export_range(0, 4, 1) var campaign_style: int = 0
+
+var artwork: Sprite2D
+var _has_artwork: bool = false
+
+
+func _ready() -> void:
+	artwork = get_node_or_null(^"Artwork") as Sprite2D
+	if artwork == null:
+		artwork = Sprite2D.new()
+		artwork.name = "Artwork"
+		artwork.show_behind_parent = true
+		add_child(artwork)
+	call_deferred(&"_load_artwork")
+	set_process(true)
+
+
+func _process(_delta: float) -> void:
+	if not _has_artwork or artwork == null:
+		return
+	var enemy: CharacterBody2D = get_parent() as CharacterBody2D
+	if enemy != null and absf(enemy.velocity.x) > 0.05:
+		artwork.flip_h = enemy.velocity.x < 0.0
+
+
+func _load_artwork() -> void:
+	var enemy_id: String = _get_enemy_id()
+	if enemy_id.is_empty():
+		return
+	var shared_art_name: String = "campaign_boss_silhouette" if enemy_id.begins_with("boss_") else "campaign_enemy_silhouette"
+	var preferred_paths: PackedStringArray = [
+		ART_DIRECTORY.path_join(enemy_id + ".svg"),
+		ART_DIRECTORY.path_join(enemy_id + ".png"),
+		ART_DIRECTORY.path_join(enemy_id + ".webp"),
+		ART_DIRECTORY.path_join(shared_art_name + ".svg"),
+		ART_DIRECTORY.path_join(shared_art_name + ".png"),
+		ART_DIRECTORY.path_join(shared_art_name + ".webp"),
+	]
+	var name_tokens: PackedStringArray = [enemy_id, enemy_id.replace("_", "")]
+	var texture: Texture2D = ArtTextureResolver.load_texture(preferred_paths, ART_DIRECTORY, name_tokens)
+	_has_artwork = texture != null
+	if not _has_artwork:
+		artwork.visible = false
+		queue_redraw()
+		return
+	artwork.texture = texture
+	artwork.visible = true
+	artwork.position = Vector2(0.0, -size * 0.12)
+	var texture_size: Vector2 = texture.get_size()
+	var longest_side: float = maxf(texture_size.x, texture_size.y)
+	if longest_side > 0.0:
+		var art_scale: float = size * 2.15 / longest_side
+		artwork.scale = Vector2(art_scale, art_scale)
+	queue_redraw()
+
+
+func _get_enemy_id() -> String:
+	var enemy: EnemyBase = get_parent() as EnemyBase
+	if enemy == null or enemy.data == null:
+		return ""
+	return String(enemy.data.enemy_id)
 
 
 func _draw() -> void:
 	if elite_aura_enabled:
 		draw_circle(Vector2.ZERO, size * 1.05, Color(1.0, 0.72, 0.18, 0.14))
 		draw_arc(Vector2.ZERO, size, 0.0, TAU, 40, Color(1.0, 0.75, 0.25, 0.82), 2.0)
-	match campaign_style:
-		0:
-			_draw_humanoid()
-		1:
-			_draw_beast()
-		2:
-			_draw_caster()
-		3:
-			_draw_winged()
-		_:
-			_draw_rooted()
+	if not _has_artwork:
+		match campaign_style:
+			0:
+				_draw_humanoid()
+			1:
+				_draw_beast()
+			2:
+				_draw_caster()
+			3:
+				_draw_winged()
+			_:
+				_draw_rooted()
 	if telegraph_amount > 0.0:
 		var warning: Color = Color(1.0, 0.12, 0.06, 0.3 + telegraph_amount * 0.55)
 		draw_arc(Vector2.ZERO, size + 9.0, -PI * 0.5, -PI * 0.5 + TAU * telegraph_amount, 40, warning, 4.0)

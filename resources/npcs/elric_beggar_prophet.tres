@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 9
+target_id = &"sewer_alley"
+activity = "Ngủ trong hẻm"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 9
+end_hour = 13
+target_id = &"market_square"
+activity = "Kể lời tiên tri"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 13
+end_hour = 17
+target_id = &"old_chapel_steps"
+activity = "Xin ăn"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 17
+end_hour = 22
+target_id = &"lantern_alley"
+activity = "Quan sát người qua lại"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 22
+end_hour = 24
+target_id = &"sewer_alley"
+activity = "Biến mất trong hẻm"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"elric_beggar_prophet"
+display_name = "Elric"
+profession = "Hành khất tiên tri"
+district_id = &"market_square"
+dialogue_id = &"dialogue_elric_beggar_prophet"
+side_quest_id = &"prophecy_beneath_roots"
+portrait_path = "res://assets/art/npcs/set_f/elric_beggar_prophet/elric_beggar_prophet_portrait.svg"
+animation_root = "res://assets/art/npcs/set_f/elric_beggar_prophet"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+<defs><linearGradient id="cloth" x2="0" y2="1"><stop stop-color="#42526a"/><stop offset="1" stop-color="#252e3e"/></linearGradient><filter id="hurtGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.4"/></filter></defs>
+<g transform="translate(0 -1)" stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="48" cy="90" rx="25" ry="4" fill="#090b0d" opacity=".42"/>
+<path d="M34 70l-3 18-8 5h17l3-22M58 70l3 18 8 5H51l-2-22" fill="#252e3e" stroke="#151619" stroke-width="2.5"/>
+<path d="M30 38q18-12 36 0l8 36-16 10-12-7-12 7-16-10z" fill="url(#cloth)" stroke="#17191c" stroke-width="3"/>
+<path d="M31 44L22 61l8 9 12-18M65 44l8 17 -8 9-13-18" fill="#42526a" stroke="#17191c" stroke-width="3"/>
+<path d="M34 43q14 10 29 0l-4 18-10 6-11-6z" fill="#d2c49a" opacity=".8"/><path d="M32 69h34" stroke="#9b7449" stroke-width="4"/><circle cx="49" cy="69" r="4" fill="#9b7449"/>
+<path d="M37 18q12-8 24 0v12q-12 8-24 0z" fill="#624633"/><path d="M31 19q7-17 22-15 13 2 16 14l-17-3-9 6z" fill="#334258" stroke="#1d2635" stroke-width="2.5"/><path d="M54 15h18l-8 5H50z" fill="#8c6746"/>
+<path d="M22 61l8 9 4-6-7-9zM74 61l-8 9-4-6 7-9z" fill="#ad7c63" stroke="#181519" stroke-width="2"/>
+<g><path d="M65 54q10-4 14 3v20q-6-4-13 0z" fill="#d7cba5" stroke="#594735" stroke-width="2"/><path d="M67 60h7m-7 5h7m-7 5h5" stroke="#755a43" stroke-width="1.5"/><path d="M28 52l-5 19" stroke="#9a7449" stroke-width="2"/></g>
+
+</g></svg>

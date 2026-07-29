@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs><linearGradient id="enemyBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#28342f"/><stop offset="1" stop-color="#080c0a"/></linearGradient></defs>
+  <g stroke="#53665c" stroke-width="3" stroke-linejoin="round"><path d="M47 38L39 25l14 5L64 15l11 15 14-5-8 14c3 5 4 10 2 15-2 8-9 14-19 14S47 62 45 54c-1-6-1-11 2-16Z" fill="url(#enemyBody)"/><path d="M43 63c9 8 33 8 42 0l13 16-10 9-8-9 7 40H41l7-40-8 9-10-9Z" fill="url(#enemyBody)"/><path d="M43 73L26 92M85 73l18 19M51 116l-8 10M77 116l8 10" fill="none" stroke-linecap="round"/></g>
+  <path d="M53 47l7 3-7 3M75 47l-7 3 7 3" fill="none" stroke="#9bb074" stroke-width="3" stroke-linecap="round"/><path d="M55 61q9 5 18 0" fill="none" stroke="#53665c" stroke-width="2"/>
+</svg>

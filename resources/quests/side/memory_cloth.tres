@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SideQuestDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/side_quest_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/systems/side_quest_objective.gd" id="2_objective"]
+
+[sub_resource type="Resource" id="SideQuestObjective_1"]
+script = ExtResource("2_objective")
+objective_id = &"collect_memory_threads"
+description = "Thu thập sợi chỉ ký ức"
+required_count = 4
+
+[sub_resource type="Resource" id="SideQuestObjective_2"]
+script = ExtResource("2_objective")
+objective_id = &"weave_memory_cloth"
+description = "Giúp Maela hoàn thiện tấm vải"
+required_count = 1
+
+[resource]
+script = ExtResource("1_definition")
+quest_id = &"memory_cloth"
+title = "Tấm Vải Ghi Nhớ"
+description = "Thu hồi các sợi chỉ đang giữ ký ức của những người mất tích."
+giver_npc_id = &"maela_weaver"
+objectives = Array[ExtResource("2_objective")]([SubResource("SideQuestObjective_1"), SubResource("SideQuestObjective_2")])
+reward_experience = 220
+reward_gold = 60
+reward_items = {&"memory_cloth": 1}

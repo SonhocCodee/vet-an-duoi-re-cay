@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/campaign/map/campaign_chapter_map.gd" id="1_map"]
+[ext_resource type="Texture2D" path="res://assets/art/campaign/chapter2_6/chapter_2_drowned_bells.svg" id="2_background"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_a/character_art_integrator.gd" id="3_character_art"]
 
 [node name="chapter_2_drowned_bells" type="Node2D"]
 script = ExtResource("1_map")
 chapter_resource_path = "res://resources/campaign/chapters/chapter_2_drowned_bells.tres"
 chapter_id = &"chapter_2_drowned_bells"
+
+[node name="CharacterArtIntegrator" type="Node" parent="."]
+script = ExtResource("3_character_art")
+
+[node name="WorldArt" type="Sprite2D" parent="."]
+position = Vector2(1100, 450)
+texture = ExtResource("2_background")

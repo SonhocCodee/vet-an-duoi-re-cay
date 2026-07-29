@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SideQuestDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/side_quest_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/systems/side_quest_objective.gd" id="2_objective"]
+
+[sub_resource type="Resource" id="SideQuestObjective_1"]
+script = ExtResource("2_objective")
+objective_id = &"inspect_thirteenth_grave"
+description = "Kiểm tra ngôi mộ thứ mười ba"
+required_count = 3
+
+[sub_resource type="Resource" id="SideQuestObjective_2"]
+script = ExtResource("2_objective")
+objective_id = &"seal_empty_grave"
+description = "Niêm phong ngôi mộ"
+required_count = 1
+
+[resource]
+script = ExtResource("1_definition")
+quest_id = &"empty_thirteenth_grave"
+title = "Ngôi Mộ Trống Thứ Mười Ba"
+description = "Khám phá vì sao ngôi mộ thứ mười ba luôn trống sau mỗi lần chôn cất."
+giver_npc_id = &"silas_gravedigger"
+objectives = Array[ExtResource("2_objective")]([SubResource("SideQuestObjective_1"), SubResource("SideQuestObjective_2")])
+reward_experience = 360
+reward_gold = 95
+reward_items = {&"thirteenth_grave_seal": 1}

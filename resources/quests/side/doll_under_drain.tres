@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SideQuestDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/side_quest_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/systems/side_quest_objective.gd" id="2_objective"]
+
+[sub_resource type="Resource" id="SideQuestObjective_1"]
+script = ExtResource("2_objective")
+objective_id = &"search_sewer_grates"
+description = "Tìm quanh các miệng cống"
+required_count = 3
+
+[sub_resource type="Resource" id="SideQuestObjective_2"]
+script = ExtResource("2_objective")
+objective_id = &"recover_ivy_doll"
+description = "Mang búp bê về cho Ivy"
+required_count = 1
+
+[resource]
+script = ExtResource("1_definition")
+quest_id = &"doll_under_drain"
+title = "Búp Bê Dưới Cống"
+description = "Tìm lại con búp bê bị cuốn xuống hệ thống cống cũ."
+giver_npc_id = &"ivy_orphan"
+objectives = Array[ExtResource("2_objective")]([SubResource("SideQuestObjective_1"), SubResource("SideQuestObjective_2")])
+reward_experience = 260
+reward_gold = 70
+reward_items = {&"ivy_repaired_doll": 1}

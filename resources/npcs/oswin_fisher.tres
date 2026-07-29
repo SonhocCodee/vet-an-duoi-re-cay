@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 4
+target_id = &"dock_hut"
+activity = "Chuẩn bị lưới"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 4
+end_hour = 12
+target_id = &"river_docks"
+activity = "Đánh cá"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 16
+target_id = &"market_square"
+activity = "Bán cá"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 16
+end_hour = 24
+target_id = &"dock_hut"
+activity = "Vá lưới"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"oswin_fisher"
+display_name = "Oswin"
+profession = "Ngư dân"
+district_id = &"river_docks"
+dialogue_id = &"dialogue_oswin_fisher"
+side_quest_id = &"black_eyed_white_fish"
+portrait_path = "res://assets/art/npcs/set_e/oswin_fisher/oswin_fisher_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/oswin_fisher"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

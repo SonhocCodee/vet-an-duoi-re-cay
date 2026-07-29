@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter_5_quartz_wastes.gd" id="1_wrapper"]
-[ext_resource type="Texture2D" path="res://assets/placeholder/world/campaign/chapter5_7/quartz_wastes_backdrop.svg" id="2_backdrop"]
+[ext_resource type="Texture2D" path="res://assets/art/campaign/chapter2_6/chapter_5_quartz_wastes.svg" id="2_backdrop"]
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter5_quartz_decorator.gd" id="3_decorator"]
 [ext_resource type="Script" path="res://scripts/campaign/chapters5_7/chapter57_hazard_area.gd" id="4_hazard"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_a/character_art_integrator.gd" id="5_character_art"]
 
 [sub_resource type="RectangleShape2D" id="WorldHorizontal"]
 size = Vector2(2200, 28)
@@ -22,14 +23,15 @@ script = ExtResource("1_wrapper")
 metadata/chapter_contract = "CampaignChapterMap/ChapterDefinition"
 metadata/chapter_definition_path = "res://resources/campaign/chapters/chapter_5_quartz_wastes.tres"
 
+[node name="CharacterArtIntegrator" type="Node" parent="."]
+script = ExtResource("5_character_art")
+
 [node name="Environment" type="Node2D" parent="."]
 z_index = 1
 
 [node name="WorldVisual" type="Sprite2D" parent="Environment"]
 texture = ExtResource("2_backdrop")
 position = Vector2(1100, 450)
-scale = Vector2(1.375, 1)
-modulate = Color(1, 1, 1, 0.14)
 
 [node name="QuartzDecorator" type="Node2D" parent="Environment"]
 script = ExtResource("3_decorator")

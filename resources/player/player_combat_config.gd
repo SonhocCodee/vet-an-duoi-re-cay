@@ -5,6 +5,9 @@ extends Resource
 @export var move_speed: float = 180.0
 @export var acceleration: float = 1400.0
 @export var deceleration: float = 1800.0
+@export_range(0.0, 0.95, 0.01) var analog_deadzone: float = 0.2
+@export_range(0.0, 1.0, 0.01) var facing_input_threshold: float = 0.3
+@export var stop_speed_threshold: float = 1.0
 
 @export_group("Basic Attack")
 @export var attack_duration: float = 0.28

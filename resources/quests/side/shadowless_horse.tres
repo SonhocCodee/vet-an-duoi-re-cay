@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SideQuestDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/side_quest_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/systems/side_quest_objective.gd" id="2_objective"]
+
+[sub_resource type="Resource" id="SideQuestObjective_1"]
+script = ExtResource("2_objective")
+objective_id = &"track_shadowless_horse"
+description = "Tìm dấu con ngựa không bóng"
+required_count = 3
+
+[sub_resource type="Resource" id="SideQuestObjective_2"]
+script = ExtResource("2_objective")
+objective_id = &"calm_shadowless_horse"
+description = "Trấn an con ngựa"
+required_count = 1
+
+[resource]
+script = ExtResource("1_definition")
+quest_id = &"shadowless_horse"
+title = "Con Ngựa Không Có Bóng"
+description = "Tìm con ngựa rời chuồng nhưng không để lại bóng dưới trăng."
+giver_npc_id = &"gareth_stablemaster"
+objectives = Array[ExtResource("2_objective")]([SubResource("SideQuestObjective_1"), SubResource("SideQuestObjective_2")])
+reward_experience = 200
+reward_gold = 55
+reward_items = {&"moonless_horseshoe": 1}

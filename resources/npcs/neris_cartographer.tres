@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 8
+target_id = &"root_inn"
+activity = "Nghỉ tại quán trọ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 8
+end_hour = 17
+target_id = &"city_archive"
+activity = "Đối chiếu bản đồ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 17
+end_hour = 20
+target_id = &"watch_tower"
+activity = "Quan sát địa hình"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 20
+end_hour = 24
+target_id = &"archive_lane"
+activity = "Vẽ lại đường phố"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"neris_cartographer"
+display_name = "Neris"
+profession = "Người vẽ bản đồ"
+district_id = &"archive_lane"
+dialogue_id = &"dialogue_neris_cartographer"
+side_quest_id = &"erased_roads"
+portrait_path = "res://assets/art/npcs/set_d/neris_cartographer/neris_cartographer_portrait.svg"
+animation_root = "res://assets/art/npcs/set_d/neris_cartographer"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

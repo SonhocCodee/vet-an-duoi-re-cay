@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="900" viewBox="0 0 2200 900">
+  <defs>
+    <linearGradient id="sky8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0b10"/><stop offset="0.6" stop-color="#24232a"/><stop offset="1" stop-color="#47454a"/></linearGradient>
+    <linearGradient id="floor8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#555156"/><stop offset="1" stop-color="#18171c"/></linearGradient>
+    <radialGradient id="window8"><stop offset="0" stop-color="#e6ddbd" stop-opacity="0.85"/><stop offset="0.32" stop-color="#aba795" stop-opacity="0.32"/><stop offset="1" stop-color="#aba795" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="2200" height="900" fill="url(#sky8)"/><circle cx="1100" cy="290" r="350" fill="url(#window8)"/>
+  <path d="M0 0H2200V154L2050 124 1860 168 1660 118 1450 165 1240 116 1025 166 820 118 610 170 390 126 190 165 0 132Z" fill="#08080c"/>
+  <g fill="#18171d" stroke="#777075" stroke-width="14"><path d="M80 650V285C80 145 205 70 340 70S600 145 600 285V650H470V290C470 205 410 160 340 160S210 205 210 290V650Z"/><path d="M1600 650V285C1600 145 1725 70 1860 70S2120 145 2120 285V650H1990V290C1990 205 1930 160 1860 160S1730 205 1730 290V650Z"/></g>
+  <g fill="#242229" stroke="#8d8585" stroke-width="11"><path d="M665 625V315C665 215 750 150 855 150S1045 215 1045 315V625H940V330C940 275 905 240 855 240S770 275 770 330V625Z"/><path d="M1155 625V315C1155 215 1240 150 1345 150S1535 215 1535 315V625H1430V330C1430 275 1395 240 1345 240S1260 275 1260 330V625Z"/></g>
+  <g stroke="#aaa097" stroke-width="16" fill="none" opacity="0.55"><path d="M340 165V560M855 245V580M1345 245V580M1860 165V560"/><path d="M200 420H480M770 410H940M1260 410H1430M1730 420H1990"/></g>
+  <path d="M0 530L145 492 265 540 380 500 520 548 660 515 805 552 950 520 1100 552 1250 520 1395 552 1540 515 1680 548 1820 500 1950 540 2075 490 2200 530V690H0Z" fill="#0b0b0f"/>
+  <path d="M0 625H2200V900H0Z" fill="url(#floor8)"/>
+  <path d="M1050 625L760 900M1150 625L1440 900M1100 625V900" stroke="#777177" stroke-width="5" opacity="0.55"/><path d="M0 700H2200M0 790H2200" stroke="#2b2930" stroke-width="8"/>
+  <g fill="#17161b" stroke="#656067" stroke-width="5"><path d="M105 650h310l38 58H67Z"/><path d="M1785 650h310l38 58h-386Z"/><path d="M475 680h250l28 45H447Z"/><path d="M1475 680h250l28 45h-306Z"/></g>
+  <g fill="#d3bd7b"><circle cx="118" cy="636" r="7"/><circle cx="394" cy="636" r="7"/><circle cx="488" cy="666" r="6"/><circle cx="712" cy="666" r="6"/><circle cx="1488" cy="666" r="6"/><circle cx="1712" cy="666" r="6"/><circle cx="1798" cy="636" r="7"/><circle cx="2082" cy="636" r="7"/></g>
+  <g fill="#bab2a7" opacity="0.4"><path d="M220 760q95-34 190 0-95 26-190 0z"/><path d="M1780 770q105-36 210 0-105 28-210 0z"/><path d="M880 842q220-38 440 0-220 36-440 0z"/></g>
+  <g stroke="#0c0c10" stroke-width="28" opacity="0.72"><path d="M610 0l35 210-18 260M1590 0l-30 210 20 265"/></g>
+</svg>

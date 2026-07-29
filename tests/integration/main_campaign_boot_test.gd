@@ -130,6 +130,11 @@ func _check_chapter_two_spawn() -> void:
 		player.global_position.distance_to(default_spawn.global_position) <= 0.1,
 		"player is placed at the Chapter 2 default spawn"
 	)
+	var camera := player.get_node_or_null("Camera2D") as Camera2D
+	_expect(camera != null, "player exposes the gameplay camera")
+	if camera != null:
+		_expect(camera.limit_left == 0 and camera.limit_top == 0, "camera clamps the top-left world edge")
+		_expect(camera.limit_right == 2200 and camera.limit_bottom == 900, "camera clamps the Chapter 2 world bounds")
 
 
 func _wait_for_map(map_id: StringName) -> bool:

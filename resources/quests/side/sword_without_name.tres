@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SideQuestDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/side_quest_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://scripts/systems/side_quest_objective.gd" id="2_objective"]
+
+[sub_resource type="Resource" id="SideQuestObjective_1"]
+script = ExtResource("2_objective")
+objective_id = &"gather_memory_ore"
+description = "Thu thập quặng ký ức"
+required_count = 3
+
+[sub_resource type="Resource" id="SideQuestObjective_2"]
+script = ExtResource("2_objective")
+objective_id = &"return_to_alden"
+description = "Mang quặng về cho Alden"
+required_count = 1
+
+[resource]
+script = ExtResource("1_definition")
+quest_id = &"sword_without_name"
+title = "Thanh Kiếm Không Tên"
+description = "Khôi phục một thanh kiếm bị xóa tên khỏi ký ức của thành phố."
+giver_npc_id = &"alden_blacksmith"
+objectives = Array[ExtResource("2_objective")]([SubResource("SideQuestObjective_1"), SubResource("SideQuestObjective_2")])
+reward_experience = 80
+reward_gold = 25
+reward_items = {&"nameless_blade_fragment": 1}

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_controller"]
 [ext_resource type="Resource" path="res://resources/player/default_player_combat_config.tres" id="2_config"]
 [ext_resource type="Script" path="res://scripts/player/player_visual.gd" id="3_visual"]
+[ext_resource type="Script" path="res://scripts/visuals/second_wave/animated_actor_sprite.gd" id="4_animation"]
 
 [sub_resource type="CapsuleShape2D" id="Capsule_player"]
 radius = 10.0
@@ -26,6 +27,15 @@ shape = SubResource("Capsule_player")
 
 [node name="PlayerVisual" type="Node2D" parent="."]
 script = ExtResource("3_visual")
+
+[node name="Artwork" type="Sprite2D" parent="PlayerVisual"]
+show_behind_parent = true
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+script = ExtResource("4_animation")
+actor_id = &"kael"
+asset_directory = "res://assets/art/player"
 
 [node name="MeleeHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true

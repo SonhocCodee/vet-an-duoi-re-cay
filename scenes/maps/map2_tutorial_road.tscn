@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/maps/map2/map2_tutorial_road.gd" id="1_map"]
 [ext_resource type="Script" path="res://scripts/maps/map2/map2_encounter_zone.gd" id="2_zone"]
 [ext_resource type="Script" path="res://scripts/maps/map2/map2_exit_gate.gd" id="3_exit"]
-[ext_resource type="Texture2D" path="res://assets/placeholder/world/map2/forest_road.svg" id="4_background"]
+[ext_resource type="Texture2D" path="res://assets/art/opening/map2_tutorial_road.svg" id="4_background"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/map2/gate_runes.svg" id="5_gate"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_a/character_art_integrator.gd" id="6_character_art"]
 
 [sub_resource type="RectangleShape2D" id="WorldHorizontal"]
 size = Vector2(2200, 40)
@@ -31,6 +32,9 @@ size = Vector2(90, 620)
 script = ExtResource("1_map")
 metadata/map_size = Vector2(2200, 900)
 metadata/map_id = &"map2_tutorial_road"
+
+[node name="CharacterArtIntegrator" type="Node" parent="."]
+script = ExtResource("6_character_art")
 
 [node name="ForestRoadBackground" type="Sprite2D" parent="."]
 texture = ExtResource("4_background")

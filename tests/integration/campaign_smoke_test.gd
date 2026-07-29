@@ -77,7 +77,7 @@ func _check_game_state() -> void:
 		"to_save_data", "load_save_data"
 	]))
 	var state_constants := _script_constants(state, "GameState")
-	_check_constant_value(state_constants, "SAVE_VERSION", 2, "GameState")
+	_check_constant_value(state_constants, "SAVE_VERSION", 3, "GameState")
 
 
 func _check_campaign_director() -> void:

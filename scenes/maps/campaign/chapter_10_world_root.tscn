@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/campaign/chapters8_10/chapter_10_world_root.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/campaign/chapter8_10/chapter10_world_root.svg" id="2"]
 [ext_resource type="Script" path="res://scripts/campaign/chapters8_10/final_sequence_decorator.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_b/campaign_backdrop_visual.gd" id="4_art"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1280, 28)
@@ -17,6 +18,11 @@ metadata/chapter_contract = "CampaignChapterMap/ChapterDefinition"
 [node name="WorldVisual" type="Sprite2D" parent="."]
 texture = ExtResource("2")
 position = Vector2(640, 360)
+script = ExtResource("4_art")
+art_paths = PackedStringArray("res://assets/art/campaign/chapter7_10/chapter_10_world_root.svg", "res://assets/art/campaign/chapter7_10/chapter_10_world_root.png", "res://assets/art/campaign/chapter7_10/chapter_10_world_root.webp")
+art_directory = "res://assets/art/campaign/chapter7_10"
+name_tokens = PackedStringArray("chapter_10", "world_root")
+fitted_size = Vector2(1280, 720)
 
 [node name="GenericMapSocket" type="Node2D" parent="."]
 

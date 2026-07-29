@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 6
+target_id = &"inn_room"
+activity = "Nghỉ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 6
+end_hour = 12
+target_id = &"root_inn"
+activity = "Phục vụ khách"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 12
+end_hour = 14
+target_id = &"market_square"
+activity = "Mua thực phẩm"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 24
+target_id = &"root_inn"
+activity = "Quản lý quán trọ"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"helena_innkeeper"
+display_name = "Helena"
+profession = "Chủ quán trọ"
+district_id = &"root_inn"
+dialogue_id = &"dialogue_helena_innkeeper"
+side_quest_id = &"guest_room_seven"
+portrait_path = "res://assets/art/npcs/set_e/helena_innkeeper/helena_innkeeper_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/helena_innkeeper"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4")])

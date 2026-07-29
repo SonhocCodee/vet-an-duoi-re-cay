@@ -1,58 +1,67 @@
 # Vết Ấn Dưới Rễ Cây
 
-Game action RPG góc nhìn từ trên xuống, phát triển bằng **Godot 4.3**. Người chơi khám phá một thế giới mục ruỗng quanh Rễ Cây, chiến đấu, chọn hướng phát triển nhân vật và đưa ra các lựa chọn đạo đức ảnh hưởng đến kết cục.
-
-> Đồ họa hiện tại chủ yếu là hình khối, màu sắc và hiệu ứng placeholder dựng trực tiếp trong Godot. Đây chưa phải bộ asset hoàn thiện của bản phát hành.
+Game action RPG góc nhìn từ trên xuống, phát triển bằng **Godot 4.3**. Kael Asterion khám phá thế giới mục ruỗng quanh Cây Thế Giới, chiến đấu, phát triển nhân vật và đưa ra các lựa chọn đạo đức ảnh hưởng đến kết cục.
 
 ## Nội dung hiện có
 
-### Phần mở đầu — Map 1–3
+### Phần mở đầu và campaign
 
-1. **Rừng Sương Mù:** thức tỉnh, học di chuyển và nhận lại thanh kiếm.
-2. **Con Đường Rừng:** làm quen combo, né, kỹ năng và đối đầu miniboss Hươu Sừng Rễ.
-3. **Thị Trấn Gió Than:** mở lửa trại, đổi class, nâng chỉ số, lò rèn, cửa hàng và bảng nhiệm vụ.
+- Map 1–3: Rừng Sương Mù, Con Đường Rừng và Thành Tro.
+- Campaign Chapter 2–10, 16 loại quái thường, 10 boss và trận boss kép cuối game.
+- Moral choices xuyên suốt campaign và True Ending.
+- Save **version 3**, có migration từ save version 2.
 
-### Campaign — Chapter 2–10
+### Thành phố trung cổ
 
-- Chín chapter nối tiếp từ **Chuông Chìm** đến **Rễ Thế Giới**.
-- 16 loại quái thường và 10 boss campaign với dữ liệu, loot và hành vi chiến đấu riêng.
-- Các lựa chọn đạo đức xuất hiện xuyên suốt hành trình; có thể chọn bằng giao diện hoặc phím số.
-- Tiến trình chapter, lựa chọn và trạng thái hoàn thành được lưu bằng hệ thống **save version 2**.
-- True Ending được mở khi người chơi đáp ứng đủ các điều kiện lựa chọn của campaign.
+- Map 3 được mở rộng thành thành phố 2200×900 với 20 công trình và 20 đạo cụ môi trường.
+- 20 NPC khác nhau về tên, nghề nghiệp, diện mạo, lịch trình, thoại và side quest.
+- NPC tự tìm đường và di chuyển theo giờ trong ngày bằng NavigationAgent2D.
+- Mỗi NPC có animation idle, walk, interact và hurt; Kael có bộ animation tương ứng.
+
+### Hệ thống gameplay
+
+- HUD máu, stamina và kinh nghiệm.
+- Inventory, equipment, loot pickup và item icons.
+- Quest journal, 20 side quests và dialogue NPC.
+- Bản đồ thành phố/thế giới và các marker khám phá.
+- Lò rèn, cửa hàng, lửa trại, bảng nhiệm vụ và cổng campaign vẫn hoạt động.
+
+### Đồ họa
+
+Game sử dụng bộ SVG dark-fantasy riêng cho background, nhân vật, NPC, quái, boss, thành phố, công trình, UI và item. Một số hiệu ứng chiến đấu vẫn được vẽ trực tiếp bằng Godot để giữ hiệu năng và khả năng mở rộng.
 
 ## Điều khiển
 
-- **Di chuyển:** `WASD`, phím mũi tên hoặc D-pad.
-- **Đánh thường:** chuột trái, `J` hoặc nút X.
-- **Né:** `Space`, `K` hoặc nút A.
-- **Kỹ năng 1:** `Q`, `L` hoặc nút Y.
-- **Tương tác:** `E` hoặc nút B.
-- **Chọn phương án đạo đức:** phím `1` / `2` hoặc bấm nút trên giao diện.
-- **Tạm dừng:** `Esc`.
+- **Di chuyển:** WASD, phím mũi tên, D-pad hoặc analog trái.
+- **Đánh thường:** chuột trái hoặc nút X trên gamepad.
+- **Né:** Space, K hoặc nút A.
+- **Kỹ năng 1:** Q hoặc nút Y khi profile gamepad hỗ trợ.
+- **Tương tác:** E hoặc nút B.
+- **Túi đồ:** I.
+- **Nhật ký nhiệm vụ:** J.
+- **Bản đồ:** M.
+- **Lựa chọn đạo đức:** 1 / 2 hoặc nút giao diện.
+- **Tạm dừng:** Esc.
 
 ## Chạy game
 
-Yêu cầu **Godot 4.3**. Mở `project.godot` bằng Godot rồi chạy project, hoặc dùng dòng lệnh:
+Yêu cầu **Godot 4.3**:
 
 ```powershell
 godot --path .
 ```
 
-Main scene của project là `res://scenes/bootstrap/main.tscn`.
+Main scene: `res://scenes/bootstrap/main.tscn`.
 
-## Chạy kiểm tra
-
-Chạy kiểm tra tổng quát và campaign ở chế độ headless:
-
-```powershell
-godot --headless --path . res://tests/integration/smoke_test.tscn
-godot --headless --path . res://tests/integration/campaign_smoke_test.tscn
-godot --headless --path . res://tests/campaign/progression/campaign_progression_test.tscn
-godot --headless --path . res://tests/enemies/campaign/campaign_enemy_load_test.tscn
-```
-
-Để kiểm tra parser và toàn bộ resource của project:
+## Kiểm tra
 
 ```powershell
 godot --headless --path . --editor --quit
+godot --headless --path . res://tests/integration/smoke_test.tscn
+godot --headless --path . res://tests/integration/main_campaign_boot_test.tscn
+godot --headless --path . res://tests/campaign/runtime/campaign_chapters_runtime_test.tscn
+godot --headless --path . res://tests/second_wave/code/npc_schedule_test.tscn
+godot --headless --path . res://tests/second_wave/code/gameplay_systems_test.tscn
+godot --headless --path . res://tests/second_wave/code/save_v3_migration_test.tscn
+godot --headless --path . res://tests/second_wave/integration/second_wave_integration_test.tscn
 ```

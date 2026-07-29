@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="NpcData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/npc/npc_schedule_entry.gd" id="2_schedule"]
+
+[sub_resource type="Resource" id="NpcScheduleEntry_1"]
+script = ExtResource("2_schedule")
+start_hour = 0
+end_hour = 7
+target_id = &"archive_quarters"
+activity = "Nghỉ trong thư khố"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_2"]
+script = ExtResource("2_schedule")
+start_hour = 7
+end_hour = 13
+target_id = &"city_archive"
+activity = "Sắp xếp hồ sơ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_3"]
+script = ExtResource("2_schedule")
+start_hour = 13
+end_hour = 14
+target_id = &"archive_lane"
+activity = "Đi dạo"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_4"]
+script = ExtResource("2_schedule")
+start_hour = 14
+end_hour = 20
+target_id = &"city_archive"
+activity = "Nghiên cứu hồ sơ"
+
+[sub_resource type="Resource" id="NpcScheduleEntry_5"]
+script = ExtResource("2_schedule")
+start_hour = 20
+end_hour = 24
+target_id = &"archive_quarters"
+activity = "Đọc sách"
+
+[resource]
+script = ExtResource("1_data")
+npc_id = &"cedric_archivist"
+display_name = "Cedric"
+profession = "Thủ thư"
+district_id = &"city_archive"
+dialogue_id = &"dialogue_cedric_archivist"
+side_quest_id = &"kael_asterion_record"
+portrait_path = "res://assets/art/npcs/set_e/cedric_archivist/cedric_archivist_portrait.svg"
+animation_root = "res://assets/art/npcs/set_e/cedric_archivist"
+schedule = Array[ExtResource("2_schedule")]([SubResource("NpcScheduleEntry_1"), SubResource("NpcScheduleEntry_2"), SubResource("NpcScheduleEntry_3"), SubResource("NpcScheduleEntry_4"), SubResource("NpcScheduleEntry_5")])

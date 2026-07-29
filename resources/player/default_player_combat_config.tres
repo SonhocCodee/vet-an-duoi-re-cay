@@ -4,3 +4,9 @@
 
 [resource]
 script = ExtResource("1_config")
+move_speed = 180.0
+acceleration = 1400.0
+deceleration = 1800.0
+analog_deadzone = 0.2
+facing_input_threshold = 0.3
+stop_speed_threshold = 1.0

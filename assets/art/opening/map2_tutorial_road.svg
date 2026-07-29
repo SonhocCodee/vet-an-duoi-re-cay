@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="900" viewBox="0 0 2200 900">
+<defs>
+ <linearGradient id="sky2" x2="0" y2="1"><stop stop-color="#0b1418"/><stop offset=".58" stop-color="#23332f"/><stop offset="1" stop-color="#4a4737"/></linearGradient>
+ <linearGradient id="road" x2="0" y2="1"><stop stop-color="#5f5a46"/><stop offset=".55" stop-color="#494131"/><stop offset="1" stop-color="#231f1b"/></linearGradient>
+ <linearGradient id="wood" x2="1" y2="1"><stop stop-color="#76583a"/><stop offset=".45" stop-color="#42301f"/><stop offset="1" stop-color="#1d1815"/></linearGradient>
+ <radialGradient id="ember" cx="50%" cy="50%" r="50%"><stop stop-color="#ffd58a"/><stop offset=".36" stop-color="#e47b43"/><stop offset="1" stop-color="#8f2f2f" stop-opacity="0"/></radialGradient>
+ <filter id="soft2"><feGaussianBlur stdDeviation="16"/></filter><filter id="glow2" x="-200%" y="-200%" width="400%" height="400%"><feGaussianBlur stdDeviation="8" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <pattern id="stones" width="110" height="70" patternUnits="userSpaceOnUse"><path d="M7 48q25-22 55-3-25 17-55 3m67-31q14-12 29 0-17 11-29 0" fill="#85755a" opacity=".26"/><path d="M44 9q12 10-3 19-10-10 3-19" fill="#26241f" opacity=".4"/></pattern>
+</defs>
+<g id="background">
+ <rect width="2200" height="900" fill="url(#sky2)"/>
+ <circle cx="1720" cy="152" r="74" fill="#d6c89b" opacity=".22"/><circle cx="1720" cy="152" r="110" fill="#b9d7ce" opacity=".06" filter="url(#soft2)"/>
+ <path d="M0 310c245-148 439-76 635-9 180 61 359-73 548-37 204 40 312 130 522 74 205-55 330-29 495 36V0H0Z" fill="#111c1d"/>
+ <path d="M0 401c224-122 408-67 581-4 211 77 362-62 569-21 214 42 331 131 544 78 190-47 348-20 506 47V0H0Z" fill="#1a2825" opacity=".83"/>
+ <g fill="#0b1214"><path d="M28 0c43 118 3 227 38 341 20 68 66 120 60 229h152c-2-104-55-173-48-264 8-111 78-194 62-306Z"/><path d="M1960 0c-22 102 50 203 54 304 4 92-47 165-43 273h164c-11-112 37-177 52-266 19-114-30-210-10-311Z"/><path d="M604 0c22 102-43 174-20 272 16 69 59 121 42 205l126 15c31-91-25-155-21-228 6-97 73-160 58-264Z"/><path d="M1433 0c-16 94 48 164 40 260-6 76-61 137-35 224l132-14c-15-88 40-144 50-219 12-91-39-162-27-251Z"/></g>
+ <g fill="none" stroke="#20332c" stroke-linecap="round"><path d="M98 205c136-100 286-92 440-25M2056 210c-142-94-297-94-459-21M650 154c123-66 277-51 396 14M1503 168c-128-72-264-59-376 0" stroke-width="36"/><path d="M78 282c151-48 291-39 407 20M2102 286c-144-53-275-43-398 20" stroke-width="18"/></g>
+ <g fill="#31483b" opacity=".48"><path d="M172 158q101-91 218 8-110 29-218-8M784 121q105-76 214 19-116 22-214-19M1236 134q109-79 220 21-123 19-220-21M1738 133q102-77 215 24-119 15-215-24"/></g>
+ <g fill="#c5d4c2" filter="url(#soft2)"><path d="M-60 430c246-56 433 33 645-18 227-54 382 46 588 1 237-52 433 35 655-13 183-39 291-12 432 9v98c-167-27-277-40-436 2-229 60-410-37-632 16-231 55-380-45-602 8-220 52-404-29-650 27Z" opacity=".13"/></g>
+</g>
+<g id="midground">
+ <path d="M0 525c284-44 505 8 742 45 210 33 349-14 514-18 213-6 428 64 944-15v363H0Z" fill="#213229"/>
+ <path d="M914 445c102 42 201 102 291 185 85 78 161 169 226 270H456c162-121 290-218 382-296 92-78 131-125 76-159Z" fill="url(#road)"/>
+ <path d="M914 445c102 42 201 102 291 185 85 78 161 169 226 270H456c162-121 290-218 382-296 92-78 131-125 76-159Z" fill="url(#stones)"/>
+ <path d="M877 470c-20 93-92 194-223 295M1009 489c104 93 191 211 266 365" fill="none" stroke="#92866a" stroke-width="9" opacity=".34" stroke-dasharray="31 25"/>
+ <g fill="#17251f"><path d="M0 615c159-46 305-43 452 7 88 30 156 26 255 6L456 900H0Z"/><path d="M2200 601c-180-35-319-21-478 32-102 34-186 25-297 2l195 265h580Z"/></g>
+ <g transform="translate(540 570) rotate(-8)">
+  <path d="M-187 109h338l-29 103h-269Z" fill="url(#wood)" stroke="#171311" stroke-width="13"/><path d="M-150 91 107-8l56 25-302 120Z" fill="#5d4129" stroke="#1b1714" stroke-width="14"/>
+  <path d="M-118 101-51-5M14 61l66-111M-162 70 125-42" fill="none" stroke="#9b7147" stroke-width="11" opacity=".7"/><path d="M-192 92-248 26M143 2l72-69" stroke="#332218" stroke-width="22" stroke-linecap="round"/>
+  <g fill="#191717" stroke="#6b5135" stroke-width="13"><circle cx="-120" cy="208" r="48"/><circle cx="93" cy="208" r="48"/></g><g fill="none" stroke="#332218" stroke-width="15"><path d="M-120 166v84M-162 208h84M93 166v84M51 208h84"/></g>
+  <path d="m-31 8 39-54 35 42-31 27Z" fill="#252b29" opacity=".82"/>
+ </g>
+ <g transform="translate(1350 650)"><ellipse rx="92" ry="34" fill="#080d0e" opacity=".55"/><path d="M-52 5 0-32 57 7 36 42h-79Z" fill="#382a22"/><ellipse cx="2" cy="-10" rx="83" ry="59" fill="url(#ember)" filter="url(#glow2)" opacity=".86"/><path d="M-18 12 3-45 24 13M-40 24l42-70 43 70" fill="none" stroke="#f3a35b" stroke-width="12" stroke-linecap="round"/><g fill="#f5b267" filter="url(#glow2)"><circle cx="-36" cy="-76" r="5"/><circle cx="25" cy="-97" r="4"/><circle cx="56" cy="-56" r="3"/></g></g>
+ <g transform="translate(1810 520)" fill="#101819" stroke="#080c0d" stroke-width="8"><path d="M-95 113c12-65 7-123-17-181l47 27 28-76 34 64 56-46 0 78 60-3-47 56c20 33 29 68 28 105Z"/><path d="M-72 41c28-30 61-37 98-22l39 43-38 65h-82Z"/></g>
+ <g fill="#4f6a50" opacity=".75"><path d="M173 630q51-107 113-5-67-23-113 5M742 582q43-83 92-2-53-17-92 2M1544 595q49-91 102 1-58-19-102-1M1981 630q48-96 107-2-63-19-107 2"/></g>
+</g>
+<g id="foreground">
+ <path d="M0 777c137-44 256-18 382 32 128 52 242 69 386 37 142-32 240-11 356 20 134 35 257 34 387-4 129-38 247-39 369-4 126 37 219 24 320-5v47H0Z" fill="#080d0e"/>
+ <path d="M0 900V562c56 61 89 126 103 208 10 60 46 96 101 130Zm2200 0V548c-62 63-96 136-110 214-11 59-45 103-104 138Z" fill="#0a1111"/>
+ <g fill="none" stroke="#15221c" stroke-linecap="round"><path d="M44 900c26-98 22-183-13-265M117 900c15-72 49-132 101-185M2148 900c-29-96-24-181 13-258M2073 900c-17-72-49-132-98-186" stroke-width="23"/><path d="M268 900c5-49-7-91-38-129M1923 900c-2-53 13-99 45-138" stroke-width="13"/></g>
+ <g fill="#8a623d" opacity=".58"><path d="M299 837q32-43 73-4-41 12-73 4M1610 853q38-48 81-3-47 12-81 3M1880 828q30-41 69-2-39 10-69 2"/></g>
+</g>
+</svg>

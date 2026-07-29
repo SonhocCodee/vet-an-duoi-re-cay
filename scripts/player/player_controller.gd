@@ -46,7 +46,13 @@ const EFFECT_SCRIPT: Script = preload("res://scripts/player/player_combat_effect
 @export_enum("Blademaster", "Guardian", "Spellblade", "Priest") var player_class: int = PlayerClass.BLADEMASTER
 @export var combat_config: PlayerCombatConfig
 @export_flags_2d_physics var target_collision_mask: int = 6
-@export var controls_enabled: bool = true
+@export var controls_enabled: bool = true:
+	set(value):
+		if controls_enabled == value:
+			return
+		controls_enabled = value
+		if not controls_enabled:
+			_stop_movement_and_actions()
 
 @onready var melee_hitbox: Area2D = %MeleeHitbox
 @onready var melee_shape: CollisionShape2D = %MeleeShape
@@ -114,9 +120,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_control_enabled(enabled: bool) -> void:
 	controls_enabled = enabled
-	if not enabled:
-		velocity = Vector2.ZERO
-		_cancel_action()
 
 
 func grant_weapon() -> void:
@@ -241,18 +244,24 @@ func _update_action(delta: float) -> void:
 
 
 func _update_movement(delta: float) -> void:
+	if not controls_enabled:
+		velocity = Vector2.ZERO
+		return
 	if _action_state == ActionState.DODGING:
 		velocity = _dodge_direction * combat_config.dodge_speed
 		return
 	if _action_state == ActionState.ATTACKING or _action_state == ActionState.CASTING:
-		velocity = velocity.move_toward(Vector2.ZERO, combat_config.deceleration * delta)
+		velocity = Vector2.ZERO
 		return
-	var input_direction: Vector2 = _get_movement_input() if controls_enabled else Vector2.ZERO
+	var input_direction: Vector2 = _get_movement_input()
 	if not input_direction.is_zero_approx():
-		_facing_direction = input_direction
+		if input_direction.length() >= combat_config.facing_input_threshold:
+			_facing_direction = input_direction.normalized()
 		velocity = velocity.move_toward(input_direction * combat_config.move_speed, combat_config.acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, combat_config.deceleration * delta)
+		if velocity.length() <= combat_config.stop_speed_threshold:
+			velocity = Vector2.ZERO
 	_update_facing_nodes()
 
 
@@ -270,6 +279,7 @@ func _request_attack() -> void:
 
 
 func _start_attack(combo_hit: int) -> void:
+	velocity = Vector2.ZERO
 	_action_state = ActionState.ATTACKING
 	_action_elapsed = 0.0
 	_combo_index = clampi(combo_hit, 1, 3)
@@ -302,8 +312,11 @@ func _request_dodge() -> void:
 	if _action_state != ActionState.FREE or _stamina < combat_config.dodge_stamina_cost:
 		return
 	var input_direction: Vector2 = _get_movement_input()
-	_dodge_direction = input_direction if not input_direction.is_zero_approx() else _facing_direction
+	_dodge_direction = input_direction.normalized() if not input_direction.is_zero_approx() else _facing_direction.normalized()
+	if _dodge_direction.is_zero_approx():
+		_dodge_direction = Vector2.DOWN
 	_facing_direction = _dodge_direction
+	velocity = _dodge_direction * combat_config.dodge_speed
 	_action_state = ActionState.DODGING
 	_action_elapsed = 0.0
 	_spend_stamina(combat_config.dodge_stamina_cost)
@@ -316,6 +329,7 @@ func _request_skill_one() -> void:
 		return
 	if _stamina < combat_config.skill_stamina_cost:
 		return
+	velocity = Vector2.ZERO
 	_action_state = ActionState.CASTING
 	_action_elapsed = 0.0
 	_skill_effect_spawned = false
@@ -456,6 +470,11 @@ func _cancel_action() -> void:
 		_finish_action()
 
 
+func _stop_movement_and_actions() -> void:
+	velocity = Vector2.ZERO
+	_cancel_action()
+
+
 func _die() -> void:
 	_cancel_action()
 	_action_state = ActionState.DEAD
@@ -503,22 +522,23 @@ func _get_resistance_stat() -> float:
 
 
 func _get_movement_input() -> Vector2:
-	var horizontal: float = _get_axis(ACTION_MOVE_LEFT, ACTION_MOVE_RIGHT, KEY_A, KEY_D)
-	var vertical: float = _get_axis(ACTION_MOVE_UP, ACTION_MOVE_DOWN, KEY_W, KEY_S)
-	return Vector2(horizontal, vertical).limit_length(1.0)
+	var raw_input := Input.get_vector(
+		ACTION_MOVE_LEFT,
+		ACTION_MOVE_RIGHT,
+		ACTION_MOVE_UP,
+		ACTION_MOVE_DOWN,
+		0.0
+	)
+	return _apply_analog_deadzone(raw_input, combat_config.analog_deadzone)
 
 
-func _get_axis(negative_action: StringName, positive_action: StringName, negative_key: Key, positive_key: Key) -> float:
-	var value: float = 0.0
-	if InputMap.has_action(negative_action):
-		value -= Input.get_action_strength(negative_action)
-	elif Input.is_key_pressed(negative_key):
-		value -= 1.0
-	if InputMap.has_action(positive_action):
-		value += Input.get_action_strength(positive_action)
-	elif Input.is_key_pressed(positive_key):
-		value += 1.0
-	return value
+func _apply_analog_deadzone(input_vector: Vector2, deadzone: float) -> Vector2:
+	var input_length := input_vector.length()
+	var clamped_deadzone := clampf(deadzone, 0.0, 0.95)
+	if input_length <= clamped_deadzone or is_equal_approx(input_length, clamped_deadzone):
+		return Vector2.ZERO
+	var remapped_length := inverse_lerp(clamped_deadzone, 1.0, minf(input_length, 1.0))
+	return input_vector.normalized() * remapped_length
 
 
 func _update_facing_nodes() -> void:

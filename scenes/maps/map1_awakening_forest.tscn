@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/maps/map1/map1_awakening_forest.gd" id="1_map"]
 [ext_resource type="Script" path="res://scripts/maps/map1/map1_world.gd" id="2_world"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/rune_pillar_inactive.svg" id="7_pillar_texture"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/forest_gate_closed.svg" id="8_gate_texture"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/world/map1/broken_sword.svg" id="9_sword_texture"]
+[ext_resource type="Texture2D" path="res://assets/art/opening/map1_awakening_forest.svg" id="10_background"]
+[ext_resource type="Script" path="res://scripts/visuals/integration_a/character_art_integrator.gd" id="11_character_art"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pillar"]
 radius = 72.0
@@ -22,10 +24,17 @@ size = Vector2(42, 180)
 [node name="Map1AwakeningForest" type="Node2D"]
 script = ExtResource("1_map")
 
+[node name="CharacterArtIntegrator" type="Node" parent="."]
+script = ExtResource("11_character_art")
+
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("2_world")
 
-[node name="BrokenSword" type="Sprite2D" parent="World"]
+[node name="WorldArt" type="Sprite2D" parent="."]
+position = Vector2(1100, 450)
+texture = ExtResource("10_background")
+
+[node name="BrokenSword" type="Sprite2D" parent="."]
 position = Vector2(300, 694)
 texture = ExtResource("9_sword_texture")
 

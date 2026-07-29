@@ -1,0 +1,387 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/visuals/second_wave/gameplay_suite.gd" id="1_suite"]
+
+[sub_resource type="StyleBoxFlat" id="Style_dark"]
+bg_color = Color(0.035, 0.027, 0.045, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.39, 0.22, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Style_health"]
+bg_color = Color(0.5, 0.08, 0.09, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="Style_stamina"]
+bg_color = Color(0.12, 0.48, 0.27, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SecondWaveGameplaySuite" type="Control" groups=["second_wave_ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_suite")
+
+[node name="HUD" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 390.0
+offset_bottom = 142.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="HUDFrame" type="TextureRect" parent="HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Margin" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bars" type="VBoxContainer" parent="HUD/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LevelLabel" type="Label" parent="HUD/Margin/Bars"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "KAEL  •  CẤP 1"
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/Margin/Bars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 18)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_health")
+
+[node name="StaminaBar" type="ProgressBar" parent="HUD/Margin/Bars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 14)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_stamina")
+
+[node name="XPBar" type="ProgressBar" parent="HUD/Margin/Bars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 9)
+layout_mode = 2
+show_percentage = false
+
+[node name="Hotkeys" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 380.0
+offset_bottom = 178.0
+text = "[I] Túi đồ   [J] Nhiệm vụ   [M] Bản đồ"
+
+[node name="InventoryPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 1030.0
+offset_bottom = 650.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="InventoryArt" type="TextureRect" parent="InventoryPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 22.0
+offset_right = 450.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 24
+text = "TÚI ĐỒ & TRANG BỊ"
+
+[node name="Columns" type="HBoxContainer" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 74.0
+offset_right = 752.0
+offset_bottom = 510.0
+theme_override_constants/separation = 26
+
+[node name="InventoryScroll" type="ScrollContainer" parent="InventoryPanel/Columns"]
+custom_minimum_size = Vector2(420, 420)
+layout_mode = 2
+
+[node name="InventoryList" type="VBoxContainer" parent="InventoryPanel/Columns/InventoryScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EquipmentColumn" type="VBoxContainer" parent="InventoryPanel/Columns"]
+custom_minimum_size = Vector2(260, 420)
+layout_mode = 2
+
+[node name="EquipmentArt" type="TextureRect" parent="InventoryPanel/Columns/EquipmentColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EquipmentTitle" type="Label" parent="InventoryPanel/Columns/EquipmentColumn"]
+layout_mode = 2
+text = "TRANG BỊ"
+
+[node name="EquipmentList" type="VBoxContainer" parent="InventoryPanel/Columns/EquipmentColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="QuestPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 90.0
+offset_right = 980.0
+offset_bottom = 650.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="QuestArt" type="TextureRect" parent="QuestPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="QuestPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 24.0
+offset_right = 500.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 24
+text = "NHẬT KÝ NHIỆM VỤ"
+
+[node name="Scroll" type="ScrollContainer" parent="QuestPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 82.0
+offset_right = 650.0
+offset_bottom = 520.0
+
+[node name="QuestList" type="VBoxContainer" parent="QuestPanel/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="MapPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 190.0
+offset_top = 70.0
+offset_right = 1090.0
+offset_bottom = 660.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="MapArt" type="TextureRect" parent="MapPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CityMap" type="TextureRect" parent="MapPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 55.0
+offset_top = 72.0
+offset_right = 845.0
+offset_bottom = 492.0
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PlayerMarker" type="TextureRect" parent="MapPanel/CityMap"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 380.0
+offset_top = 230.0
+offset_right = 410.0
+offset_bottom = 260.0
+expand_mode = 1
+
+[node name="QuestMarker" type="TextureRect" parent="MapPanel/CityMap"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 310.0
+offset_top = 275.0
+offset_right = 340.0
+offset_bottom = 305.0
+expand_mode = 1
+
+[node name="NpcMarker" type="TextureRect" parent="MapPanel/CityMap"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 165.0
+offset_top = 145.0
+offset_right = 193.0
+offset_bottom = 173.0
+expand_mode = 1
+
+[node name="MapTitle" type="Label" parent="MapPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 24
+text = "BẢN ĐỒ — THÀNH TRO"
+
+[node name="Legend" type="Label" parent="MapPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 500.0
+offset_right = 840.0
+offset_bottom = 548.0
+text = "◆ Người chơi     ! Nhiệm vụ     ● NPC     ⇢ Cổng chiến dịch"
+horizontal_alignment = 1
+
+[node name="DialoguePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 500.0
+offset_right = 1120.0
+offset_bottom = 690.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="DialogueSpeaker" type="Label" parent="DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 550.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 22
+text = "Dân Thành Tro"
+
+[node name="DialogueLine" type="Label" parent="DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 28.0
+offset_top = 62.0
+offset_right = 925.0
+offset_bottom = 132.0
+text = "..."
+autowrap_mode = 2
+
+[node name="AcceptQuest" type="Button" parent="DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 620.0
+offset_top = 140.0
+offset_right = 790.0
+offset_bottom = 174.0
+text = "Nhận nhiệm vụ"
+
+[node name="Close" type="Button" parent="DialoguePanel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 140.0
+offset_right = 925.0
+offset_bottom = 174.0
+text = "Tiếp tục"
+
+[node name="LootPrompt" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 475.0
+offset_top = 580.0
+offset_right = 805.0
+offset_bottom = 640.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_dark")
+
+[node name="LootArt" type="TextureRect" parent="LootPrompt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LootLabel" type="Label" parent="LootPrompt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+1 Vật phẩm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="DialoguePanel/AcceptQuest" to="." method="_on_accept_quest_pressed"]
+[connection signal="pressed" from="DialoguePanel/Close" to="." method="_close_modals"]

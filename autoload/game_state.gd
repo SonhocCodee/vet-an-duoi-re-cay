@@ -10,8 +10,13 @@ signal quest_changed(quest_id: StringName, state: StringName)
 signal stats_changed(stats: Dictionary)
 signal moral_choice_changed(choice_id: StringName, selected_option: StringName)
 signal chapter_progress_changed(current_chapter: int, completed_chapters: Dictionary)
+signal equipment_changed(slot_id: StringName, item_id: StringName)
+signal game_time_changed(hour: float)
+signal npc_state_changed(npc_id: StringName, state: Dictionary)
+signal side_quest_changed(quest_id: StringName, state: Dictionary)
+signal map_marker_discovered(marker_id: StringName, marker_data: Dictionary)
 
-const SAVE_VERSION: int = 2
+const SAVE_VERSION: int = 3
 const MAX_LEVEL: int = 35
 
 var current_map: StringName = GameIds.MAP_1
@@ -31,6 +36,11 @@ var equipment: Dictionary = {}
 var current_chapter: int = 1
 var moral_choices: Dictionary = {}
 var completed_chapters: Dictionary = {}
+var game_time: float = 8.0
+var npc_states: Dictionary = {}
+var active_quests: Dictionary = {}
+var completed_side_quests: Dictionary = {}
+var discovered_map_markers: Dictionary = {}
 
 func _ready() -> void:
 	reset_new_game()
@@ -63,6 +73,11 @@ func reset_new_game() -> void:
 	current_chapter = 1
 	moral_choices = {}
 	completed_chapters = {}
+	game_time = 8.0
+	npc_states = {}
+	active_quests = {}
+	completed_side_quests = {}
+	discovered_map_markers = {}
 	_emit_all_changed()
 
 func experience_required(target_level: int = level) -> int:
@@ -170,10 +185,48 @@ func complete_chapter(chapter_number: int, map_id: StringName) -> bool:
 	current_chapter = maxi(current_chapter, mini(chapter_number + 1, 10))
 	set_flag(StringName("%s_complete" % String(map_id)), true)
 	chapter_progress_changed.emit(current_chapter, completed_chapters.duplicate())
+	game_time_changed.emit(game_time)
+	for marker_id: Variant in discovered_map_markers:
+		var marker_data: Variant = discovered_map_markers[marker_id]
+		map_marker_discovered.emit(StringName(marker_id), (marker_data as Dictionary).duplicate(true) if marker_data is Dictionary else {})
 	return true
 
 func is_chapter_complete(chapter_number: int) -> bool:
 	return bool(completed_chapters.get(StringName("chapter_%d" % chapter_number), false))
+
+func set_game_time(hour: float) -> void:
+	var normalized_hour: float = fposmod(hour, 24.0)
+	if is_equal_approx(game_time, normalized_hour):
+		return
+	game_time = normalized_hour
+	game_time_changed.emit(game_time)
+
+
+func set_npc_state(npc_id: StringName, state: Dictionary) -> bool:
+	if npc_id == &"":
+		return false
+	var normalized_state: Dictionary = _normalize_dictionary(state)
+	if npc_states.get(npc_id, {}) == normalized_state:
+		return false
+	npc_states[npc_id] = normalized_state
+	npc_state_changed.emit(npc_id, normalized_state.duplicate(true))
+	return true
+
+
+func get_npc_state(npc_id: StringName) -> Dictionary:
+	var state: Variant = npc_states.get(npc_id, {})
+	return (state as Dictionary).duplicate(true) if state is Dictionary else {}
+
+
+func discover_map_marker(marker_id: StringName, marker_data: Dictionary = {}) -> bool:
+	if marker_id == &"" or discovered_map_markers.has(marker_id):
+		return false
+	var stored_data: Dictionary = _normalize_dictionary(marker_data)
+	stored_data[&"discovered"] = true
+	discovered_map_markers[marker_id] = stored_data
+	map_marker_discovered.emit(marker_id, stored_data.duplicate(true))
+	return true
+
 
 func get_calculated_stats() -> Dictionary:
 	var strength: int = int(attributes.get(GameIds.STAT_STR, 0))
@@ -214,6 +267,11 @@ func to_save_data() -> Dictionary:
 		"current_chapter": current_chapter,
 		"moral_choices": moral_choices,
 		"completed_chapters": completed_chapters,
+		"game_time": game_time,
+		"npc_states": npc_states,
+		"active_quests": active_quests,
+		"completed_side_quests": completed_side_quests,
+		"discovered_map_markers": discovered_map_markers,
 	}
 
 func load_save_data(data: Dictionary) -> bool:
@@ -236,6 +294,11 @@ func load_save_data(data: Dictionary) -> bool:
 	current_chapter = clampi(int(data.get("current_chapter", 1)), 1, 10)
 	moral_choices = _normalize_dictionary(data.get("moral_choices", {}))
 	completed_chapters = _normalize_dictionary(data.get("completed_chapters", {}))
+	game_time = fposmod(float(data.get("game_time", 8.0)), 24.0)
+	npc_states = _normalize_dictionary(data.get("npc_states", {}))
+	active_quests = _normalize_dictionary(data.get("active_quests", {}))
+	completed_side_quests = _normalize_dictionary(data.get("completed_side_quests", {}))
+	discovered_map_markers = _normalize_dictionary(data.get("discovered_map_markers", {}))
 	_emit_all_changed()
 	return true
 
@@ -244,8 +307,18 @@ func _normalize_dictionary(source: Variant) -> Dictionary:
 	if source is not Dictionary:
 		return converted
 	for key: Variant in source.keys():
-		converted[StringName(str(key))] = source[key]
+		converted[StringName(str(key))] = _normalize_variant(source[key])
 	return converted
+
+func _normalize_variant(value: Variant) -> Variant:
+	if value is Dictionary:
+		return _normalize_dictionary(value)
+	if value is Array:
+		var converted_array: Array = []
+		for entry: Variant in value:
+			converted_array.append(_normalize_variant(entry))
+		return converted_array
+	return value
 
 func _emit_all_changed() -> void:
 	level_changed.emit(level, experience, experience_required(level))
