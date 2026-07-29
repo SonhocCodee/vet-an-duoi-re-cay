@@ -4,20 +4,20 @@ extends Node2D
 const Map2ProgressScript: Script = preload("res://scripts/maps/map2/map2_progress.gd")
 const MIST_SHADE_SCENE: PackedScene = preload("res://scenes/actors/enemies/mist_shade.tscn")
 const ROOT_WOLF_SCENE: PackedScene = preload("res://scenes/actors/enemies/root_wolf.tscn")
-const MUSHROOM_SCENE: PackedScene = preload("res://scenes/actors/enemies/mushroom.tscn")
+const MUSHROOM_SCENE: PackedScene = preload("res://scenes/actors/enemies/weeping_mushroom.tscn")
 const ROOT_ANTLER_STAG_SCENE: PackedScene = preload("res://scenes/actors/enemies/root_antler_stag.tscn")
 const ARIA_SCENE: PackedScene = preload("res://scenes/npcs/aria/aria_map2.tscn")
-const ARIA_AFTER_STAG: Resource = preload("res://resources/story/map2/aria_after_stag.tres")
+const ARIA_AFTER_STAG: AriaDialogueData = preload("res://resources/story/map2/aria_after_stag.tres")
 const TELEGRAPH_GRACE_MSEC: int = 180
 const DEFAULT_TELEGRAPH_SECONDS: float = 0.8
 
 const ENCOUNTER_FLAGS: Array[StringName] = [
-	&"map2_combo_complete",
-	&"map2_dodge_complete",
-	&"map2_skill_1_complete",
+	&"tutorial_combo",
+	&"tutorial_dodge",
+	&"tutorial_skill",
 	&"map2_root_antler_stag_defeated",
 ]
-const TUTORIAL_RESOURCES: Array[Resource] = [
+const TUTORIAL_RESOURCES: Array[Map2TutorialStep] = [
 	preload("res://resources/tutorial/map2/combo_finisher.tres"),
 	preload("res://resources/tutorial/map2/dodge_telegraph.tres"),
 	preload("res://resources/tutorial/map2/skill_1.tres"),
@@ -80,6 +80,18 @@ func _restore_progress() -> void:
 				_set_encounter_gate_open(encounter_index, true)
 	if _get_game_state_flag(&"map2_aria_dialogue_complete"):
 		exit_gate.set_open(true)
+	elif progress.is_completed(3):
+		_restore_post_boss_dialogue()
+
+
+func _restore_post_boss_dialogue() -> void:
+	aria = ARIA_SCENE.instantiate() as AriaMap2Npc
+	add_child(aria)
+	aria.global_position = aria_spawn.global_position
+	aria.mark_boss_defeated()
+	awaiting_aria_dialogue = true
+	_set_game_state_flag(&"map2_boss_defeated", true)
+	call_deferred(&"_request_dialogue", ARIA_AFTER_STAG)
 
 
 func _connect_game_events() -> void:
@@ -99,6 +111,10 @@ func _connect_player_controller(candidate: Node = null) -> void:
 	var controller: Node = candidate
 	if controller == null:
 		controller = get_tree().get_first_node_in_group(&"player")
+	if controller == null:
+		var scene_router: Node = get_node_or_null("/root/SceneRouter")
+		if scene_router != null and scene_router.has_method(&"get_player"):
+			controller = scene_router.call(&"get_player") as Node
 	if controller == null:
 		controller = get_node_or_null("/root/PlayerController")
 	if controller == null or not controller.has_signal(&"action_committed"):
@@ -136,6 +152,8 @@ func _spawn_enemy_wave(encounter_index: int) -> void:
 			continue
 		add_child(enemy)
 		enemy.global_position = (spawn_points[enemy_index] as Node2D).global_position
+		if player_controller is Node2D and enemy.has_method(&"set_target"):
+			enemy.call(&"set_target", player_controller as Node2D)
 		_register_enemy(enemy)
 
 
@@ -148,34 +166,34 @@ func _start_boss_encounter() -> void:
 	add_child(boss)
 	boss.global_position = (%BossSpawn as Marker2D).global_position
 	aria.face_target(boss)
+	if player_controller is Node2D and boss.has_method(&"set_target"):
+		boss.call(&"set_target", player_controller as Node2D)
 	_register_enemy(boss)
 
 
 func _register_enemy(enemy: Node) -> void:
 	active_enemies.append(enemy)
 	if enemy.has_signal(&"telegraph_started"):
-		var telegraph_callback: Callable = func(duration: float = DEFAULT_TELEGRAPH_SECONDS) -> void:
-			_on_enemy_telegraph_started(duration)
+		var telegraph_callback: Callable = func(source: EnemyBase, duration: float) -> void:
+			_on_enemy_telegraph_started(source, duration)
 		enemy.connect(&"telegraph_started", telegraph_callback)
 	if enemy.has_signal(&"died"):
-		var died_callback: Callable = func(_defeated: Node = enemy) -> void:
+		var died_callback: Callable = func(_enemy_id: StringName, _death_position: Vector2) -> void:
 			_on_enemy_died(enemy)
 		enemy.connect(&"died", died_callback, CONNECT_ONE_SHOT)
 	else:
 		enemy.tree_exiting.connect(_on_enemy_died.bind(enemy), CONNECT_ONE_SHOT)
 
 
-func _on_enemy_telegraph_started(duration: float = DEFAULT_TELEGRAPH_SECONDS) -> void:
+func _on_enemy_telegraph_started(_enemy: EnemyBase, duration: float = DEFAULT_TELEGRAPH_SECONDS) -> void:
 	var duration_msec: int = ceili(maxf(duration, 0.0) * 1000.0)
 	telegraph_window_ends_msec = Time.get_ticks_msec() + duration_msec + TELEGRAPH_GRACE_MSEC
 
 
-func _on_player_action_committed(action: StringName, context: Dictionary = {}) -> void:
+func _on_player_action_committed(action: StringName) -> void:
 	if progress.active_encounter < 0:
 		return
 	var during_telegraph: bool = Time.get_ticks_msec() <= telegraph_window_ends_msec
-	if context.has(&"during_telegraph"):
-		during_telegraph = bool(context[&"during_telegraph"])
 	var was_met: bool = progress.requirement_met
 	var is_met: bool = progress.note_action(action, during_telegraph)
 	if is_met and not was_met:
@@ -227,60 +245,28 @@ func _on_dialogue_finished(dialogue_data: Variant = null) -> void:
 		return
 	awaiting_aria_dialogue = false
 	_set_game_state_flag(&"map2_aria_dialogue_complete", true)
-	_set_game_state_flag(&"map2_complete", true)
+	_set_game_state_flag(&"map_2_complete", true)
 	exit_gate.set_open(true)
 
 
-func _on_exit_requested(destination_scene: String, spawn_id: StringName) -> void:
-	if not _get_game_state_flag(&"map2_complete"):
+func _on_exit_requested(destination_map_id: StringName, spawn_id: StringName) -> void:
+	if not _get_game_state_flag(&"map_2_complete"):
 		return
-	var scene_router: Node = get_node_or_null("/root/SceneRouter")
-	if scene_router != null:
-		for method_name: StringName in [&"change_scene", &"transition_to", &"go_to_map"]:
-			if scene_router.has_method(method_name):
-				_call_scene_router(scene_router, method_name, destination_scene, spawn_id)
-				return
-	get_tree().change_scene_to_file(destination_scene)
+	GameEvents.map_change_requested.emit(destination_map_id, spawn_id)
 
 
-func _call_scene_router(router: Node, method_name: StringName, scene_path: String, spawn_id: StringName) -> void:
-	for method_data: Dictionary in router.get_method_list():
-		if StringName(method_data.get("name", &"")) != method_name:
-			continue
-		var arguments: Array = method_data.get("args", []) as Array
-		if arguments.size() >= 2:
-			router.call(method_name, scene_path, spawn_id)
-		else:
-			router.call(method_name, scene_path)
-		return
-
-
-func _request_tutorial(step: Resource) -> void:
+func _request_tutorial(step: Map2TutorialStep) -> void:
 	var game_events: Node = get_node_or_null("/root/GameEvents")
 	if game_events == null or not game_events.has_signal(&"tutorial_requested"):
 		return
-	game_events.emit_signal(&"tutorial_requested", {
-		&"tutorial_id": step.tutorial_id,
-		&"title": step.title,
-		&"instruction": step.instruction,
-		&"required_action": step.required_action,
-		&"encounter_index": step.encounter_index,
-	})
+	game_events.emit_signal(&"tutorial_requested", step.tutorial_id, "%s\n%s" % [step.title, step.instruction])
 
 
-func _request_dialogue(dialogue: Resource) -> void:
+func _request_dialogue(dialogue: AriaDialogueData) -> void:
 	var game_events: Node = get_node_or_null("/root/GameEvents")
 	if game_events == null or not game_events.has_signal(&"dialogue_requested"):
 		return
-	game_events.emit_signal(&"dialogue_requested", {
-		&"dialogue_id": dialogue.dialogue_id,
-		&"speaker_name": dialogue.speaker_name,
-		&"lines": dialogue.lines,
-		&"completion_flag": dialogue.completion_flag,
-		&"next_scene": dialogue.next_scene,
-		&"next_spawn_id": dialogue.next_spawn_id,
-		&"source": self,
-	})
+	game_events.emit_signal(&"dialogue_requested", dialogue.dialogue_id)
 
 
 func _set_encounter_gate_open(gate_index: int, is_open: bool) -> void:

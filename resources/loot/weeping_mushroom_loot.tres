@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1.0
+minimum_amount = 15
+maximum_amount = 25
+
+[sub_resource type="Resource" id="LootEntry_spore"]
+script = ExtResource("2_entry")
+item_id = &"poison_spore"
+display_name = "Poison Spore"
+drop_chance = 0.7
+
+[sub_resource type="Resource" id="LootEntry_stone"]
+script = ExtResource("2_entry")
+item_id = &"rough_root_stone"
+display_name = "Rough Root Stone"
+drop_chance = 0.5
+
+[sub_resource type="Resource" id="LootEntry_potion"]
+script = ExtResource("2_entry")
+item_id = &"small_health_potion"
+display_name = "Small Health Potion"
+drop_chance = 0.3
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_rune"]
+script = ExtResource("2_entry")
+item_id = &"burning_rune_i"
+display_name = "Burning Rune I"
+drop_chance = 0.035
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold"), SubResource("LootEntry_spore"), SubResource("LootEntry_stone"), SubResource("LootEntry_potion"), SubResource("LootEntry_rune")])

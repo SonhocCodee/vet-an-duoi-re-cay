@@ -1,4 +1,4 @@
-﻿class_name Map1StoryResource
+class_name Map1StoryResource
 extends Resource
 
 @export var opening_lines: PackedStringArray = []

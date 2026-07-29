@@ -13,7 +13,12 @@ func _ready() -> void:
 func refresh() -> void:
     if station == null:
         return
-    _runes = station.call(&"get_runes") as Array[HubRuneData]
+    _runes.clear()
+    var loaded_runes: Variant = station.call(&"get_runes")
+    if loaded_runes is Array:
+        for value: Variant in loaded_runes:
+            if value is HubRuneData:
+                _runes.append(value as HubRuneData)
     %RuneOptions.clear()
     for rune: HubRuneData in _runes:
         %RuneOptions.add_item(rune.display_name)
@@ -36,7 +41,10 @@ func _socket(slot_index: int) -> void:
 func _refresh_equipment() -> void:
     %Item.text = "Trang bị: %s" % str(station.get("target_item_id"))
     %Level.text = "Cường hóa: +%d / +10" % int(station.get("enhancement_level"))
-    var socket_values: Array = station.get("sockets") as Array
+    var socket_values: Array = []
+    var loaded_sockets: Variant = station.get("sockets")
+    if loaded_sockets is Array:
+        socket_values = loaded_sockets as Array
     %Socket1.text = _socket_text(0, socket_values)
     %Socket2.text = _socket_text(1, socket_values)
     %Socket3.text = _socket_text(2, socket_values)

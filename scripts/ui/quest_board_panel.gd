@@ -9,8 +9,13 @@ func refresh() -> void:
         child.queue_free()
     if station == null:
         return
-    var quests: Array[HubQuestData] = station.call(&"get_quests") as Array[HubQuestData]
-    for quest: HubQuestData in quests:
+    var loaded_quests: Variant = station.call(&"get_quests")
+    if loaded_quests is not Array:
+        return
+    for value: Variant in loaded_quests:
+        if value is not HubQuestData:
+            continue
+        var quest: HubQuestData = value as HubQuestData
         var button: Button = Button.new()
         var accepted: bool = bool(station.call(&"is_quest_accepted", quest.id))
         button.text = "%s%s" % [quest.title, " (Đã nhận)" if accepted else ""]

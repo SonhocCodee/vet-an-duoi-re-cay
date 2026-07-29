@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/root_wolf_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"root_wolf"
+display_name = "Root Wolf"
+base_level = 3
+experience_reward = 40
+base_health = 78.0
+base_attack = 13.0
+base_defense = 5.0
+base_resistance = 3.0
+movement_speed = 105.0
+detection_radius = 300.0
+attack_range = 45.0
+telegraph_duration = 0.45
+attack_recovery = 0.6
+stagger_duration = 0.3
+stagger_threshold = 12.0
+loot_table = ExtResource("2_loot")

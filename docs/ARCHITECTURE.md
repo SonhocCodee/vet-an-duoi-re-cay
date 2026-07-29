@@ -19,7 +19,7 @@ Main
 │   └── MapContainer
 │       └── CurrentMap
 ├── ActorRoot
-│   └── Player (CharacterBody2D, group: player)
+│   └── Player (CharacterBody2D)
 ├── PersistentUI
 │   └── HUD
 └── TransitionLayer
@@ -28,14 +28,17 @@ Main
 
 `SceneRouter` unload map cũ, instantiate map mới, đặt Player vào spawn, rồi mới mở input và fade-in. Player, HUD và autoload không được tạo lại khi chuyển map.
 
+Bootstrap bắt buộc dùng `res://scenes/bootstrap/main.tscn` và cung cấp các node path `World/MapContainer`, `Interface/HudSocket`, `FadeLayer/FadeRect`.
+
 ## Canonical paths
 
 ```text
+res://scenes/bootstrap/main.tscn
 res://scenes/maps/map1_awakening_forest.tscn
 res://scenes/maps/map2_tutorial_road.tscn
 res://scenes/maps/map3_ashen_town_hub.tscn
 res://scenes/actors/player/player.tscn
-res://scenes/ui/hud.tscn
+res://scenes/ui/game_hud.tscn
 res://autoload/game_ids.gd
 res://autoload/game_events.gd
 res://autoload/game_state.gd
@@ -72,13 +75,13 @@ GameEvents.map_change_requested.emit(target_map_id, target_spawn_id)
 
 ```gdscript
 signal map_change_requested(map_id: StringName, spawn_id: StringName)
-signal dialogue_requested(payload: Dictionary)
-signal tutorial_requested(payload: Dictionary)
+signal dialogue_requested(dialogue_id: StringName)
+signal tutorial_requested(step_id: StringName, message: String)
 signal hub_panel_requested(panel_id: StringName)
 signal toast_requested(message: String)
 ```
 
-Dialogue payload có `map_id`, `sequence_id`, `line_index`, `speaker`, `text`, `extra`. Tutorial payload có `map_id`, `tutorial_id`, `text`, `actions: Array[StringName]`.
+Dialogue content được UI tra bằng `dialogue_id`. Tutorial UI nhận `step_id` và chuỗi hiển thị; metadata bổ sung nằm trong resource của package sở hữu.
 
 ### GameState
 
@@ -106,13 +109,13 @@ Save payload phải có `save_version`. Router phải chống transition lặp v
 
 ## Player contract
 
-Player root là `CharacterBody2D`, thuộc group `player`:
+Player root là `CharacterBody2D` và được truy cập qua `SceneRouter.get_player()`:
 
 ```gdscript
 signal action_committed(action_id: StringName)
 signal died
-func set_input_enabled(enabled: bool) -> void
-func grant_weapon(weapon_id: StringName) -> void
+func set_control_enabled(enabled: bool) -> void
+func grant_weapon() -> void
 func restore_full() -> void
 func receive_damage(packet: Variant) -> Variant
 ```
@@ -123,7 +126,7 @@ func receive_damage(packet: Variant) -> Variant
 
 ### Map 1
 
-Opening khóa input, phát dialogue, sau đó dạy di chuyển. Rune Pillar gọi `grant_weapon(&rootbound_sword)`, ghi flag `map1_weapon_restored`, mở gate và yêu cầu Map 2. Opening và grant weapon phải idempotent sau load.
+Opening khóa input, phát dialogue, sau đó dạy di chuyển. Rune Pillar gọi `grant_weapon()`, ghi `GameIds.FLAG_WEAPON_UNLOCKED`, mở gate, ghi `GameIds.FLAG_MAP_1_COMPLETE` và yêu cầu Map 2. Opening và grant weapon phải idempotent sau load.
 
 ### Map 2
 
@@ -156,7 +159,7 @@ Hub cung cấp campfire (rest/save/class/stats), forge, shop và quest board. Fe
 - [ ] `.gd`, `.tscn`, `.tres` load được, không thiếu external resource.
 - [ ] Autoload đúng tên trong `/root`.
 - [ ] Ba map có `SpawnPoints/default` là `Marker2D`.
-- [ ] Player load được, root `CharacterBody2D`, group `player`.
+- [ ] Player load được và root là `CharacterBody2D`.
 - [ ] HUD load và instantiate được.
 - [ ] Map không chứa Player/HUD riêng.
 - [ ] InputMap có move, interact, attack, dodge, skill 1 và pause.

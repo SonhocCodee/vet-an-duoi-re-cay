@@ -1,10 +1,10 @@
 class_name Map2ExitGate
 extends Node2D
 
-signal exit_requested(destination_scene: String, spawn_id: StringName)
+signal exit_requested(destination_map_id: StringName, spawn_id: StringName)
 
-@export_file("*.tscn") var destination_scene: String = "res://scenes/maps/map3_ashen_town_hub.tscn"
-@export var destination_spawn_id: StringName = &"FromMap2"
+@export var destination_map_id: StringName = &"map3_ashen_town_hub"
+@export var destination_spawn_id: StringName = &"from_map2"
 @onready var barrier_collision: CollisionShape2D = %BarrierCollision
 @onready var barrier_visual: CanvasItem = %BarrierVisual
 @onready var exit_area: Area2D = %ExitArea
@@ -28,4 +28,4 @@ func _on_exit_body_entered(body: Node2D) -> void:
 	if not is_open:
 		return
 	if body.is_in_group(&"player") or body.name == &"Player" or body.name == &"PlayerController":
-		exit_requested.emit(destination_scene, destination_spawn_id)
+		exit_requested.emit(destination_map_id, destination_spawn_id)

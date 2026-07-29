@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1.0
+minimum_amount = 10
+maximum_amount = 18
+
+[sub_resource type="Resource" id="LootEntry_fang"]
+script = ExtResource("2_entry")
+item_id = &"root_wolf_fang"
+display_name = "Root Wolf Fang"
+drop_chance = 0.6
+
+[sub_resource type="Resource" id="LootEntry_stone"]
+script = ExtResource("2_entry")
+item_id = &"rough_root_stone"
+display_name = "Rough Root Stone"
+drop_chance = 0.45
+
+[sub_resource type="Resource" id="LootEntry_hide"]
+script = ExtResource("2_entry")
+item_id = &"rough_hide"
+display_name = "Rough Hide"
+drop_chance = 0.35
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_helm"]
+script = ExtResource("2_entry")
+item_id = &"frost_guard_helm"
+display_name = "Frost Guard Helm"
+drop_chance = 0.04
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold"), SubResource("LootEntry_fang"), SubResource("LootEntry_stone"), SubResource("LootEntry_hide"), SubResource("LootEntry_helm")])

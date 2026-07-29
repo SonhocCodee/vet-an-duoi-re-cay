@@ -25,17 +25,14 @@ func buy_item(item_id: StringName) -> Dictionary:
     var item: HubShopItemData = _find_item(item_id)
     if item == null:
         return {"ok": false, "message": "Vật phẩm không tồn tại."}
-    var result: Variant = HubServices.call_game_state(
-        [&"purchase_item", &"buy_item"],
-        [item.id, item.price, 1]
-    )
-    if result == false or (result is Dictionary and not bool((result as Dictionary).get("ok", true))):
-        return {"ok": false, "message": "Không đủ vàng hoặc túi đã đầy."}
-    HubServices.emit_event(HubConstants.EVENT_ITEM_PURCHASED, {
-        "item_id": item.id,
-        "price": item.price,
-        "quantity": 1,
-    })
+    var state: Node = HubServices.singleton(HubServices.GAME_STATE_NAME)
+    if state == null or not state.has_method(&"spend_currency") or not state.has_method(&"add_item"):
+        return {"ok": false, "message": "GameState chưa sẵn sàng."}
+    if not bool(state.call(&"spend_currency", HubConstants.CURRENCY_GOLD, item.price)):
+        return {"ok": false, "message": "Không đủ vàng."}
+    state.call(&"add_item", item.id, 1)
+    HubServices.emit_event(HubConstants.EVENT_ITEM_PURCHASED, {"item_id": item.id, "price": item.price, "quantity": 1})
+    HubServices.toast("Đã mua %s." % item.display_name)
     return {"ok": true, "message": "Đã mua %s." % item.display_name}
 
 func _find_item(item_id: StringName) -> HubShopItemData:

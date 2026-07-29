@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="Resource" path="res://resources/loot/root_antler_stag_loot.tres" id="2_loot"]
+
+[resource]
+script = ExtResource("1_data")
+enemy_id = &"root_antler_stag"
+display_name = "Root Antler Stag"
+base_level = 8
+experience_reward = 240
+base_health = 520.0
+base_attack = 25.0
+base_defense = 14.0
+base_resistance = 11.0
+movement_speed = 82.0
+detection_radius = 420.0
+attack_range = 72.0
+telegraph_duration = 0.95
+attack_recovery = 1.15
+stagger_duration = 0.25
+stagger_threshold = 30.0
+loot_table = ExtResource("2_loot")

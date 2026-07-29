@@ -10,32 +10,57 @@ extends Control
 @onready var level_label: Label = %LevelLabel
 @onready var class_label: Label = %ClassLabel
 
-var _refresh_elapsed: float = 0.0
+var _player: PlayerController
 
-func _process(delta: float) -> void:
-    _refresh_elapsed += delta
-    if _refresh_elapsed < 0.1:
-        return
-    _refresh_elapsed = 0.0
-    refresh()
+func _ready() -> void:
+	GameEvents.player_registered.connect(_bind_player)
+	GameState.level_changed.connect(_on_level_changed)
+	GameState.class_changed.connect(_on_class_changed)
+	call_deferred(&"_bind_existing_player")
+	_on_level_changed(GameState.level, GameState.experience, GameState.experience_required())
+	_on_class_changed(GameState.current_class)
 
-func refresh() -> void:
-    var hp: float = HubServices.read_number([&"hp", &"current_hp"], 100.0)
-    var max_hp: float = maxf(HubServices.read_number([&"max_hp", &"hp_max"], 100.0), 1.0)
-    var stamina: float = HubServices.read_number([&"stamina", &"sta", &"current_stamina"], 100.0)
-    var max_stamina: float = maxf(HubServices.read_number([&"max_stamina", &"max_sta", &"stamina_max"], 100.0), 1.0)
-    var experience: float = HubServices.read_number([&"experience", &"exp", &"current_exp"], 0.0)
-    var next_experience: float = maxf(HubServices.read_number([&"experience_to_next", &"exp_to_next", &"next_level_exp"], 100.0), 1.0)
-    var level: int = HubServices.read_int([&"level", &"player_level"], 1)
-    var class_id: StringName = StringName(HubServices.read_text([&"active_class", &"class_id", &"current_class"], String(HubConstants.CLASS_SWORD_WARDEN)))
-    hp_bar.max_value = max_hp
-    hp_bar.value = hp
-    stamina_bar.max_value = max_stamina
-    stamina_bar.value = stamina
-    exp_bar.max_value = next_experience
-    exp_bar.value = experience
-    hp_label.text = "HP %d / %d" % [roundi(hp), roundi(max_hp)]
-    stamina_label.text = "STA %d / %d" % [roundi(stamina), roundi(max_stamina)]
-    exp_label.text = "EXP %d / %d" % [roundi(experience), roundi(next_experience)]
-    level_label.text = "Lv. %d" % level
-    class_label.text = str(HubConstants.CLASS_NAMES.get(class_id, String(class_id)))
+func _bind_existing_player() -> void:
+	var candidate: Node = get_tree().get_first_node_in_group(&"player")
+	if candidate is PlayerController:
+		_bind_player(candidate)
+
+func _bind_player(candidate: Node) -> void:
+	if candidate is not PlayerController:
+		return
+	_player = candidate as PlayerController
+	if not _player.health_changed.is_connected(_on_health_changed):
+		_player.health_changed.connect(_on_health_changed)
+	if not _player.stamina_changed.is_connected(_on_stamina_changed):
+		_player.stamina_changed.connect(_on_stamina_changed)
+	_on_health_changed(_player.get_health(), _player.get_max_health())
+	_on_stamina_changed(_player.get_stamina(), _player.get_max_stamina())
+
+func _on_health_changed(current: float, maximum: float) -> void:
+	hp_bar.max_value = maximum
+	hp_bar.value = current
+	hp_label.text = "HP %d / %d" % [roundi(current), roundi(maximum)]
+
+func _on_stamina_changed(current: float, maximum: float) -> void:
+	stamina_bar.max_value = maximum
+	stamina_bar.value = current
+	stamina_label.text = "STA %d / %d" % [roundi(current), roundi(maximum)]
+
+func _on_level_changed(current_level: int, current_experience: int, required_experience: int) -> void:
+	level_label.text = "Lv. %d" % current_level
+	exp_bar.max_value = maxf(float(required_experience), 1.0)
+	exp_bar.value = current_experience
+	exp_label.text = "EXP %d / %d" % [current_experience, required_experience]
+
+func _on_class_changed(class_id: StringName) -> void:
+	var names: Dictionary = {
+		GameIds.CLASS_BLADEMASTER: "Kiếm Vệ",
+		GameIds.CLASS_GUARDIAN: "Hộ Vệ Rễ Cây",
+		GameIds.CLASS_SPELLBLADE: "Pháp Kiếm Hư Vô",
+		GameIds.CLASS_PRIEST: "Tu Sĩ Tro Tàn",
+	}
+	class_label.text = String(names.get(class_id, class_id))
+	if _player != null:
+		var class_index: int = GameIds.PLAYABLE_CLASSES.find(class_id)
+		if class_index >= 0:
+			_player.call(&"set_player_class", class_index)

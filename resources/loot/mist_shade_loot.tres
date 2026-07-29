@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1.0
+minimum_amount = 5
+maximum_amount = 12
+
+[sub_resource type="Resource" id="LootEntry_root"]
+script = ExtResource("2_entry")
+item_id = &"rough_root_fragment"
+display_name = "Rough Root Fragment"
+drop_chance = 0.65
+
+[sub_resource type="Resource" id="LootEntry_mist"]
+script = ExtResource("2_entry")
+item_id = &"mist_dust"
+display_name = "Mist Dust"
+drop_chance = 0.4
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_armor"]
+script = ExtResource("2_entry")
+item_id = &"traveler_leather_armor"
+display_name = "Traveler Leather Armor"
+drop_chance = 0.05
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_rune"]
+script = ExtResource("2_entry")
+item_id = &"holy_radiance_rune_i"
+display_name = "Holy Radiance Rune I"
+drop_chance = 0.02
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold"), SubResource("LootEntry_root"), SubResource("LootEntry_mist"), SubResource("LootEntry_armor"), SubResource("LootEntry_rune")])

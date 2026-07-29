@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_controller"]
+[ext_resource type="Resource" path="res://resources/player/default_player_combat_config.tres" id="2_config"]
+[ext_resource type="Script" path="res://scripts/player/player_visual.gd" id="3_visual"]
+
+[sub_resource type="CapsuleShape2D" id="Capsule_player"]
+radius = 10.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="Rectangle_melee"]
+size = Vector2(42, 30)
+
+[sub_resource type="CircleShape2D" id="Circle_interaction"]
+radius = 52.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
+collision_mask = 7
+script = ExtResource("1_controller")
+combat_config = ExtResource("2_config")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("Capsule_player")
+
+[node name="PlayerVisual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+
+[node name="MeleeHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, 0)
+collision_layer = 8
+collision_mask = 6
+monitoring = false
+monitorable = false
+
+[node name="MeleeShape" type="CollisionShape2D" parent="MeleeHitbox"]
+unique_name_in_owner = true
+shape = SubResource("Rectangle_melee")
+disabled = true
+
+[node name="SkillOrigin" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 24)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("Circle_interaction")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

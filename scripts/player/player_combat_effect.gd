@@ -19,14 +19,14 @@ var cone_angle: float = deg_to_rad(70.0)
 var heal_fraction_per_second: float = 0.0
 var tick_interval: float = 0.0
 var tick_elapsed: float = 0.0
-var source_player: PlayerController
+var source_player: Node
 var hit_once: bool = true
 var hit_targets: Dictionary = {}
 var collision_shape: CollisionShape2D
 
 
 func _ready() -> void:
-	collision_layer = 0
+	collision_layer = 8
 	monitorable = false
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
@@ -64,7 +64,7 @@ func configure_circle(
 	p_collision_mask: int,
 	p_tick_interval: float = 0.0,
 	p_heal_fraction_per_second: float = 0.0,
-	p_source_player: PlayerController = null
+	p_source_player: Node = null
 ) -> void:
 	packet = p_packet
 	radius = p_radius
@@ -115,9 +115,8 @@ func _physics_process(delta: float) -> void:
 			hit_targets.clear()
 			_apply_to_current_overlaps()
 			if source_player != null and heal_fraction_per_second > 0.0:
-				source_player.restore_health(
-					source_player.get_max_health() * heal_fraction_per_second * tick_interval
-				)
+				var maximum_health: float = float(source_player.call("get_max_health"))
+				source_player.call("restore_health", maximum_health * heal_fraction_per_second * tick_interval)
 	if elapsed >= lifetime:
 		queue_free()
 
@@ -128,11 +127,15 @@ func _draw() -> void:
 			draw_rect(Rect2(Vector2(-radius, -8.0), Vector2(radius * 2.0, 16.0)), effect_color)
 			draw_line(Vector2(-radius - 14.0, 0.0), Vector2(-radius, 0.0), effect_color.darkened(0.25), 5.0, true)
 		EffectShape.CIRCLE:
-			draw_circle(Vector2.ZERO, radius, Color(effect_color, 0.18))
+			var circle_fill: Color = effect_color
+			circle_fill.a = 0.18
+			draw_circle(Vector2.ZERO, radius, circle_fill)
 			draw_arc(Vector2.ZERO, radius, 0.0, TAU, 48, effect_color, 4.0, true)
 		EffectShape.CONE:
 			var points: PackedVector2Array = _build_cone_points(radius, cone_angle)
-			draw_colored_polygon(points, Color(effect_color, 0.35))
+			var cone_fill: Color = effect_color
+			cone_fill.a = 0.35
+			draw_colored_polygon(points, cone_fill)
 			draw_polyline(points, effect_color, 4.0, true)
 
 

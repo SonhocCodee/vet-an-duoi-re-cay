@@ -1,4 +1,4 @@
-﻿[gd_resource type="Resource" script_class="Map1StoryResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Map1StoryResource" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scripts/maps/map1/map1_story_resource.gd" id="1_story"]
 

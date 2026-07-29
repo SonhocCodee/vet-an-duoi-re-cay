@@ -2,14 +2,15 @@ class_name HubConstants
 extends RefCounted
 
 const MAP_ID: StringName = &"map3_ashen_town_hub"
+const SPAWN_DEFAULT: StringName = &"default"
 const GROUP_HUB_UI: StringName = &"hub_ui"
 const GROUP_HUB_STATION: StringName = &"hub_station"
 const GROUP_SPAWN_POINT: StringName = &"spawn_point"
 
-const CLASS_SWORD_WARDEN: StringName = &"sword_warden"
-const CLASS_ROOT_GUARDIAN: StringName = &"root_guardian"
+const CLASS_SWORD_WARDEN: StringName = &"blademaster"
+const CLASS_ROOT_GUARDIAN: StringName = &"guardian"
 const CLASS_SPELLBLADE: StringName = &"spellblade"
-const CLASS_ASHEN_MONK: StringName = &"ashen_monk"
+const CLASS_ASHEN_MONK: StringName = &"priest"
 const CLASSES: Array[StringName] = [CLASS_SWORD_WARDEN, CLASS_ROOT_GUARDIAN, CLASS_SPELLBLADE, CLASS_ASHEN_MONK]
 const CLASS_NAMES: Dictionary = {
     CLASS_SWORD_WARDEN: "Kiếm Vệ",
@@ -24,6 +25,8 @@ const STAT_VIT: StringName = &"vit"
 const STAT_DEX: StringName = &"dex"
 const STAT_MND: StringName = &"mnd"
 const STATS: Array[StringName] = [STAT_STR, STAT_INT, STAT_VIT, STAT_DEX, STAT_MND]
+const CURRENCY_GOLD: StringName = &"gold"
+const QUEST_STATE_ACTIVE: StringName = &"active"
 
 const EVENT_STATION_INTERACTED: StringName = &"hub_station_interacted"
 const EVENT_RESTED: StringName = &"hub_rested"

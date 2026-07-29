@@ -1,4 +1,4 @@
-﻿extends Node2D
+extends Node2D
 class_name Map1AwakeningForest
 
 const MAP_ID: StringName = &"map1_awakening_forest"

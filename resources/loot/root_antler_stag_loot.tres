@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/loot/loot_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://scripts/loot/loot_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="LootEntry_gold"]
+script = ExtResource("2_entry")
+item_id = &"gold"
+display_name = "Gold"
+drop_chance = 1.0
+minimum_amount = 45
+maximum_amount = 70
+
+[sub_resource type="Resource" id="LootEntry_antler"]
+script = ExtResource("2_entry")
+item_id = &"root_antler"
+display_name = "Root Antler"
+drop_chance = 1.0
+minimum_amount = 2
+maximum_amount = 3
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_shard"]
+script = ExtResource("2_entry")
+item_id = &"soul_shard"
+display_name = "Ancient Soul Shard"
+drop_chance = 1.0
+rarity = 2
+
+[sub_resource type="Resource" id="LootEntry_hide"]
+script = ExtResource("2_entry")
+item_id = &"stag_root_hide"
+display_name = "Stag Root Hide"
+drop_chance = 0.65
+rarity = 1
+
+[sub_resource type="Resource" id="LootEntry_rune"]
+script = ExtResource("2_entry")
+item_id = &"root_guard_rune_i"
+display_name = "Root Guard Rune I"
+drop_chance = 0.15
+rarity = 2
+
+[resource]
+script = ExtResource("1_table")
+loot_entries = Array[ExtResource("2_entry")]([SubResource("LootEntry_gold"), SubResource("LootEntry_antler"), SubResource("LootEntry_shard"), SubResource("LootEntry_hide"), SubResource("LootEntry_rune")])

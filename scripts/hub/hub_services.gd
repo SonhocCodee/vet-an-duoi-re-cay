@@ -11,6 +11,10 @@ static func singleton(singleton_name: StringName) -> Node:
         return null
     return tree.root.get_node_or_null(NodePath(String(singleton_name)))
 
+static func player() -> Node:
+    var tree: SceneTree = Engine.get_main_loop() as SceneTree
+    return null if tree == null else tree.get_first_node_in_group(&"player")
+
 static func call_game_state(method_names: Array[StringName], arguments: Array = []) -> Variant:
     return call_first(singleton(GAME_STATE_NAME), method_names, arguments)
 
@@ -25,6 +29,16 @@ static func call_first(target: Node, method_names: Array[StringName], arguments:
             return target.callv(method_name, arguments)
     return null
 
+static func request_panel(panel_id: StringName) -> void:
+    var events: Node = singleton(GAME_EVENTS_NAME)
+    if events != null and events.has_signal(&"hub_panel_requested"):
+        events.emit_signal(&"hub_panel_requested", panel_id)
+
+static func toast(message: String) -> void:
+    var events: Node = singleton(GAME_EVENTS_NAME)
+    if events != null and events.has_signal(&"toast_requested"):
+        events.emit_signal(&"toast_requested", message)
+
 static func emit_event(event_name: StringName, payload: Dictionary = {}) -> void:
     var events: Node = singleton(GAME_EVENTS_NAME)
     if events == null:
@@ -33,8 +47,6 @@ static func emit_event(event_name: StringName, payload: Dictionary = {}) -> void
         events.call(&"emit_event", event_name, payload)
     elif events.has_method(&"publish"):
         events.call(&"publish", event_name, payload)
-    elif events.has_method(&"dispatch"):
-        events.call(&"dispatch", event_name, payload)
 
 static func open_station_ui(station: Node) -> void:
     if station == null or station.get_tree() == null:
@@ -44,19 +56,19 @@ static func open_station_ui(station: Node) -> void:
         ui.call(&"open_station", station)
 
 static func read_number(property_names: Array[StringName], fallback: float) -> float:
-    var state: Node = singleton(GAME_STATE_NAME)
-    var value: Variant = read_first_property(state, property_names)
-    if value is int or value is float:
-        return float(value)
-    return fallback
+    var value: Variant = read_first_property(singleton(GAME_STATE_NAME), property_names)
+    return float(value) if value is int or value is float else fallback
 
 static func read_int(property_names: Array[StringName], fallback: int) -> int:
     return int(read_number(property_names, float(fallback)))
 
 static func read_text(property_names: Array[StringName], fallback: String) -> String:
-    var state: Node = singleton(GAME_STATE_NAME)
-    var value: Variant = read_first_property(state, property_names)
+    var value: Variant = read_first_property(singleton(GAME_STATE_NAME), property_names)
     return fallback if value == null else str(value)
+
+static func call_number(target: Node, method_names: Array[StringName], fallback: float) -> float:
+    var value: Variant = call_first(target, method_names)
+    return float(value) if value is int or value is float else fallback
 
 static func read_first_property(target: Object, property_names: Array[StringName]) -> Variant:
     if target == null:

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Resource" path="res://resources/enemies/mist_shade.tres" id="2_data"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_visual.gd" id="3_visual"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_body"]
+radius = 15.0
+
+[node name="MistShade" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_enemy")
+data = ExtResource("2_data")
+combat_level = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape_body")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+shape_kind = 0
+body_color = Color(0.31, 0.37, 0.52, 1)
+accent_color = Color(0.78, 0.9, 1, 1)
+size = 21.0

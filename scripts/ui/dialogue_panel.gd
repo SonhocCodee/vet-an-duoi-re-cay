@@ -11,7 +11,7 @@ func show_dialogue(speaker: String, line: String, options: Array[String] = []) -
     %Line.text = line
     for child: Node in choices.get_children():
         child.queue_free()
-    for index: int in options.size():
+    for index: int in range(options.size()):
         var button: Button = Button.new()
         button.text = options[index]
         button.pressed.connect(_select_choice.bind(index))

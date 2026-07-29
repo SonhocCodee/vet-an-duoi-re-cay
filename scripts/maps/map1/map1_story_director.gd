@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 class_name Map1StoryDirector
 
 signal dialogue_requested(payload: Dictionary)
@@ -39,16 +39,18 @@ func bind_pillar(pillar: Map1RunePillar) -> void:
 
 func _begin_when_player_is_ready() -> void:
 	for _attempt: int in range(180):
-		var candidate := get_tree().get_first_node_in_group(&"player")
+		var candidate := SceneRouter.get_player()
 		if candidate is PlayerController:
 			_player = candidate as PlayerController
 			break
 		await get_tree().physics_frame
 
 	if _player == null:
-		push_warning("Map1StoryDirector could not find PlayerController in group 'player'.")
+		push_warning("Map1StoryDirector could not resolve PlayerController from SceneRouter.")
 		return
 	if GameState.has_flag(GameIds.FLAG_WEAPON_UNLOCKED):
+		if not _player.is_weapon_unlocked():
+			_player.grant_weapon()
 		opening_finished.emit()
 		return
 	await _play_opening_cutscene()
@@ -112,4 +114,3 @@ func _request_tutorial(tutorial_id: StringName, text: String) -> void:
 	}
 	tutorial_requested.emit(payload)
 	GameEvents.tutorial_requested.emit(tutorial_id, text)
-

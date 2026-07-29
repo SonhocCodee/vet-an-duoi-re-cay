@@ -76,7 +76,7 @@ func receive_damage(packet: DamagePacket) -> DamageResult:
 		return DamageResult.new(0.0, 0.0, current_health, false, current_state == EnemyState.DEAD)
 	var mitigation: float = _mitigation_for(packet.damage_type)
 	var applied_damage: float = packet.amount
-	if not packet.ignore_defense and packet.damage_type != DamagePacket.DamageType.TRUE:
+	if not packet.ignore_defense and packet.damage_type != &"true":
 		applied_damage = packet.amount * (100.0 / (100.0 + maxf(mitigation, 0.0)))
 	applied_damage = minf(maxf(applied_damage, 0.0), current_health)
 	current_health = maxf(current_health - applied_damage, 0.0)
@@ -87,7 +87,9 @@ func receive_damage(packet: DamagePacket) -> DamageResult:
 	elif packet.stagger_power >= data.stagger_threshold:
 		staggered = true
 		_change_state(EnemyState.STAGGER, data.stagger_duration)
-	return DamageResult.new(packet.amount, applied_damage, current_health, staggered, killed)
+	var result: DamageResult = DamageResult.new(packet.amount, applied_damage, current_health, false, killed)
+	result.was_staggered = staggered
+	return result
 
 
 func set_target(target: Node2D) -> void:
@@ -124,6 +126,9 @@ func _acquire_target() -> void:
 		if player is Node2D:
 			_target = player as Node2D
 			return
+	var player_fallback: Node = get_tree().root.find_child("Player", true, false)
+	if player_fallback is Node2D and player_fallback.has_method(RECEIVE_DAMAGE_METHOD):
+		_target = player_fallback as Node2D
 
 
 func _update_idle() -> void:
@@ -185,18 +190,18 @@ func _resolve_attack() -> void:
 			attack_power,
 			DamagePacket.DamageType.PHYSICAL,
 			self,
-			global_position,
+			global_position.direction_to(_target.global_position),
 			data.stagger_threshold * 0.5
 		)
 		_target.call(RECEIVE_DAMAGE_METHOD, packet)
 	attack_resolved.emit()
 
 
-func _mitigation_for(damage_type: DamagePacket.DamageType) -> float:
+func _mitigation_for(damage_type: StringName) -> float:
 	match damage_type:
-		DamagePacket.DamageType.PHYSICAL:
+		&"physical":
 			return defense
-		DamagePacket.DamageType.MAGICAL, DamagePacket.DamageType.VOID:
+		&"magic", &"void", &"holy":
 			return resistance
 		_:
 			return 0.0

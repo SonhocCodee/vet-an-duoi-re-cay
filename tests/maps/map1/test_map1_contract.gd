@@ -1,4 +1,4 @@
-﻿extends SceneTree
+extends SceneTree
 
 const MAP_SCENE := "res://scenes/maps/map1_awakening_forest.tscn"
 const MAP_SCRIPT := "res://scripts/maps/map1/map1_awakening_forest.gd"
@@ -52,7 +52,8 @@ func _check_gameplay_contracts() -> void:
 	_expect("_build_boundary_collisions()" in world_text, "Boundary collisions are missing.")
 	_expect("_build_tree_collisions()" in world_text, "Tree collisions are missing.")
 	_expect("extends Interactable" in pillar_text, "Rune Pillar must use the shared Interactable contract.")
-	_expect("player.grant_weapon(WEAPON_ID)" in pillar_text, "Rune Pillar must call PlayerController.grant_weapon.")
+	_expect("player.grant_weapon()" in pillar_text, "Rune Pillar must call PlayerController.grant_weapon().")
+	_expect("SceneRouter.get_player()" in director_text, "Story director must resolve the persistent PlayerController.")
 	_expect("_player.set_control_enabled(false)" in director_text, "Opening cutscene must lock PlayerController controls.")
 	_expect("GameEvents.tutorial_requested.emit(tutorial_id, text)" in director_text, "Tutorial must use the shared GameEvents signature.")
 	_expect("GameEvents.dialogue_requested.emit(dialogue_id)" in director_text, "Dialogue must use the shared GameEvents signature.")

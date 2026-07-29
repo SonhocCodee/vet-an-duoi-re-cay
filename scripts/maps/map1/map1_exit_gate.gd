@@ -1,4 +1,4 @@
-﻿extends Area2D
+extends Area2D
 class_name Map1ExitGate
 
 signal unlocked

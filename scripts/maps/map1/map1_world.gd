@@ -1,4 +1,4 @@
-﻿extends Node2D
+extends Node2D
 
 const MAP_SIZE := Vector2(1600.0, 900.0)
 const TREE_POSITIONS: Array[Vector2] = [

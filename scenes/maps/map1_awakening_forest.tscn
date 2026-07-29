@@ -1,4 +1,4 @@
-﻿[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/maps/map1/map1_awakening_forest.gd" id="1_map"]
 [ext_resource type="Script" path="res://scripts/maps/map1/map1_world.gd" id="2_world"]
@@ -44,7 +44,7 @@ metadata/spawn_id = "from_map2"
 [node name="RunePillar" type="Area2D" parent="Gameplay"]
 position = Vector2(825, 374)
 collision_layer = 32
-collision_mask = 0
+collision_mask = 3
 script = ExtResource("3_pillar")
 story = ExtResource("6_story")
 
@@ -59,7 +59,7 @@ shape = SubResource("CircleShape2D_pillar")
 [node name="ExitGate" type="Area2D" parent="Gameplay"]
 position = Vector2(1490, 520)
 collision_layer = 64
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("4_gate")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gameplay/ExitGate"]
@@ -81,5 +81,3 @@ shape = SubResource("RectangleShape2D_gate_blocker")
 [node name="StoryDirector" type="Node" parent="."]
 script = ExtResource("5_story_director")
 story = ExtResource("6_story")
-
-

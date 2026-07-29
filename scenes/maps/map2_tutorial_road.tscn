@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/maps/map2/map2_tutorial_road.gd" id="1_map"]
 [ext_resource type="Script" path="res://scripts/maps/map2/map2_encounter_zone.gd" id="2_zone"]
@@ -26,13 +26,6 @@ size = Vector2(28, 650)
 
 [sub_resource type="RectangleShape2D" id="ExitTrigger"]
 size = Vector2(90, 620)
-
-[sub_resource type="StyleBoxFlat" id="TitlePanel"]
-bg_color = Color(0.035, 0.06, 0.065, 0.76)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [node name="Map2TutorialRoad" type="Node2D"]
 script = ExtResource("1_map")
@@ -74,7 +67,10 @@ shape = SubResource("WorldVertical")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
-[node name="FromMap1" type="Marker2D" parent="SpawnPoints"]
+[node name="default" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(110, 450)
+
+[node name="from_map1" type="Marker2D" parent="SpawnPoints"]
 position = Vector2(110, 450)
 
 [node name="Encounter1Checkpoint" type="Marker2D" parent="SpawnPoints"]

@@ -2,14 +2,16 @@ extends Node
 
 const PLAYER_SCENE_PATH: String = "res://scenes/actors/player/player.tscn"
 const HUD_SCENE_PATH: String = "res://scenes/ui/game_hud.tscn"
+const UI_SUITE_PATH: String = "res://scenes/ui/game_hud.tscn"
 
 @onready var map_container: Node2D = $World/MapContainer
 @onready var world: Node2D = $World
-@onready var hud_socket: Control = $Interface/HudSocket
 @onready var fade_rect: ColorRect = $FadeLayer/FadeRect
 
-var player: Node2D
+var player: PlayerController
 var interaction_bridge: InteractionBridge
+var ui_event_bridge: UIEventBridge
+var ui_suite: HubUI
 
 func _enter_tree() -> void:
 	_ensure_input_actions()
@@ -20,34 +22,55 @@ func _ready() -> void:
 		push_error("Missing player scene at %s" % PLAYER_SCENE_PATH)
 		return
 	world.add_child(player)
+	_ensure_player_contract()
+	ui_suite = _instantiate_ui_suite()
 	interaction_bridge = InteractionBridge.new()
 	add_child(interaction_bridge)
 	interaction_bridge.configure(player)
-	_instantiate_hud()
+	if ui_suite != null:
+		ui_event_bridge = UIEventBridge.new()
+		add_child(ui_event_bridge)
+		ui_event_bridge.configure(ui_suite, player)
 	SceneRouter.configure(map_container, player, fade_rect)
 	GameEvents.player_registered.emit(player)
-	if player.has_signal("died"):
-		player.connect("died", _on_player_died)
+	player.died.connect(_on_player_died)
 	SceneRouter.change_map(GameState.current_map, GameState.current_spawn)
 
-func _instantiate_player() -> Node2D:
+func _instantiate_player() -> PlayerController:
 	if not ResourceLoader.exists(PLAYER_SCENE_PATH):
 		return null
 	var scene: PackedScene = load(PLAYER_SCENE_PATH) as PackedScene
-	return scene.instantiate() as Node2D
+	return scene.instantiate() as PlayerController
 
-func _instantiate_hud() -> void:
-	if not ResourceLoader.exists(HUD_SCENE_PATH):
+func _instantiate_ui_suite() -> HubUI:
+	if not ResourceLoader.exists(UI_SUITE_PATH):
+		push_warning("Missing UI suite at %s" % UI_SUITE_PATH)
+		return null
+	var scene: PackedScene = load(UI_SUITE_PATH) as PackedScene
+	var ui: HubUI = scene.instantiate() as HubUI
+	add_child(ui)
+	return ui
+
+func _ensure_player_contract() -> void:
+	player.add_to_group(&"player")
+	if player.get_node_or_null("InteractionArea") != null:
 		return
-	var scene: PackedScene = load(HUD_SCENE_PATH) as PackedScene
-	var hud: Control = scene.instantiate() as Control
-	hud_socket.add_child(hud)
+	var area := Area2D.new()
+	area.name = "InteractionArea"
+	area.collision_layer = 0
+	area.collision_mask = 32
+	area.monitoring = true
+	var shape_node := CollisionShape2D.new()
+	var shape := CircleShape2D.new()
+	shape.radius = 52.0
+	shape_node.shape = shape
+	area.add_child(shape_node)
+	player.add_child(area)
 
 func _on_player_died() -> void:
 	GameEvents.player_died.emit()
 	await get_tree().create_timer(0.6).timeout
-	if player.has_method("restore_full"):
-		player.call("restore_full")
+	player.restore_full()
 	SceneRouter.reload_checkpoint()
 
 func _ensure_input_actions() -> void:

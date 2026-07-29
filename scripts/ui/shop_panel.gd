@@ -9,8 +9,13 @@ func refresh() -> void:
         child.queue_free()
     if station == null:
         return
-    var inventory: Array[HubShopItemData] = station.call(&"get_inventory") as Array[HubShopItemData]
-    for item: HubShopItemData in inventory:
+    var loaded_inventory: Variant = station.call(&"get_inventory")
+    if loaded_inventory is not Array:
+        return
+    for value: Variant in loaded_inventory:
+        if value is not HubShopItemData:
+            continue
+        var item: HubShopItemData = value as HubShopItemData
         var button: Button = Button.new()
         button.text = "%s - %d vàng" % [item.display_name, item.price]
         button.tooltip_text = item.description

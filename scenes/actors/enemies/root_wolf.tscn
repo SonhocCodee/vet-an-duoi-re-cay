@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Resource" path="res://resources/enemies/root_wolf.tres" id="2_data"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_visual.gd" id="3_visual"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape_body"]
+radius = 13.0
+height = 34.0
+
+[node name="RootWolf" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_enemy")
+data = ExtResource("2_data")
+combat_level = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape_body")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("3_visual")
+shape_kind = 1
+body_color = Color(0.19, 0.25, 0.15, 1)
+accent_color = Color(0.38, 0.61, 0.29, 1)
+size = 24.0

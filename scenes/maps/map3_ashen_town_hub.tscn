@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/hub/map3_ashen_town_hub.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/world/map3/ashen_town_layout.svg" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/hub/campfire.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/hub/forge.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/hub/shop.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/hub/quest_board.tscn" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1280, 32)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(32, 720)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(250, 130)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(230, 120)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(250, 125)
+
+[node name="Map3AshenTownHub" type="Node2D"]
+script = ExtResource("1")
+
+[node name="WorldPlaceholder" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+position = Vector2(640, 360)
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="North" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(640, 8)
+shape = SubResource("1")
+
+[node name="South" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(640, 712)
+shape = SubResource("1")
+
+[node name="West" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(8, 360)
+shape = SubResource("2")
+
+[node name="East" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1272, 360)
+shape = SubResource("2")
+
+[node name="Buildings" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="NorthWest" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(240, 155)
+shape = SubResource("3")
+
+[node name="NorthEast" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(1040, 155)
+shape = SubResource("3")
+
+[node name="SouthWest" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(240, 552)
+shape = SubResource("4")
+
+[node name="SouthEast" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(1040, 552)
+shape = SubResource("5")
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="Campfire" parent="Stations" instance=ExtResource("3")]
+position = Vector2(640, 355)
+
+[node name="Forge" parent="Stations" instance=ExtResource("4")]
+position = Vector2(1015, 325)
+
+[node name="Shop" parent="Stations" instance=ExtResource("5")]
+position = Vector2(260, 330)
+
+[node name="QuestBoard" parent="Stations" instance=ExtResource("6")]
+position = Vector2(800, 525)
+
+[node name="Townfolk" type="Node2D" parent="."]
+
+[node name="AshGuard" type="Polygon2D" parent="Townfolk"]
+position = Vector2(470, 360)
+polygon = PackedVector2Array(-12, 16, 0, -20, 12, 16)
+color = Color(0.45, 0.52, 0.58, 1)
+
+[node name="Herbalist" type="Polygon2D" parent="Townfolk"]
+position = Vector2(275, 270)
+polygon = PackedVector2Array(-12, 16, 0, -20, 12, 16)
+color = Color(0.28, 0.62, 0.46, 1)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(640, 610)
+metadata/spawn_id = &"default"
+
+[node name="from_map2" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(92, 360)
+metadata/spawn_id = &"from_map2"
+
+[node name="from_east_gate" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
+position = Vector2(1188, 360)
+metadata/spawn_id = &"from_east_gate"
+

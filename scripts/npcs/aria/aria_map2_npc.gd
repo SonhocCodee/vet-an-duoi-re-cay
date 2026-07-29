@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal encounter_state_changed(active: bool)
 
 @export var display_name: String = "Aria"
+@onready var sprite: Sprite2D = %Sprite
 @onready var status_label: Label = %StatusLabel
 
 var encounter_active: bool = false
@@ -20,7 +21,7 @@ func face_target(target: Node2D) -> void:
 		return
 	var horizontal_direction: float = signf(target.global_position.x - global_position.x)
 	if not is_zero_approx(horizontal_direction):
-		%Sprite.scale.x = absf(%Sprite.scale.x) * horizontal_direction
+		sprite.scale.x = absf(sprite.scale.x) * horizontal_direction
 
 
 func mark_boss_defeated() -> void:
