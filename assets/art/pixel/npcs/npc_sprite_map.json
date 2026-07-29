@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "frame_size": {
+    "width": 32,
+    "height": 48
+  },
+  "sheet_size": {
+    "width": 96,
+    "height": 192
+  },
+  "columns": [
+    "idle",
+    "walk_a",
+    "walk_b"
+  ],
+  "rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "npcs": {
+    "alden_blacksmith": {
+      "display_name": "Alden",
+      "profession": "Thợ rèn",
+      "path": "res://assets/art/pixel/npcs/alden_blacksmith.png",
+      "tool": "hammer"
+    },
+    "borin_mason": {
+      "display_name": "Borin",
+      "profession": "Thợ xây",
+      "path": "res://assets/art/pixel/npcs/borin_mason.png",
+      "tool": "trowel"
+    },
+    "cedric_archivist": {
+      "display_name": "Cedric",
+      "profession": "Thủ thư",
+      "path": "res://assets/art/pixel/npcs/cedric_archivist.png",
+      "tool": "book"
+    },
+    "damian_scribe": {
+      "display_name": "Damian",
+      "profession": "Thư lại",
+      "path": "res://assets/art/pixel/npcs/damian_scribe.png",
+      "tool": "scroll"
+    },
+    "elric_beggar_prophet": {
+      "display_name": "Elric",
+      "profession": "Hành khất tiên tri",
+      "path": "res://assets/art/pixel/npcs/elric_beggar_prophet.png",
+      "tool": "staff"
+    },
+    "father_oren": {
+      "display_name": "Cha Oren",
+      "profession": "Linh mục",
+      "path": "res://assets/art/pixel/npcs/father_oren.png",
+      "tool": "cross"
+    },
+    "freya_hunter": {
+      "display_name": "Freya",
+      "profession": "Thợ săn",
+      "path": "res://assets/art/pixel/npcs/freya_hunter.png",
+      "tool": "bow"
+    },
+    "gareth_stablemaster": {
+      "display_name": "Gareth",
+      "profession": "Quản ngựa",
+      "path": "res://assets/art/pixel/npcs/gareth_stablemaster.png",
+      "tool": "crop"
+    },
+    "helena_innkeeper": {
+      "display_name": "Helena",
+      "profession": "Chủ quán trọ",
+      "path": "res://assets/art/pixel/npcs/helena_innkeeper.png",
+      "tool": "mug"
+    },
+    "ivy_orphan": {
+      "display_name": "Ivy",
+      "profession": "Trẻ mồ côi",
+      "path": "res://assets/art/pixel/npcs/ivy_orphan.png",
+      "tool": "scarf"
+    },
+    "lysa_baker": {
+      "display_name": "Lysa",
+      "profession": "Thợ bánh",
+      "path": "res://assets/art/pixel/npcs/lysa_baker.png",
+      "tool": "bread"
+    },
+    "maela_weaver": {
+      "display_name": "Maela",
+      "profession": "Thợ dệt",
+      "path": "res://assets/art/pixel/npcs/maela_weaver.png",
+      "tool": "spindle"
+    },
+    "mira_apothecary": {
+      "display_name": "Mira",
+      "profession": "Dược sư",
+      "path": "res://assets/art/pixel/npcs/mira_apothecary.png",
+      "tool": "bottle"
+    },
+    "neris_cartographer": {
+      "display_name": "Neris",
+      "profession": "Người vẽ bản đồ",
+      "path": "res://assets/art/pixel/npcs/neris_cartographer.png",
+      "tool": "map"
+    },
+    "oswin_fisher": {
+      "display_name": "Oswin",
+      "profession": "Ngư dân",
+      "path": "res://assets/art/pixel/npcs/oswin_fisher.png",
+      "tool": "rod"
+    },
+    "rosalind_midwife": {
+      "display_name": "Rosalind",
+      "profession": "Bà đỡ",
+      "path": "res://assets/art/pixel/npcs/rosalind_midwife.png",
+      "tool": "satchel"
+    },
+    "rowan_watch_captain": {
+      "display_name": "Rowan",
+      "profession": "Đội trưởng canh gác",
+      "path": "res://assets/art/pixel/npcs/rowan_watch_captain.png",
+      "tool": "shield"
+    },
+    "silas_gravedigger": {
+      "display_name": "Silas",
+      "profession": "Người đào huyệt",
+      "path": "res://assets/art/pixel/npcs/silas_gravedigger.png",
+      "tool": "shovel"
+    },
+    "tomas_guard": {
+      "display_name": "Tomas",
+      "profession": "Lính gác",
+      "path": "res://assets/art/pixel/npcs/tomas_guard.png",
+      "tool": "spear"
+    },
+    "yvette_jeweler": {
+      "display_name": "Yvette",
+      "profession": "Thợ kim hoàn",
+      "path": "res://assets/art/pixel/npcs/yvette_jeweler.png",
+      "tool": "gem"
+    }
+  }
+}

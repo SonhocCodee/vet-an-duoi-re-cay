@@ -24,7 +24,7 @@ func _run() -> void:
 	_test_smooth_stop(player)
 	_test_stable_facing(player)
 	_test_dodge_direction_and_iframes(player)
-	_test_action_lock(player)
+	_test_attack_movement(player)
 	_test_disabled_controls(player)
 	player.queue_free()
 	await process_frame
@@ -133,15 +133,19 @@ func _test_dodge_direction_and_iframes(player: PlayerController) -> void:
 	player.call(&"_cancel_action")
 
 
-func _test_action_lock(player: PlayerController) -> void:
+func _test_attack_movement(player: PlayerController) -> void:
 	_reset_player_movement(player)
 	player.velocity = Vector2.RIGHT * player.combat_config.move_speed
 	player.call(&"_start_attack", 1)
-	_expect(player.velocity == Vector2.ZERO, "attack lock clears inherited movement immediately")
-	Input.action_press(&"move_right")
-	player.call(&"_update_movement", 1.0 / 60.0)
-	Input.action_release(&"move_right")
-	_expect(player.velocity == Vector2.ZERO, "attack lock cannot drift from held movement input")
+	var attack_move_speed: float = player.combat_config.move_speed * player.combat_config.attack_move_speed_multiplier
+	_expect(is_equal_approx(player.velocity.length(), attack_move_speed), "attack immediately eases inherited movement to the attack speed cap")
+	Input.action_press(&"move_down")
+	for step: int in range(12):
+		player.call(&"_update_movement", 1.0 / 60.0)
+	Input.action_release(&"move_down")
+	_expect(player.velocity.y > 0.0, "held movement can steer the player during an attack")
+	_expect(player.velocity.length() <= attack_move_speed + 0.01, "attack movement stays below its friendly top-down speed cap")
+	_expect(player.get_attack_direction() == Vector2.RIGHT, "movement during a swing does not rotate the committed attack direction")
 	player.call(&"_cancel_action")
 
 

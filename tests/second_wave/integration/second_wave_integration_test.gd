@@ -40,33 +40,45 @@ func _test_player_animation() -> void:
 	await get_tree().process_frame
 	var animated := player.get_node_or_null(^"AnimatedSprite2D") as AnimatedSprite2D
 	_check(animated != null, "player has AnimatedSprite2D")
-	_check(animated != null and animated.visible, "player animated art is visible")
-	for animation_name: StringName in [&"idle_down", &"idle_up", &"idle_side", &"walk_down", &"walk_up", &"walk_side", &"interact", &"hurt"]:
+	_check(animated != null and animated.visible, "player pixel art is visible")
+	for animation_name: StringName in [
+		&"idle_down", &"idle_up", &"idle_left", &"idle_right",
+		&"walk_down", &"walk_up", &"walk_left", &"walk_right",
+		&"attack_down", &"attack_up", &"attack_left", &"attack_right",
+		&"hurt_down", &"hurt_up", &"hurt_left", &"hurt_right",
+	]:
 		_check(animated.sprite_frames.has_animation(animation_name), "player animation %s exists" % animation_name)
-		_check(animated.sprite_frames.get_frame_count(animation_name) >= 1, "player animation %s has frames" % animation_name)
+		_check(animated.sprite_frames.get_frame_count(animation_name) >= 4, "player animation %s has pixel frames" % animation_name)
+	_check((player.get_node(^"Camera2D") as Camera2D).zoom == Vector2(2.0, 2.0), "player camera uses close pixel zoom")
 	player.queue_free()
 	await get_tree().process_frame
 
 
 func _test_city_and_npcs() -> void:
 	var packed := load("res://scenes/maps/map3_ashen_town_hub.tscn") as PackedScene
-	_check(packed != null, "Map 3 city scene loads")
+	_check(packed != null, "Map 3 pixel city scene loads")
 	var map := packed.instantiate()
 	add_child(map)
-	await get_tree().process_frame
-	await get_tree().physics_frame
-	await get_tree().process_frame
-	await get_tree().physics_frame
-	await get_tree().process_frame
-	var city := map.get_node_or_null(^"SecondWaveCity")
-	_check(city != null, "second-wave city is integrated into Map 3")
-	_check(city.get_node(^"Background").texture != null, "city background texture loads")
-	_check(city.get_node(^"Buildings").get_child_count() == 20, "20 medieval buildings instantiate")
-	_check(city.get_node(^"Props").get_child_count() == 20, "20 city props instantiate")
-	_check(city.get_node(^"NavigationTargets").get_child_count() == 47, "47 schedule navigation targets register")
+	for _frame in 8:
+		await get_tree().physics_frame
+		await get_tree().process_frame
+	var city := map.get_node_or_null(^"CityCore")
+	_check(city != null, "pixel city is integrated into Map 3")
+	_check(city != null and city.is_in_group(&"pixel_city_world"), "city exposes pixel world contract")
+	_check(city.get_node(^"Ground/PixelCanvas") != null, "pixel tile canvas exists")
+	var depth_root := city.get_node(^"YSortWorld")
+	var building_count := 0
+	var npcs: Array[Node] = []
+	for child: Node in depth_root.get_children():
+		if String(child.name).begins_with("Building_"):
+			building_count += 1
+		if child.is_in_group(&"city_npc"):
+			npcs.append(child)
+	_check(building_count == 12, "12 top-down medieval buildings instantiate")
+	_check(city.get_node(^"NpcSpawnPoints").get_child_count() == 20, "20 pixel NPC spawn points exist")
+	_check(city.get_node(^"PatrolPoints").get_child_count() >= 30, "pixel patrol network exists")
 	_check(city.get_node(^"NavigationRegion2D").navigation_polygon != null, "city navigation polygon exists")
-	var npcs := city.get_node(^"NPCs").get_children()
-	_check(npcs.size() == 20, "20 NPCs instantiate")
+	_check(npcs.size() == 20, "20 NPCs instantiate in Y-sort world")
 	var unique_ids: Dictionary = {}
 	for npc: Node in npcs:
 		var npc_id := StringName(npc.get_meta(&"npc_id", &""))
@@ -75,14 +87,12 @@ func _test_city_and_npcs() -> void:
 		_check(npc.get("data") != null, "NPC %s has NpcData" % npc_id)
 		_check(StringName(npc.get("current_target_id")) != &"", "NPC %s resolves schedule target" % npc_id)
 		var animated := npc.get_node_or_null(^"AnimatedSprite2D") as AnimatedSprite2D
-		_check(animated != null and animated.visible, "NPC %s animated art is visible" % npc_id)
-		_check(animated != null and animated.sprite_frames.get_frame_count(&"walk_down") == 2, "NPC %s has two-frame walk" % npc_id)
+		_check(animated != null and animated.visible, "NPC %s pixel art is visible" % npc_id)
+		_check(animated != null and animated.sprite_frames.get_frame_count(&"walk_down") == 4, "NPC %s has four-frame pixel walk" % npc_id)
 		_check(npc.get_node_or_null(^"BodyCollision") != null, "NPC %s has wall collision" % npc_id)
 		var nameplate := npc.get_node_or_null(^"Nameplate") as Label
-		_check(nameplate != null and not nameplate.visible, "NPC %s nameplate stays hidden without a nearby player" % npc_id)
+		_check(nameplate != null and not nameplate.visible, "NPC %s nameplate stays hidden without nearby player" % npc_id)
 	_check(unique_ids.size() == 20, "all NPC IDs are distinct")
-	for target: Node in city.get_node(^"NavigationTargets").get_children():
-		_check(CityScheduleService.get_target_position(StringName(target.name)) is Vector2, "target %s registered in schedule service" % target.name)
 	_check(map.get_node(^"Stations/Campfire") != null, "legacy campfire preserved")
 	_check(map.get_node(^"Stations/Forge") != null, "legacy forge preserved")
 	_check(map.get_node(^"Stations/Shop") != null, "legacy shop preserved")
@@ -140,7 +150,7 @@ func _test_main_scene_contract() -> void:
 	var packed := load("res://scenes/bootstrap/main.tscn") as PackedScene
 	_check(packed != null, "main scene loads")
 	var main := packed.instantiate()
-	_check(main.get_node_or_null(^"Interface/HudSocket/SecondWaveGameplaySuite") != null, "main contains second-wave UI")
+	_check(main.get_node_or_null(^"Interface/HudSocket/PixelGameplayUI") != null, "main contains pixel gameplay UI")
 	main.free()
 
 

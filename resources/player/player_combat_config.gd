@@ -10,9 +10,20 @@ extends Resource
 @export var stop_speed_threshold: float = 1.0
 
 @export_group("Basic Attack")
-@export var attack_duration: float = 0.28
-@export var attack_active_start: float = 0.07
-@export var attack_active_end: float = 0.16
+@export var attack_duration: float = 0.26
+@export var attack_active_start: float = 0.055
+@export var attack_active_end: float = 0.145
+@export var attack_cooldown: float = 0.10
+@export_range(0.0, 1.0, 0.05) var attack_move_speed_multiplier: float = 0.60
+@export var attack_move_acceleration: float = 1250.0
+@export_range(30.0, 160.0, 1.0) var attack_arc_degrees: float = 90.0
+@export var attack_reach: float = 45.0
+@export var attack_hitbox_offset: float = 25.0
+@export var attack_hitbox_depth: float = 36.0
+@export var attack_hitbox_width: float = 40.0
+@export var attack_knockback_force: float = 65.0
+@export var attack_knockback_distance: float = 7.0
+@export_range(0.0, 0.1, 0.005) var attack_hit_stop: float = 0.035
 @export var combo_reset_time: float = 0.48
 @export var combo_damage_multipliers: PackedFloat32Array = PackedFloat32Array([1.0, 1.15, 1.5])
 

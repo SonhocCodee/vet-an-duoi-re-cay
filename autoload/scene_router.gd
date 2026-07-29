@@ -18,7 +18,7 @@ const MAP_PATHS: Dictionary = {
 const MAP_SIZES: Dictionary = {
 	GameIds.MAP_1: Vector2(2200.0, 900.0),
 	GameIds.MAP_2: Vector2(2200.0, 900.0),
-	GameIds.MAP_3: Vector2(2200.0, 900.0),
+	GameIds.MAP_3: Vector2(1920.0, 1280.0),
 	GameIds.MAP_CHAPTER_2: Vector2(2200.0, 900.0),
 	GameIds.MAP_CHAPTER_3: Vector2(2200.0, 900.0),
 	GameIds.MAP_CHAPTER_4: Vector2(2200.0, 900.0),
@@ -35,6 +35,7 @@ var _map_container: Node
 var _player: Node2D
 var _fade_rect: ColorRect
 var _active_map: Node
+var _player_home: Node
 var _transitioning: bool = false
 
 func _ready() -> void:
@@ -43,6 +44,7 @@ func _ready() -> void:
 func configure(map_container: Node, player: Node2D, fade_rect: ColorRect) -> void:
 	_map_container = map_container
 	_player = player
+	_player_home = player.get_parent()
 	_fade_rect = fade_rect
 	_fade_rect.color.a = 1.0
 
@@ -56,6 +58,7 @@ func _perform_change_map(map_id: StringName, spawn_id: StringName) -> void:
 	_set_player_control(false)
 	await _fade_to(1.0)
 	if _active_map != null:
+		_restore_player_parent()
 		_active_map.queue_free()
 		await get_tree().process_frame
 	var map_scene: PackedScene = _load_map_scene(map_id)
@@ -69,6 +72,7 @@ func _perform_change_map(map_id: StringName, spawn_id: StringName) -> void:
 	_map_container.add_child(_active_map)
 	await get_tree().process_frame
 	_place_player(spawn_id)
+	_attach_player_to_depth_layer()
 	_configure_player_camera(map_id)
 	GameState.current_map = map_id
 	GameState.current_spawn = spawn_id
@@ -100,6 +104,22 @@ func _place_player(spawn_id: StringName) -> void:
 		if marker == null:
 			marker = spawn_points.get_node_or_null(NodePath(String(GameIds.SPAWN_DEFAULT))) as Marker2D
 	_player.global_position = marker.global_position if marker != null else Vector2.ZERO
+
+func _restore_player_parent() -> void:
+	if _player == null or _player_home == null or _player.get_parent() == _player_home:
+		return
+	_player.reparent(_player_home, true)
+
+
+func _attach_player_to_depth_layer() -> void:
+	if _active_map == null or _player == null:
+		return
+	var depth_layer := _active_map.get_node_or_null(^"CityCore/YSortWorld")
+	if depth_layer != null:
+		_player.reparent(depth_layer, true)
+	elif _player_home != null and _player.get_parent() != _player_home:
+		_player.reparent(_player_home, true)
+
 
 func _configure_player_camera(map_id: StringName) -> void:
 	var camera := _player.get_node_or_null("Camera2D") as Camera2D

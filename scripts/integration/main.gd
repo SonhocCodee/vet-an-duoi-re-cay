@@ -3,6 +3,7 @@ extends Node
 const PLAYER_SCENE_PATH: String = "res://scenes/actors/player/player.tscn"
 const HUD_SCENE_PATH: String = "res://scenes/ui/game_hud.tscn"
 const UI_SUITE_PATH: String = "res://scenes/ui/game_hud.tscn"
+const PIXEL_WORLD_PRESENTER: Script = preload("res://scripts/integration/pixel_world_presenter.gd")
 
 @onready var map_container: Node2D = $World/MapContainer
 @onready var world: Node2D = $World
@@ -37,7 +38,39 @@ func _ready() -> void:
 	SceneRouter.configure(map_container, player, fade_rect)
 	GameEvents.player_registered.emit(player)
 	player.died.connect(_on_player_died)
+	GameEvents.map_changed.connect(_on_map_changed)
 	SceneRouter.change_map(GameState.current_map, GameState.current_spawn)
+
+func _on_map_changed(map_id: StringName, _spawn_id: StringName) -> void:
+	var active_map := SceneRouter.get_active_map() as Node2D
+	if active_map == null:
+		return
+	active_map.y_sort_enabled = true
+	_hide_legacy_backdrops(active_map)
+	if active_map.get_node_or_null(^"CityCore") != null:
+		return
+	var existing := active_map.get_node_or_null(^"PixelWorldPresenter")
+	if existing != null:
+		existing.queue_free()
+	var presenter := PIXEL_WORLD_PRESENTER.new() as PixelWorldPresenter
+	presenter.name = "PixelWorldPresenter"
+	active_map.add_child(presenter)
+	active_map.move_child(presenter, 0)
+	var map_size: Vector2 = SceneRouter.MAP_SIZES.get(map_id, Vector2(2200.0, 900.0))
+	presenter.configure(map_id, map_size)
+
+
+func _hide_legacy_backdrops(active_map: Node2D) -> void:
+	var legacy_paths: PackedStringArray = [
+		"World", "WorldArt", "BrokenSword", "ForestRoadBackground", "FallbackWorldArt", "WorldVisual",
+		"Environment", "Environment/WorldVisual", "SecondWaveCity/Background",
+		"SecondWaveCity/Buildings", "SecondWaveCity/Props",
+	]
+	for path_value: String in legacy_paths:
+		var canvas_item := active_map.get_node_or_null(NodePath(path_value)) as CanvasItem
+		if canvas_item != null:
+			canvas_item.visible = false
+
 
 func _instantiate_player() -> PlayerController:
 	if not ResourceLoader.exists(PLAYER_SCENE_PATH):

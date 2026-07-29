@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://scripts/visuals/second_wave/animated_actor_sprite.gd" id="1_animation"]
+[ext_resource type="Script" path="res://scripts/integration/pixel_npc_animation.gd" id="1_animation"]
 [ext_resource type="Script" path="res://scripts/visuals/second_wave/npc_interactable.gd" id="2_interactable"]
 
 [sub_resource type="CapsuleShape2D" id="Capsule_npc"]
@@ -27,6 +27,7 @@ neighbor_distance = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 script = ExtResource("1_animation")
+npc_id = &"alden_blacksmith"
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 32
@@ -40,9 +41,9 @@ shape = SubResource("Circle_interaction")
 
 [node name="Nameplate" type="Label" parent="."]
 offset_left = -70.0
-offset_top = -72.0
+offset_top = -60.0
 offset_right = 70.0
-offset_bottom = -46.0
+offset_bottom = -40.0
 theme_override_colors/font_color = Color(0.92, 0.84, 0.68, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 1

@@ -66,6 +66,9 @@ var _facing_direction: Vector2 = Vector2.DOWN
 var _weapon_unlocked: bool = false
 var _action_state: ActionState = ActionState.FREE
 var _action_elapsed: float = 0.0
+var _attack_direction: Vector2 = Vector2.DOWN
+var _attack_cooldown_remaining: float = 0.0
+var _hit_stop_remaining: float = 0.0
 var _combo_index: int = 0
 var _combo_reset_remaining: float = 0.0
 var _attack_buffered: bool = false
@@ -82,6 +85,7 @@ func _ready() -> void:
 	melee_hitbox.collision_mask = target_collision_mask
 	melee_hitbox.body_entered.connect(_on_melee_body_entered)
 	melee_hitbox.area_entered.connect(_on_melee_area_entered)
+	_configure_melee_hitbox()
 	_close_melee_hitbox()
 	_apply_class_stats(true)
 	health_changed.emit(_health, _maximum_health)
@@ -91,6 +95,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if _action_state == ActionState.DEAD:
+		velocity = Vector2.ZERO
+		return
+	if _hit_stop_remaining > 0.0:
+		_hit_stop_remaining = maxf(_hit_stop_remaining - delta, 0.0)
 		velocity = Vector2.ZERO
 		return
 	_update_timers(delta)
@@ -188,6 +196,26 @@ func get_stamina() -> float:
 	return _stamina
 
 
+func is_attacking() -> bool:
+	return _action_state == ActionState.ATTACKING
+
+
+func can_attack() -> bool:
+	return _weapon_unlocked and _action_state == ActionState.FREE and is_zero_approx(_attack_cooldown_remaining)
+
+
+func get_attack_direction() -> Vector2:
+	return _attack_direction
+
+
+func get_attack_cooldown_remaining() -> float:
+	return _attack_cooldown_remaining
+
+
+func get_hit_stop_remaining() -> float:
+	return _hit_stop_remaining
+
+
 func set_player_class(value: PlayerClass) -> void:
 	player_class = value
 	_apply_class_stats(false)
@@ -212,6 +240,8 @@ func _read_action_input() -> void:
 
 
 func _update_timers(delta: float) -> void:
+	if _attack_cooldown_remaining > 0.0:
+		_attack_cooldown_remaining = maxf(_attack_cooldown_remaining - delta, 0.0)
 	if _combo_reset_remaining > 0.0 and _action_state == ActionState.FREE:
 		_combo_reset_remaining = maxf(_combo_reset_remaining - delta, 0.0)
 		if is_zero_approx(_combo_reset_remaining):
@@ -250,14 +280,19 @@ func _update_movement(delta: float) -> void:
 	if _action_state == ActionState.DODGING:
 		velocity = _dodge_direction * combat_config.dodge_speed
 		return
-	if _action_state == ActionState.ATTACKING or _action_state == ActionState.CASTING:
+	if _action_state == ActionState.CASTING:
 		velocity = Vector2.ZERO
 		return
 	var input_direction: Vector2 = _get_movement_input()
+	var current_move_speed: float = combat_config.move_speed
+	var current_acceleration: float = combat_config.acceleration
+	if _action_state == ActionState.ATTACKING:
+		current_move_speed *= combat_config.attack_move_speed_multiplier
+		current_acceleration = combat_config.attack_move_acceleration
 	if not input_direction.is_zero_approx():
-		if input_direction.length() >= combat_config.facing_input_threshold:
+		if _action_state != ActionState.ATTACKING and input_direction.length() >= combat_config.facing_input_threshold:
 			_facing_direction = input_direction.normalized()
-		velocity = velocity.move_toward(input_direction * combat_config.move_speed, combat_config.acceleration * delta)
+		velocity = velocity.move_toward(input_direction * current_move_speed, current_acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, combat_config.deceleration * delta)
 		if velocity.length() <= combat_config.stop_speed_threshold:
@@ -266,22 +301,18 @@ func _update_movement(delta: float) -> void:
 
 
 func _request_attack() -> void:
-	if not _weapon_unlocked:
+	if not can_attack():
 		return
-	if _action_state == ActionState.ATTACKING:
-		if _combo_index < 3:
-			_attack_buffered = true
-		return
-	if _action_state != ActionState.FREE:
-		return
-	var next_combo: int = _combo_index + 1 if _combo_reset_remaining > 0.0 else 1
-	_start_attack(next_combo)
+	_start_attack(1)
 
 
 func _start_attack(combo_hit: int) -> void:
-	velocity = Vector2.ZERO
+	var attack_move_speed: float = combat_config.move_speed * combat_config.attack_move_speed_multiplier
+	velocity = velocity.limit_length(attack_move_speed)
 	_action_state = ActionState.ATTACKING
 	_action_elapsed = 0.0
+	_attack_direction = _cardinalize_direction(_facing_direction)
+	_facing_direction = _attack_direction
 	_combo_index = clampi(combo_hit, 1, 3)
 	_combo_reset_remaining = 0.0
 	_attack_buffered = false
@@ -299,12 +330,10 @@ func _update_attack() -> void:
 	if _action_elapsed < combat_config.attack_duration:
 		return
 	_close_melee_hitbox()
-	if _attack_buffered and _combo_index < 3:
-		_start_attack(_combo_index + 1)
-		return
-	_combo_reset_remaining = combat_config.combo_reset_time if _combo_index < 3 else 0.0
-	if _combo_index >= 3:
-		_combo_index = 0
+	_attack_buffered = false
+	_combo_index = 0
+	_combo_reset_remaining = 0.0
+	_attack_cooldown_remaining = combat_config.attack_cooldown
 	_finish_action()
 
 
@@ -428,16 +457,53 @@ func _apply_melee_damage(target: Node) -> void:
 	var target_id: int = target.get_instance_id()
 	if _melee_hit_targets.has(target_id) or not target.has_method("receive_damage"):
 		return
+	if not _is_target_inside_attack_arc(target):
+		return
 	_melee_hit_targets[target_id] = true
-	var multiplier_index: int = clampi(_combo_index - 1, 0, combat_config.combo_damage_multipliers.size() - 1)
+	var damage_multiplier: float = 1.0
+	if not combat_config.combo_damage_multipliers.is_empty():
+		var multiplier_index: int = clampi(_combo_index - 1, 0, combat_config.combo_damage_multipliers.size() - 1)
+		damage_multiplier = combat_config.combo_damage_multipliers[multiplier_index]
+	var action_id: StringName = ACTION_COMBO_FINISHER if _combo_index == 3 else ACTION_ATTACK
+	var knockback_force: float = combat_config.attack_knockback_force * (1.35 if _combo_index == 3 else 1.0)
 	var packet := DamagePacket.new(
 		self,
-		_get_attack_stat() * combat_config.combo_damage_multipliers[multiplier_index],
+		_get_attack_stat() * damage_multiplier,
 		DAMAGE_PHYSICAL,
-		_facing_direction,
-		140.0 if _combo_index == 3 else 70.0
+		_attack_direction,
+		knockback_force,
+		action_id
 	)
-	target.call("receive_damage", packet)
+	var damage_result: Variant = target.call("receive_damage", packet)
+	if _did_melee_hit_land(damage_result):
+		_apply_target_knockback(target, _attack_direction)
+		_hit_stop_remaining = maxf(_hit_stop_remaining, combat_config.attack_hit_stop)
+
+
+func _is_target_inside_attack_arc(target: Node) -> bool:
+	if not target is Node2D:
+		return true
+	var offset: Vector2 = (target as Node2D).global_position - global_position
+	if offset.length_squared() > combat_config.attack_reach * combat_config.attack_reach:
+		return false
+	if offset.is_zero_approx():
+		return true
+	var minimum_dot: float = cos(deg_to_rad(combat_config.attack_arc_degrees * 0.5))
+	return _attack_direction.dot(offset.normalized()) >= minimum_dot
+
+
+func _did_melee_hit_land(damage_result: Variant) -> bool:
+	if damage_result is DamageResult:
+		var result := damage_result as DamageResult
+		return not result.was_ignored and result.applied_damage > 0.0
+	return true
+
+
+func _apply_target_knockback(target: Node, direction: Vector2) -> void:
+	if not target is CharacterBody2D or not target.is_inside_tree():
+		return
+	var target_body := target as CharacterBody2D
+	target_body.move_and_collide(direction * combat_config.attack_knockback_distance)
 
 
 func _find_damage_receiver(node: Node) -> Node:
@@ -464,6 +530,8 @@ func _finish_action() -> void:
 func _cancel_action() -> void:
 	_close_melee_hitbox()
 	_attack_buffered = false
+	_attack_cooldown_remaining = 0.0
+	_hit_stop_remaining = 0.0
 	_combo_index = 0
 	_combo_reset_remaining = 0.0
 	if _action_state != ActionState.DEAD:
@@ -541,9 +609,26 @@ func _apply_analog_deadzone(input_vector: Vector2, deadzone: float) -> Vector2:
 	return input_vector.normalized() * remapped_length
 
 
+func _configure_melee_hitbox() -> void:
+	if melee_shape == null or not melee_shape.shape is RectangleShape2D:
+		return
+	var rectangle := melee_shape.shape.duplicate() as RectangleShape2D
+	rectangle.size = Vector2(combat_config.attack_hitbox_depth, combat_config.attack_hitbox_width)
+	melee_shape.shape = rectangle
+
+
+func _cardinalize_direction(direction: Vector2) -> Vector2:
+	if direction.is_zero_approx():
+		return Vector2.DOWN
+	if absf(direction.x) >= absf(direction.y):
+		return Vector2.RIGHT if direction.x >= 0.0 else Vector2.LEFT
+	return Vector2.DOWN if direction.y >= 0.0 else Vector2.UP
+
+
 func _update_facing_nodes() -> void:
 	if melee_hitbox == null:
 		return
-	melee_hitbox.position = _facing_direction * 25.0
-	melee_hitbox.rotation = _facing_direction.angle()
-	skill_origin.position = _facing_direction * 24.0
+	var melee_direction: Vector2 = _attack_direction if _action_state == ActionState.ATTACKING else _cardinalize_direction(_facing_direction)
+	melee_hitbox.position = melee_direction * combat_config.attack_hitbox_offset
+	melee_hitbox.rotation = melee_direction.angle()
+	skill_origin.position = _facing_direction.normalized() * 24.0

@@ -1,0 +1,39 @@
+{
+  "name": "Ashbound Wanderer",
+  "frame_size": [
+    48,
+    64
+  ],
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "row_order": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "colors": {
+    "outline": "#171522",
+    "shadow": "#29212C",
+    "hair": "#30283A",
+    "hairHi": "#56455F",
+    "skin": "#D39468",
+    "skinHi": "#F0BE8B",
+    "eye": "#E7B857",
+    "cloak": "#713247",
+    "cloakHi": "#98465D",
+    "tunic": "#355464",
+    "tunicHi": "#4D7583",
+    "leather": "#68452E",
+    "leatherHi": "#9A6842",
+    "boot": "#30231F",
+    "steel": "#A9B6B9",
+    "steelHi": "#E1E8E5",
+    "slash": "#E7D7B2",
+    "hit": "#D95757"
+  }
+}

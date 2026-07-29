@@ -1,73 +1,51 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/hub/map3_ashen_town_hub.gd" id="1_map"]
-[ext_resource type="Texture2D" path="res://assets/art/opening/map3_ashen_town.svg" id="2_fallback"]
-[ext_resource type="PackedScene" path="res://scenes/hub/campfire.tscn" id="3_campfire"]
-[ext_resource type="PackedScene" path="res://scenes/hub/forge.tscn" id="4_forge"]
-[ext_resource type="PackedScene" path="res://scenes/hub/shop.tscn" id="5_shop"]
-[ext_resource type="PackedScene" path="res://scenes/hub/quest_board.tscn" id="6_quest"]
-[ext_resource type="PackedScene" path="res://scenes/city/ashen_city_second_wave.tscn" id="7_city"]
+[ext_resource type="PackedScene" path="res://scenes/city/pixel/ashenvale_city_core.tscn" id="2_city"]
+[ext_resource type="Script" path="res://scripts/integration/pixel_city_npc_integrator.gd" id="3_npcs"]
+[ext_resource type="PackedScene" path="res://scenes/hub/campfire.tscn" id="4_campfire"]
+[ext_resource type="PackedScene" path="res://scenes/hub/forge.tscn" id="5_forge"]
+[ext_resource type="PackedScene" path="res://scenes/hub/shop.tscn" id="6_shop"]
+[ext_resource type="PackedScene" path="res://scenes/hub/quest_board.tscn" id="7_quest"]
+[ext_resource type="PackedScene" path="res://scenes/city/loot_pickup.tscn" id="8_loot"]
 
-[sub_resource type="RectangleShape2D" id="Shape_horizontal"]
-size = Vector2(2200, 32)
-
-[sub_resource type="RectangleShape2D" id="Shape_vertical"]
-size = Vector2(32, 900)
-
-[node name="Map3AshenTownHub" type="Node2D"]
+[node name="Map3AshenTownHub" type="Node2D" groups=["pixel_world"]]
 script = ExtResource("1_map")
 
-[node name="FallbackWorldArt" type="Sprite2D" parent="."]
-z_index = -30
-texture = ExtResource("2_fallback")
-position = Vector2(1100, 450)
+[node name="CityCore" parent="." instance=ExtResource("2_city")]
 
-[node name="SecondWaveCity" parent="." instance=ExtResource("7_city")]
-
-[node name="WorldBounds" type="StaticBody2D" parent="."]
-collision_layer = 1
-collision_mask = 0
-
-[node name="North" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(1100, 8)
-shape = SubResource("Shape_horizontal")
-
-[node name="South" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(1100, 892)
-shape = SubResource("Shape_horizontal")
-
-[node name="West" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(8, 450)
-shape = SubResource("Shape_vertical")
-
-[node name="East" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(2192, 450)
-shape = SubResource("Shape_vertical")
+[node name="NpcIntegrator" type="Node" parent="."]
+script = ExtResource("3_npcs")
 
 [node name="Stations" type="Node2D" parent="."]
 
-[node name="Campfire" parent="Stations" instance=ExtResource("3_campfire")]
-position = Vector2(1120, 500)
+[node name="Campfire" parent="Stations" instance=ExtResource("4_campfire")]
+position = Vector2(960, 760)
 
-[node name="Forge" parent="Stations" instance=ExtResource("4_forge")]
-position = Vector2(335, 345)
+[node name="Forge" parent="Stations" instance=ExtResource("5_forge")]
+position = Vector2(200, 420)
 
-[node name="Shop" parent="Stations" instance=ExtResource("5_shop")]
-position = Vector2(750, 350)
+[node name="Shop" parent="Stations" instance=ExtResource("6_shop")]
+position = Vector2(480, 420)
 
-[node name="QuestBoard" parent="Stations" instance=ExtResource("6_quest")]
-position = Vector2(910, 585)
+[node name="QuestBoard" parent="Stations" instance=ExtResource("7_quest")]
+position = Vector2(1088, 760)
+
+[node name="StarterLoot" parent="." instance=ExtResource("8_loot")]
+position = Vector2(900, 840)
+item_id = &"small_health_potion"
+quantity = 2
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="default" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
-position = Vector2(1100, 690)
+position = Vector2(960, 1088)
 metadata/spawn_id = &"default"
 
 [node name="from_map2" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
-position = Vector2(110, 450)
+position = Vector2(96, 640)
 metadata/spawn_id = &"from_map2"
 
 [node name="from_east_gate" type="Marker2D" parent="SpawnPoints" groups=["spawn_point"]]
-position = Vector2(2080, 450)
+position = Vector2(1824, 640)
 metadata/spawn_id = &"from_east_gate"

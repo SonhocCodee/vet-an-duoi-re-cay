@@ -1,0 +1,796 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_gameplay_ui.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_hud_controller.gd" id="2_hud"]
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_inventory_panel.gd" id="3_inventory"]
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_quest_panel.gd" id="4_quest"]
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_map_panel.gd" id="5_map"]
+[ext_resource type="Script" path="res://scripts/ui/pixel/pixel_map_canvas.gd" id="6_canvas"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_heart.svg" id="7_heart"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_stamina.svg" id="8_stamina"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_sword.svg" id="9_sword"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_potion.svg" id="10_potion"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_coin.svg" id="11_coin"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_clock.svg" id="12_clock"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_bag.svg" id="13_bag"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_scroll.svg" id="14_scroll"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_map.svg" id="15_map_icon"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_armor.svg" id="16_armor"]
+[ext_resource type="Texture2D" path="res://assets/art/pixel/ui/icon_material.svg" id="17_material"]
+
+[sub_resource type="StyleBoxFlat" id="StyleWood"]
+bg_color = Color(0.788, 0.604, 0.384, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.439, 0.271, 0.184, 1)
+shadow_color = Color(0.18, 0.1, 0.07, 0.35)
+shadow_size = 4
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StylePaper"]
+bg_color = Color(0.918, 0.847, 0.667, 0.99)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.439, 0.271, 0.184, 1)
+shadow_color = Color(0.18, 0.1, 0.07, 0.42)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleInset"]
+bg_color = Color(0.961, 0.91, 0.753, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.608, 0.416, 0.271, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBarBackground"]
+bg_color = Color(0.369, 0.263, 0.208, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.165, 0.106, 0.098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleHealthFill"]
+bg_color = Color(0.851, 0.341, 0.388, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleStaminaFill"]
+bg_color = Color(0.404, 0.78, 0.482, 1)
+
+[node name="PixelGameplayUI" type="Control" groups=["pixel_ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.227, 0.141, 0.125, 1)
+theme_override_colors/font_outline_color = Color(0.961, 0.91, 0.753, 0.75)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 13
+script = ExtResource("1_main")
+
+[node name="PixelHUD" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_hud")
+
+[node name="VitalPanel" type="PanelContainer" parent="PixelHUD"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 344.0
+offset_bottom = 84.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleWood")
+
+[node name="Margin" type="MarginContainer" parent="PixelHUD/VitalPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="Layout" type="HBoxContainer" parent="PixelHUD/VitalPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Vitals" type="VBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout"]
+custom_minimum_size = Vector2(202, 0)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Header" type="HBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "CẤP 1"
+
+[node name="CoinIcon" type="TextureRect" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/Header"]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+texture = ExtResource("11_coin")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="GoldLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "0"
+
+[node name="HealthRow" type="HBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/HealthRow"]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+texture = ExtResource("7_heart")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="HealthBar" type="ProgressBar" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/HealthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(118, 11)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBarBackground")
+theme_override_styles/fill = SubResource("StyleHealthFill")
+
+[node name="HealthLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/HealthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "100 / 100"
+
+[node name="StaminaRow" type="HBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/StaminaRow"]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+texture = ExtResource("8_stamina")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="StaminaBar" type="ProgressBar" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/StaminaRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(118, 8)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBarBackground")
+theme_override_styles/fill = SubResource("StyleStaminaFill")
+
+[node name="StaminaLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/Vitals/StaminaRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "100 / 100"
+
+[node name="WeaponSlot" type="PanelContainer" parent="PixelHUD/VitalPanel/Margin/Layout"]
+custom_minimum_size = Vector2(47, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Box" type="VBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout/WeaponSlot"]
+layout_mode = 2
+alignment = 1
+
+[node name="WeaponIcon" type="TextureRect" parent="PixelHUD/VitalPanel/Margin/Layout/WeaponSlot/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("9_sword")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="WeaponLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/WeaponSlot/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "VŨ KHÍ"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ItemSlot" type="PanelContainer" parent="PixelHUD/VitalPanel/Margin/Layout"]
+custom_minimum_size = Vector2(47, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Box" type="VBoxContainer" parent="PixelHUD/VitalPanel/Margin/Layout/ItemSlot"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="PixelHUD/VitalPanel/Margin/Layout/ItemSlot/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("10_potion")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="ItemLabel" type="Label" parent="PixelHUD/VitalPanel/Margin/Layout/ItemSlot/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "--"
+horizontal_alignment = 1
+
+[node name="ClockPanel" type="PanelContainer" parent="PixelHUD"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -228.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 66.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleWood")
+
+[node name="Margin" type="MarginContainer" parent="PixelHUD/ClockPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="Layout" type="HBoxContainer" parent="PixelHUD/ClockPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="ClockIcon" type="TextureRect" parent="PixelHUD/ClockPanel/Margin/Layout"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("12_clock")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="Text" type="VBoxContainer" parent="PixelHUD/ClockPanel/Margin/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ClockLabel" type="Label" parent="PixelHUD/ClockPanel/Margin/Layout/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "08:00"
+horizontal_alignment = 2
+
+[node name="AreaLabel" type="Label" parent="PixelHUD/ClockPanel/Margin/Layout/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "RỪNG THỨC TỈNH"
+horizontal_alignment = 2
+text_overrun_behavior = 3
+
+[node name="Hotbar" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -58.0
+offset_right = 184.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleWood")
+
+[node name="Margin" type="MarginContainer" parent="Hotbar"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 3
+
+[node name="HotbarSlots" type="HBoxContainer" parent="Hotbar/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="MenuShortcuts" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -46.0
+offset_right = 263.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="InventoryButton" type="Button" parent="MenuShortcuts"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(76, 34)
+layout_mode = 2
+icon = ExtResource("13_bag")
+text = "I  TÚI"
+theme_override_constants/icon_max_width = 16
+
+[node name="QuestButton" type="Button" parent="MenuShortcuts"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 34)
+layout_mode = 2
+icon = ExtResource("14_scroll")
+text = "J  VIỆC"
+theme_override_constants/icon_max_width = 16
+
+[node name="MapButton" type="Button" parent="MenuShortcuts"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(82, 34)
+layout_mode = 2
+icon = ExtResource("15_map_icon")
+text = "M  MAP"
+theme_override_constants/icon_max_width = 16
+
+[node name="PanelBackdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0.12, 0.08, 0.07, 0.3)
+
+[node name="InventoryPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -185.0
+offset_right = 310.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StylePaper")
+script = ExtResource("3_inventory")
+
+[node name="Margin" type="MarginContainer" parent="InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="Layout" type="VBoxContainer" parent="InventoryPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="InventoryPanel/Margin/Layout"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="InventoryPanel/Margin/Layout/Header"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("13_bag")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="Title" type="Label" parent="InventoryPanel/Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "  TÚI ĐỒ"
+
+[node name="InventoryClose" type="Button" parent="InventoryPanel/Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 28)
+layout_mode = 2
+text = "X"
+
+[node name="Body" type="HBoxContainer" parent="InventoryPanel/Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Items" type="PanelContainer" parent="InventoryPanel/Margin/Layout/Body"]
+custom_minimum_size = Vector2(398, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="InventoryPanel/Margin/Layout/Body/Items"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="InventoryPanel/Margin/Layout/Body/Items/Margin"]
+layout_mode = 2
+
+[node name="Section" type="Label" parent="InventoryPanel/Margin/Layout/Body/Items/Margin/Stack"]
+layout_mode = 2
+text = "VẬT PHẨM"
+
+[node name="Scroll" type="ScrollContainer" parent="InventoryPanel/Margin/Layout/Body/Items/Margin/Stack"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ItemGrid" type="GridContainer" parent="InventoryPanel/Margin/Layout/Body/Items/Margin/Stack/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+
+[node name="InventoryEmpty" type="Label" parent="InventoryPanel/Margin/Layout/Body/Items/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Túi đang trống."
+horizontal_alignment = 1
+
+[node name="Equipment" type="PanelContainer" parent="InventoryPanel/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="InventoryPanel/Margin/Layout/Body/Equipment"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Section" type="Label" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack"]
+layout_mode = 2
+text = "TRANG BỊ"
+
+[node name="Weapon" type="HBoxContainer" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack"]
+layout_mode = 2
+
+[node name="EquipmentWeaponIcon" type="TextureRect" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Weapon"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("9_sword")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="EquipmentWeaponLabel" type="Label" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Weapon"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vũ khí: Trống"
+autowrap_mode = 2
+
+[node name="Armor" type="HBoxContainer" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack"]
+layout_mode = 2
+
+[node name="EquipmentArmorIcon" type="TextureRect" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Armor"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("16_armor")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="EquipmentArmorLabel" type="Label" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Armor"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Giáp: Trống"
+autowrap_mode = 2
+
+[node name="Accessory" type="HBoxContainer" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack"]
+layout_mode = 2
+
+[node name="EquipmentAccessoryIcon" type="TextureRect" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Accessory"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("17_material")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="EquipmentAccessoryLabel" type="Label" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack/Accessory"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Phụ kiện: Trống"
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="InventoryPanel/Margin/Layout/Body/Equipment/Margin/Stack"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.435, 0.341, 0.275, 1)
+theme_override_font_sizes/font_size = 11
+text = "Chọn một ô để xem tên vật phẩm."
+autowrap_mode = 2
+vertical_alignment = 2
+
+[node name="QuestPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -185.0
+offset_right = 310.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StylePaper")
+script = ExtResource("4_quest")
+
+[node name="Margin" type="MarginContainer" parent="QuestPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="Layout" type="VBoxContainer" parent="QuestPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="QuestPanel/Margin/Layout"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="QuestPanel/Margin/Layout/Header"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("14_scroll")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="Title" type="Label" parent="QuestPanel/Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "  NHẬT KÝ VIỆC"
+
+[node name="QuestClose" type="Button" parent="QuestPanel/Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 28)
+layout_mode = 2
+text = "X"
+
+[node name="Body" type="HBoxContainer" parent="QuestPanel/Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ListFrame" type="PanelContainer" parent="QuestPanel/Margin/Layout/Body"]
+custom_minimum_size = Vector2(246, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="QuestPanel/Margin/Layout/Body/ListFrame"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="Stack" type="VBoxContainer" parent="QuestPanel/Margin/Layout/Body/ListFrame/Margin"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="QuestPanel/Margin/Layout/Body/ListFrame/Margin/Stack"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="QuestList" type="VBoxContainer" parent="QuestPanel/Margin/Layout/Body/ListFrame/Margin/Stack/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestEmpty" type="Label" parent="QuestPanel/Margin/Layout/Body/ListFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Chưa có việc nào."
+horizontal_alignment = 1
+
+[node name="DetailFrame" type="PanelContainer" parent="QuestPanel/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="QuestPanel/Margin/Layout/Body/DetailFrame"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stack" type="VBoxContainer" parent="QuestPanel/Margin/Layout/Body/DetailFrame/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="QuestDetailTitle" type="Label" parent="QuestPanel/Margin/Layout/Body/DetailFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "CHƯA CÓ NHIỆM VỤ"
+autowrap_mode = 2
+
+[node name="QuestDetailDescription" type="Label" parent="QuestPanel/Margin/Layout/Body/DetailFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Khám phá để nhận việc mới."
+autowrap_mode = 2
+
+[node name="QuestObjective" type="Label" parent="QuestPanel/Margin/Layout/Body/DetailFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.302, 0.4, 0.255, 1)
+text = ""
+autowrap_mode = 2
+
+[node name="QuestReward" type="Label" parent="QuestPanel/Margin/Layout/Body/DetailFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545, 0.353, 0.196, 1)
+text = ""
+autowrap_mode = 2
+
+[node name="MapPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -185.0
+offset_right = 310.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StylePaper")
+script = ExtResource("5_map")
+
+[node name="Margin" type="MarginContainer" parent="MapPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="Layout" type="VBoxContainer" parent="MapPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="MapPanel/Margin/Layout"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MapPanel/Margin/Layout/Header"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("15_map_icon")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+
+[node name="MapAreaLabel" type="Label" parent="MapPanel/Margin/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "  BẢN ĐỒ"
+
+[node name="MapClose" type="Button" parent="MapPanel/Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 28)
+layout_mode = 2
+text = "X"
+
+[node name="Body" type="HBoxContainer" parent="MapPanel/Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="CanvasFrame" type="PanelContainer" parent="MapPanel/Margin/Layout/Body"]
+custom_minimum_size = Vector2(414, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="MapPanel/Margin/Layout/Body/CanvasFrame"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="MapCanvas" type="Control" parent="MapPanel/Margin/Layout/Body/CanvasFrame/Margin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(398, 280)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("6_canvas")
+
+[node name="LegendFrame" type="PanelContainer" parent="MapPanel/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleInset")
+
+[node name="Margin" type="MarginContainer" parent="MapPanel/Margin/Layout/Body/LegendFrame"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="MapPanel/Margin/Layout/Body/LegendFrame/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MapPanel/Margin/Layout/Body/LegendFrame/Margin/Stack"]
+layout_mode = 2
+text = "ĐÃ KHÁM PHÁ"
+
+[node name="Scroll" type="ScrollContainer" parent="MapPanel/Margin/Layout/Body/LegendFrame/Margin/Stack"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarkerList" type="VBoxContainer" parent="MapPanel/Margin/Layout/Body/LegendFrame/Margin/Stack/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MapEmpty" type="Label" parent="MapPanel/Margin/Layout/Body/LegendFrame/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Chưa có điểm mốc."
+autowrap_mode = 2
